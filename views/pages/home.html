@@ -1,0 +1,72 @@
+<!-- form to update the message variable using ng-model -->
+<!-- <div class="form-group">
+    <label>Message</label>
+    <input type="text" class="form-control" ng-model="main.message">
+</div>
+ -->
+
+
+<div style="height:50px;"></div>
+<div class="logo">
+    <div class="container">
+        <div class="jumbotron col-sm-offset-4 col-sm-4 col-sm-offset-4" style="height:250px;">
+        	<h1>{{main.message}}</h1>
+        </div>
+    </div>
+</div>
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Email:</label>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-5 control-label">Password:</label>
+      <div class="col-lg-3">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Keep me signed in
+          </label>
+        </div>
+      </div>
+    <div class="col-lg-4"></div>
+    </div>
+
+</form>
+
+<div class="col-sm-offset-5 col-sm-3">
+        <a href="/vendors"> <button type="submit" class="btn btn-success btn-sm btn-block" >Login</button> </a>
+        <div style="height:5px;"></div>
+        <a href="/registration"> <button type="submit" class="btn btn-default btn-sm btn-block">Sign Up</button> </a>
+</div>
+<!-- display the list using ng-repeat -->
+<!-- <div class="info">
+    <h2>Student List:</h2>
+    <table class="table table-bordered">
+    <thead>
+     <tr>
+         <th>First Name</th>
+         <th>Last Name</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr ng-repeat="student in main.students">
+         <td>{{ student.first }}</td>
+         <td>{{ student.last }}</td>
+     </tr>
+    </tbody>
+    </table>
+
+    	form to add computer to the list
+     <form class="form-inline" ng-submit="main.addStudent()">  
+         <input type="text" class="form-control" placeholder="First" ng-model="main.studentData.first">
+         <input type="text" class="form-control" placeholder="Last" ng-model="main.studentData.last">
+         <button type="submit" class="btn btn-success">Add</button>
+     </form> -->
+</div>
