@@ -22,13 +22,18 @@ module.exports = function(app, express) {
 
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
-			
-			var user = new User();		// create a new instance of the User model
-			user.name = req.body.name;  // set the users name (comes from the request)
-			user.username = req.body.username;  // set the users username (comes from the request)
-			user.password = req.body.password;  // set the users password (comes from the request)
 
-			user.save(function(err) {
+			var vendor = new Vendor();		// create a new instance of the User model
+			vendor.Boothname = req.body.name;  // set the users name (comes from the request)
+			vendor.username = req.body.username;  // set the users username (comes from the request)
+			vendor.password = req.body.password1;  // set the users password (comes from the request)
+			vendor.email = req.body.email;
+			vendor.phone = req.body.phone;
+			vendor.boothtype = req.body.boothType;
+			vendor.bio = req.body.bio;
+			vendor.products = req.body.products;
+
+			vendor.save(function(err) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
