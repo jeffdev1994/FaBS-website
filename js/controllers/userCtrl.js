@@ -47,6 +47,7 @@ angular.module('userCtrl', ['userService'])
 	var vm = this;
 	
     vm.attemptSave = function() {
+		console.log("calling attemptSave()");
 	    if (vm.validateForm()) {
 			vm.saveUser();
 			return true;

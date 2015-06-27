@@ -1,4 +1,4 @@
-<form class="form-horizontal" ng-controller="userCreateController">
+<form id="form1" class="form-horizontal" ng-controller="userCreateController as userCreate" ng-submit="userCreate.attemptSave()">
  
   <fieldset>
     <label style="font-size:50px"><b>Registration<b></label>
@@ -7,35 +7,35 @@
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Username:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Username" ng-model="user.username">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Username" ng-model="userCreate.userData.username">
       </div>
     </div>
     
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Password:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password1">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userCreate.userData.password1">
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Confirm Password:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" ng-model="user.password2">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" ng-model="userCreate.userData.password2">
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" ng-model="userCreate.userData.email">
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputPassword" class="col-lg-2 control-label">Phone:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="password" class="form-control" id="inputPhone" placeholder="Phone" ng-model="user.phone">
+        <input type="text" class="form-control" id="inputPhone" placeholder="Phone" ng-model="userCreate.userData.phone">
       </div>
     </div>
 	
@@ -46,7 +46,7 @@
 	<div class="form-group">
 	  <label for="inputEmail" class="col-lg-2 control-label">Booth Type:</label>
 	  <div class="col-lg-4 offset-col-6">
-	    <select class="form-control" id="selBooth" ng-model="user.boothType">
+	    <select class="form-control" id="selBooth" ng-model="userCreate.userData.boothType">
 		  <option>Produce</option>
 		  <option>Lunch</option>
 		  <option>Merchandise</option>
@@ -57,14 +57,14 @@
 	<div class="form-group">
 	  <label for="inputEmail" class="col-lg-2 control-label">Products:</label>
 	  <div class="col-lg-4 offset-col-6">
-	    <textarea class="form-control" rows="5" id="areaProducts" placeholder="Products" ng-model="user.products"></textarea>
+	    <textarea class="form-control" rows="5" id="areaProducts" placeholder="Products" ng-model="userCreate.userData.products"></textarea>
 	  </div>
 	</div>
 	
 	<div class="form-group">
 	  <label for="inputEmail" class="col-lg-2 control-label">Bio:</label>
 	  <div class="col-lg-4 offset-col-6">
-	    <textarea class="form-control" rows="5" id="inputBio" placeholder="Bio" ng-model="user.bio"></textarea>
+	    <textarea class="form-control" rows="5" id="inputBio" placeholder="Bio" ng-model="userCreate.userData.bio"></textarea>
 	  </div>
 	
 	</div>
@@ -73,10 +73,9 @@
 
     <div class="form-group">
       <div class="col-lg-3">
-        <button type="submit" class="btn btn-primary btn-block" ng-click="attemptSave()">Submit</button>
+        <button type="submit" form="form1" class="btn btn-primary btn-block">Submit</button>
       </div>
     </div>
 
   </fieldset>
-  <script src="js/controllers/userCtrl.js"></script>
 </form>
