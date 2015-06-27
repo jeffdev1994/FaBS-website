@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
-// schema for vendor
-var VendorSchema = new Schema({
+// user schema 
+var UserSchema = new Schema({
 	boothName: { type: String, required: true},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
@@ -11,35 +11,32 @@ var VendorSchema = new Schema({
 	bio: { type: String, required: true},
 	//this is how to make an array. use products.push(object)
 	//http://mongoosejs.com/docs/schematypes.html
-	products: [],
+	products: { type: String, required: true},
 	bookedBooths: []
 });
 
 // hash the password before the user is saved
-VendorSchema.pre('save', function(next) {
-	var vendor = this;
+UserSchema.pre('save', function(next) {
+	var user = this;
 
 	// hash the password only if the password has been changed or user is new
 	if (!user.isModified('password')) return next();
 
 	// generate the hash
-	bcrypt.hash(vendor.password, null, null, function(err, hash) {
+	bcrypt.hash(user.password, null, null, function(err, hash) {
 		if (err) return next(err);
 
 		// change the password to the hashed version
-		vendor.password = hash;
+		user.password = hash;
 		next();
 	});
 });
 
 // method to compare a given password with the database hash
-VendorSchema.methods.comparePassword = function(password) {
-	var vendor = this;
+UserSchema.methods.comparePassword = function(password) {
+	var user = this;
 
-	return bcrypt.compareSync(password, vendor.password);
+	return bcrypt.compareSync(password, user.password);
 };
 
-/**other methods that vendor has to implement will go in here. dont know if we
-actually need to bother with the getters and setters.*/
-
-module.exports = mongoose.model('Vendor', VendorSchema);
+module.exports = mongoose.model('User', UserSchema);

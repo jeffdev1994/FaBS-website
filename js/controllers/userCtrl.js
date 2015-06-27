@@ -43,8 +43,54 @@ angular.module('userCtrl', ['userService'])
 
 // STEP 7 - add create user controller
 .controller('userCreateController', function(User) {
-	
+
 	var vm = this;
+	
+	vm.userData = {
+		username: "",
+		password1: "",
+		password2: "",
+		email: "",
+		phone: "",
+		boothName: "",
+		boothType: "",
+		products: "",
+		bio: ""
+	};
+	
+    vm.attemptSave = function() {
+		console.log("calling attemptSave()");
+	    if (vm.validateForm()) {
+			vm.saveUser();
+			return true;
+		} else {
+			return false;
+		}
+			
+	};
+
+    vm.validateForm = function() {
+		if (vm.userData.password1 != vm.userData.password2) {
+			alert("Error: Passwords do not match.");
+			return false;
+		}
+		if (vm.userData.password1.length < 5) {
+			alert("Error: Password must be a least 5 characters.");
+			return false;
+		}
+		if (vm.userData.username.length < 4) {
+			alert("Error: Username must be at least 4 characters.");
+			return false;
+		}
+		re = /.+@.+/;
+		if (!re.test(vm.userData.email)) {
+			alert("Error: Email address not valid (requires '@').");
+			return false;
+		}
+		else {
+		  return true;
+		}
+	};
 
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
@@ -52,16 +98,19 @@ angular.module('userCtrl', ['userService'])
 
 	// function to create a user
 	vm.saveUser = function() {
+		console.log("saveUser() called");
 		vm.processing = true;
 		vm.message = '';
 
+		//console.log(vm.userData.username);
 		// use the create function in the userService
 		User.create(vm.userData)
 			.success(function(data) {
+				console.log("user created .SUCCESS");
 				vm.processing = false;
-				vm.userData = {};
 				vm.message = data.message;
 		});
+		console.log("user created");
 			
 	};
 
