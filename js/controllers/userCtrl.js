@@ -102,9 +102,11 @@ angular.module('userCtrl', ['userService'])
 		vm.processing = true;
 		vm.message = '';
 
+		//console.log(vm.userData.username);
 		// use the create function in the userService
 		User.create(vm.userData)
 			.success(function(data) {
+				console.log("user created .SUCCESS");
 				vm.processing = false;
 				vm.message = data.message;
 		});
