@@ -23,6 +23,8 @@ module.exports = function(app, express) {
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
 			console.log("INTO API POST");
+			
+			/*~*~*~* "Vendor" IS NOT DEFINED ANYWHERE *~*~*~*/
 			var vendor = new Vendor();		// create a new instance of the User model
 			vendor.Boothname = req.body.boothName;  // set the users name (comes from the request)
 			vendor.username = req.body.username;  // set the users username (comes from the request)
