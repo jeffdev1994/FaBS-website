@@ -376,6 +376,48 @@ header .navbar 		{
 
 /* markethome 
 ===================== */
+#history{
+	height: 130%;
+	width: 90%;
+}
+
+#gangstaMap{
+	width: 100%;
+}
+
+#gangstaCat{
+	width: 100%;
+	padding-bottom: 3%;	
+}
+
+.glyphicon.glyphicon-chevron-right{
+	font-size: 30px;
+}
+
+.glyphicon.glyphicon-chevron-left{
+	font-size: 30px;
+}
+
+#left{
+
+	margin-top: -.5%;
+	padding: 5% 5% -5% 4%;
+
+}
+
+#right{	
+	
+	margin-top: -5.25%;
+	margin-left: .25%;
+	padding: 5% 5% 2% 5%;
+
+}
+
+
+#calendar{
+	padding: 5px 5px 5px 5px;
+
+}
 #marketMain #userProfile{
 	width: 24%;
 	float: left;
@@ -395,17 +437,20 @@ header .navbar 		{
 }
 
 #userProfile{
-	height: 200px;
+	height: 100%;
 }
 
 #market{
-	height: 200px;
+	height: 100%;
 }
 
 #bookingHistory{
-	height: 200px;
+	height: 100%;
 }
 
+#dateandmap{
+	height: 100%;
+}
 
 .container{
 	/*margin-left: 5%;
