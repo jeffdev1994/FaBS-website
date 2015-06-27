@@ -8,6 +8,43 @@ header .navbar 		{
 	border-radius:0;
 }
 
+/* markethome 
+===================== */
+#marketMain #userProfile{
+	width: 24%;
+	float: left;
+	margin-right: 1%;
+}
+
+#marketMain #market{
+	width: 50%;
+	float: left;
+	margin-right: 1%;
+}
+
+#marketMain #bookingHistory{
+	width: 24%;
+	float: left;
+
+}
+
+#userProfile{
+	height: 200px;
+}
+
+#market{
+	height: 200px;
+}
+
+#bookingHistory{
+	height: 200px;
+}
+
+
+.container{
+	/*margin-left: 5%;
+	margin-right: 1000px;*/
+}
 /* NGANIMATE
 ====================== */
 
