@@ -46,23 +46,35 @@ angular.module('userCtrl', ['userService'])
 
 	var vm = this;
 	
+	vm.userData = {};
+	
     vm.attemptSave = function() {
 		console.log("calling attemptSave()");
 	    if (vm.validateForm()) {
 			vm.saveUser();
 			return true;
 		} else {
-			alert("Error: Passwords do not match.");
 			return false;
 		}
 			
 	};
 
     vm.validateForm = function() {
-		if (User.password1 == User.password2) {
+		if (vm.userData.password1 != vm.userData.password2) {
+			alert("Error: Passwords do not match.");
+			return false;
+		}
+		if (vm.userData.username.length > 3) {
+			alert("Error: Username must be at least 4 characters.");
+			return false;
+		}
+		re = /.+@.+/;
+		if (!re.text(vm.userData.email)) {
+			alert("Error: Email address not valid (requires '@').");
+			return false;
+		}
+		else {
 		  return true;
-		} else {
-		  return false;
 		}
 	};
 
@@ -79,7 +91,6 @@ angular.module('userCtrl', ['userService'])
 		User.create(vm.userData)
 			.success(function(data) {
 				vm.processing = false;
-				vm.userData = {};
 				vm.message = data.message;
 		});
 			
