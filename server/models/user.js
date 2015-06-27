@@ -9,6 +9,7 @@ var VendorSchema = new Schema({
 	password: { type: String, required: true, select: false },
 	email: { type: String, required: true},
 	bio: { type: String, required: true},
+
 	//this is how to make an array. use products.push(object)
 	//http://mongoosejs.com/docs/schematypes.html
 	products: [],
