@@ -43,8 +43,27 @@ angular.module('userCtrl', ['userService'])
 
 // STEP 7 - add create user controller
 .controller('userCreateController', function(User) {
-	
+
 	var vm = this;
+	
+    vm.attemptSave = function() {
+	    if (vm.validateForm()) {
+			vm.saveUser();
+			return true;
+		} else {
+			alert("Error: Passwords do not match.");
+			return false;
+		}
+			
+	};
+
+    vm.validateForm = function() {
+		if (User.password1 == User.password2) {
+		  return true;
+		} else {
+		  return false;
+		}
+	};
 
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
