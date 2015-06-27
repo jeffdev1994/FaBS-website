@@ -46,7 +46,17 @@ angular.module('userCtrl', ['userService'])
 
 	var vm = this;
 	
-	vm.userData = {};
+	vm.userData = {
+		username: "",
+		password1: "",
+		password2: "",
+		email: "",
+		phone: "",
+		boothName: "",
+		boothType: "",
+		products: "",
+		bio: ""
+	};
 	
     vm.attemptSave = function() {
 		console.log("calling attemptSave()");
@@ -64,12 +74,16 @@ angular.module('userCtrl', ['userService'])
 			alert("Error: Passwords do not match.");
 			return false;
 		}
-		if (vm.userData.username.length > 3) {
+		if (vm.userData.password1.length < 5) {
+			alert("Error: Password must be a least 5 characters.");
+			return false;
+		}
+		if (vm.userData.username.length < 4) {
 			alert("Error: Username must be at least 4 characters.");
 			return false;
 		}
 		re = /.+@.+/;
-		if (!re.text(vm.userData.email)) {
+		if (!re.test(vm.userData.email)) {
 			alert("Error: Email address not valid (requires '@').");
 			return false;
 		}
@@ -84,6 +98,7 @@ angular.module('userCtrl', ['userService'])
 
 	// function to create a user
 	vm.saveUser = function() {
+		console.log("saveUser() called");
 		vm.processing = true;
 		vm.message = '';
 
@@ -93,6 +108,7 @@ angular.module('userCtrl', ['userService'])
 				vm.processing = false;
 				vm.message = data.message;
 		});
+		console.log("user created");
 			
 	};
 
