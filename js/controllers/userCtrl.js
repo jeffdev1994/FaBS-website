@@ -1,4 +1,4 @@
-angular.module('userCtrl', ['userService'])
+angular.module('userCtrl', ['userService','ui.bootstrap'])
 
 .controller('userController', function(User) {
 
@@ -73,45 +73,45 @@ angular.module('userCtrl', ['userService'])
 		//all of the fields are mandatory, send an error alert if any of the fields are left empty
 		//or dont match needed information
 
-		//TODO: should change these to be a nicer popup, im sure angular or bootstap has similar ones that
-		//TODO: move new user to logged in page after successfully being registered\
+
+		//TODO: move new user to logged in page after successfully being registered
 
 		if (vm.userData.password1 != vm.userData.password2) {
-			alert("Error: Passwords do not match.");
+			vm.addAlert("Error: Passwords do not match.");
 			return false;
 		}
 		if (vm.userData.password1.length < 5) {
-			alert("Error: Password must be a least 5 characters.");
+			vm.addAlert("Error: Password must be a least 5 characters.");
 			return false;
 		}
 		if (vm.userData.username.length < 4) {
-			alert("Error: Username must be at least 4 characters.");
+			vm.addAlert("Error: Username must be at least 4 characters.");
 			return false;
 		}
 		re = /.+@.+/;
 		if (!re.test(vm.userData.email)) {
-			alert("Error: Email address not valid (requires '@').");
+			vm.addAlert("Error: Email address not valid (requires '@').");
 			return false;
 		}
 		//XXX-XXX-XXXX would be expected input, dont think its needed to do regex
 		if (vm.userData.phone.length < 10) {
-			alert("Error: Phone number must be atleast 10 numbers long.");
+			vm.addAlert("Error: Phone number must be atleast 10 numbers long.");
 			return false;
 		}
 		if (vm.userData.boothName.length < 1) {
-			alert("Error: Please enter a booth name.");
+			vm.addAlert("Error: Please enter a booth name.");
 			return false;
 		}
 		if (vm.userData.boothType.length < 1) {
-			alert("Error: Please select a booth type.");
+			vm.addAlert("Error: Please select a booth type.");
 			return false;
 		}
 		if (vm.userData.products.length < 2) {
-			alert("Error: Please enter some of the products you plan to sell.\nYou may edit this later.");
+			vm.addAlert("Error: Please enter some of the products you plan to sell.\nYou may edit this later.");
 			return false;
 		}
 		if (vm.userData.bio.length < 2) {
-			alert("Error: Please enter some information about your business and products.");
+			vm.addAlert("Error: Please enter some information about your business and products.");
 			return false;
 		}
 
@@ -119,6 +119,8 @@ angular.module('userCtrl', ['userService'])
 		return true;
 
 	};
+
+
 
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
@@ -142,7 +144,20 @@ angular.module('userCtrl', ['userService'])
 			
 	};
 
+	//trying this out
+	//https://angular-ui.github.io/bootstrap/
+	vm.alert = {};
 
+	vm.addAlert = function(message) {
+		//remove data from the array so we dont get more message each time
+		//probably a better way to do this. with a normal message
+		vm.alert = {msg: message, type: 'danger'};
+	};
+
+
+	vm.closeAlert = function() {
+		vm.alert = {};
+	};
 
 });
 
