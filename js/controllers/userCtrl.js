@@ -70,6 +70,12 @@ angular.module('userCtrl', ['userService'])
 	};
 
     vm.validateForm = function() {
+		//all of the fields are mandatory, send an error alert if any of the fields are left empty
+		//or dont match needed information
+
+		//TODO: should change these to be a nicer popup, im sure angular or bootstap has similar ones that
+		//TODO: move new user to logged in page after successfully being registered\
+
 		if (vm.userData.password1 != vm.userData.password2) {
 			alert("Error: Passwords do not match.");
 			return false;
@@ -87,9 +93,31 @@ angular.module('userCtrl', ['userService'])
 			alert("Error: Email address not valid (requires '@').");
 			return false;
 		}
-		else {
-		  return true;
+		//XXX-XXX-XXXX would be expected input, dont think its needed to do regex
+		if (vm.userData.phone.length < 10) {
+			alert("Error: Phone number must be atleast 10 numbers long.");
+			return false;
 		}
+		if (vm.userData.boothName.length < 1) {
+			alert("Error: Please enter a booth name.");
+			return false;
+		}
+		if (vm.userData.boothType.length < 1) {
+			alert("Error: Please select a booth type.");
+			return false;
+		}
+		if (vm.userData.products.length < 2) {
+			alert("Error: Please enter some of the products you plan to sell.\nYou may edit this later.");
+			return false;
+		}
+		if (vm.userData.bio.length < 2) {
+			alert("Error: Please enter some information about your business and products.");
+			return false;
+		}
+
+		//if all requirements are met, return true
+		return true;
+
 	};
 
 	// variable to hide/show elements of the view

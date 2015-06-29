@@ -25,7 +25,7 @@ module.exports = function(app, express) {
 			console.log("INTO API/users POST");
 			console.log("boothname:", req.body.boothName, "email:", req.body.email);
 			var vendor = new User();		// create a new instance of the User model
-			vendor.BoothName = req.body.boothName;  // set the users name (comes from the request)
+			vendor.boothName = req.body.boothName;  // set the users name (comes from the request)
 			vendor.username = req.body.username;  // set the users username (comes from the request)
 			vendor.password = req.body.password1;  // set the users password (comes from the request)
 			vendor.email = req.body.email;
@@ -36,6 +36,7 @@ module.exports = function(app, express) {
 
 			vendor.save(function(err) {
 				if (err) {
+					console.log("error in api for saving object", err);
 					// duplicate entry
 					if (err.code == 11000)
 						return res.json({ success: false, message: 'A user with that username already exists. '});
