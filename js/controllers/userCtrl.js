@@ -42,7 +42,7 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 })
 
 // STEP 7 - add create user controller
-.controller('userCreateController', function(User) {
+.controller('userCreateController', function(User, $location) {
 
 	var vm = this;
 	
@@ -73,8 +73,6 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 		//all of the fields are mandatory, send an error alert if any of the fields are left empty
 		//or dont match needed information
 
-
-		//TODO: move new user to logged in page after successfully being registered
 
 		if (vm.userData.password1 != vm.userData.password2) {
 			vm.addAlert("Error: Passwords do not match.");
@@ -136,25 +134,35 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 		// use the create function in the userService
 		User.create(vm.userData)
 			.success(function(data) {
-				console.log("user created .SUCCESS");
-				vm.processing = false;
-				vm.message = data.message;
+				//if it passes all the checks, and comes back unsuccessful. then it must be username
+				if(data.success == false){
+					console.log("user created not sucessful");
+					vm.addAlert("Error: Username is not unique, try a different one");
+					vm.processing = false;
+					vm.message = data.message;
+
+				}
+				else {
+					console.log("user created .SUCCESS");
+					vm.processing = false;
+					vm.message = data.message;
+					//if it makes it to here, then user was successfully created, perhaps a popup. then back to login page
+					//TODO: http://github.hubspot.com/vex/  ,   http://jsfiddle.net/adamschwartz/Lrq84/   ,  use vex for the popup instead
+					alert("new user successfully created! please login");
+					$location.path("/");
+
+				}
 		});
-		console.log("user created");
-			
 	};
 
-	//trying this out
+	//used for displaying the error messaging
 	//https://angular-ui.github.io/bootstrap/
 	vm.alert = {};
-
 	vm.addAlert = function(message) {
 		//remove data from the array so we dont get more message each time
 		//probably a better way to do this. with a normal message
 		vm.alert = {msg: message, type: 'danger'};
 	};
-
-
 	vm.closeAlert = function() {
 		vm.alert = {};
 	};
