@@ -1,5 +1,5 @@
 main 					{
-	padding-top:30px;	
+	padding-top:30px;
 }
 
 /*********************************************************************************/
@@ -32,7 +32,7 @@ main 					{
 			-ms-animation: none !important;
 			animation: none !important;
 		}
-		
+
 	body,input,select,textarea
 	{
 		font-family: 'Open Sans', sans-serif;
@@ -40,37 +40,37 @@ main 					{
 		color: #696969;
 		font-weight: 300;
 	}
-	
+
 	a
 	{
 		color: #0090c5;
 		text-decoration: underline;
 	}
-	
+
 		a:hover
 		{
 			text-decoration: none;
 		}
-	
+
 	h1, h2, h3, h4, h5, h6
 	{
 		color: #444;
 		font-weight: 800;
 	}
-	
+
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
 	{
 		color: inherit;
 		text-decoration: none;
 		outline: 0;
 	}
-			
+
 	h2.alt
 	{
 		color: #eee;
 		text-shadow: 2px 2px #000;
 	}
-	
+
 	h2.alt2
 	{
 		color: #222;
@@ -82,12 +82,12 @@ main 					{
 		font-weight: 600;
 		color: #444;
 	}
-	
+
 	i, em
 	{
 		font-style: italic;
 	}
-	
+
 	br.clear
 	{
 		clear: both;
@@ -99,40 +99,40 @@ main 					{
 		top: 0.5em;
 		font-size: 0.8em;
 	}
-	
+
 	sup
 	{
 		position: relative;
 		top: -0.5em;
 		font-size: 0.8em;
 	}
-	
+
 	hr
 	{
 		border: 0;
 		border-top: solid 1px #eee;
 	}
-	
+
 	blockquote
 	{
 		border-left: solid 0.5em #eee;
 		padding: 1em 0 1em 2em;
 		font-style: italic;
-	}	
-	
+	}
+
 	p, ul, ol, dl, table
 	{
 		margin-bottom: 2em;
 	}
-	
+
 	/* Section/Article */
-	
+
 		section,
 		article
 		{
 			margin-bottom: 0em;
 		}
-		
+
 			section > :last-child,
 			article > :last-child
 			{
@@ -149,12 +149,12 @@ main 					{
 		{
 			margin: 0 0 2em 0;
 		}
-		
+
 			header h2, header h3
 			{
 				margin: 0 0 0.25em 0;
 			}
-			
+
 			header p
 			{
 				margin: 0;
@@ -246,7 +246,7 @@ ul
 				margin-left: 0;
 				padding-left: 0;
 			}
-		
+
 	ul.menu li
 	{
 		border-left: solid 1px #e0e0e0;
@@ -264,7 +264,7 @@ ul
 
 ol
 {
-}	
+}
 	ol.default
 	{
 		list-style: decimal;
@@ -275,9 +275,9 @@ ol
 			padding-left: 0.25em;
 		}
 
-/* HEADER 
+/* HEADER
 ===================== */
-header .navbar 		{ 
+header .navbar 		{
 	border-radius:0;
 }
 
@@ -311,7 +311,7 @@ header .navbar 		{
 					top: 0.05em;
 				}
 
-		
+
 			.button.login
 			{
 				position: absolute;
@@ -322,7 +322,7 @@ header .navbar 		{
 			}
 
 /* Box
-===================== */	
+===================== */
 	.box
 	{
 		border-radius: 6px;
@@ -334,7 +334,7 @@ header .navbar 		{
 		{
 			background: #f8f8f8;
 		}
-	
+
 	.blackbox
 	{
 		background: #000;
@@ -374,7 +374,7 @@ header .navbar 		{
 	}
 
 
-/* markethome 
+/* markethome
 ===================== */
 #history{
 	height: 130%;
@@ -387,7 +387,7 @@ header .navbar 		{
 
 #gangstaCat{
 	width: 100%;
-	padding-bottom: 3%;	
+	padding-bottom: 3%;
 }
 
 .glyphicon.glyphicon-chevron-right{
@@ -405,8 +405,8 @@ header .navbar 		{
 
 }
 
-#right{	
-	
+#right{
+
 	margin-top: -5.25%;
 	margin-left: .25%;
 	padding: 5% 5% 2% 5%;
@@ -485,7 +485,7 @@ header .navbar 		{
 }
 
 @-moz-keyframes spin {
-	from 	{ -moz-transform:rotate(0deg); }	
+	from 	{ -moz-transform:rotate(0deg); }
 	to 	{ -moz-transform:rotate(360deg); }
 }
 
@@ -511,9 +511,9 @@ header .navbar 		{
 			line-height: 1.35em;
 			margin: 0;
 		}
-		
-		
-		
+
+
+
 		#banner ul
 		{
 			margin: 0 0 0 2em;
@@ -526,13 +526,13 @@ header .navbar 		{
 	#footer
 	{
 	}
-	
+
 	#copyright
 	{
 		padding: 4em 0 0 0;
 		text-align: center;
 	}
-	
+
 	.black {
 		background: #000;
 	}
