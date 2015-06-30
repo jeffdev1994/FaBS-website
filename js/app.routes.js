@@ -36,10 +36,18 @@
 		templateUrl: 'views/pages/about.html'
 	})
 
+	//route for vendor main page after log in
+	.when("/markethome", {
+		templateUrl: 'views/pages/markethome.html',
+		css: '/views/css/markethome.css' 
+	})
+
 	// route for registration page
 	.when("/registration", {
 		templateUrl: 'views/pages/registration.html'
 	});
+
+
 
 	// Added to remove the # from URLs
 	$locationProvider.html5Mode(true);

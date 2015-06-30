@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
-// user schema 
-var UserSchema = new Schema({
+
+// schema for vendor
+var VendorSchema = new Schema({
 	boothName: { type: String, required: true},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
@@ -18,27 +19,30 @@ var UserSchema = new Schema({
 });
 
 // hash the password before the user is saved
-UserSchema.pre('save', function(next) {
-	var user = this;
+VendorSchema.pre('save', function(next) {
+	var vendor = this;
 
 	// hash the password only if the password has been changed or user is new
 	if (!user.isModified('password')) return next();
 
 	// generate the hash
-	bcrypt.hash(user.password, null, null, function(err, hash) {
+	bcrypt.hash(vendor.password, null, null, function(err, hash) {
 		if (err) return next(err);
 
 		// change the password to the hashed version
-		user.password = hash;
+		vendor.password = hash;
 		next();
 	});
 });
 
 // method to compare a given password with the database hash
-UserSchema.methods.comparePassword = function(password) {
-	var user = this;
+VendorSchema.methods.comparePassword = function(password) {
+	var vendor = this;
 
-	return bcrypt.compareSync(password, user.password);
+	return bcrypt.compareSync(password, vendor.password);
 };
 
-module.exports = mongoose.model('User', UserSchema);
+/**other methods that vendor has to implement will go in here. dont know if we
+actually need to bother with the getters and setters.*/
+
+module.exports = mongoose.model('Vendor', VendorSchema);
