@@ -147,8 +147,9 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 					vm.processing = false;
 					vm.message = data.message;
 					//if it makes it to here, then user was successfully created, perhaps a popup. then back to login page
-					//TODO: http://github.hubspot.com/vex/  ,   http://jsfiddle.net/adamschwartz/Lrq84/   ,  use vex for the popup instead
-					alert("new user successfully created! please login");
+					//TODO:
+					//alert("new user successfully created! please login");
+					vex.dialog.alert(vm.userData.username + ' successfully created! Please login');
 					$location.path("/");
 
 				}
