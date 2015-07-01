@@ -7,7 +7,9 @@ var bcrypt = require('bcrypt-nodejs');
 var VendorSchema = new Schema({
 	boothName: { type: String, required: true},
 	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false },
+	//had to remove 'select:False' cuz it was breaking the comparePassword method
+	//if you cant return password, then it cant send it, and bcrypt throws an error
+	password: { type: String, required: true},
 	email: { type: String, required: true},
 	bio: { type: String, required: true},
 	phone: { type: String, required: true},

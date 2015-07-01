@@ -18,12 +18,19 @@ angular.module('userService', [])
 		return $http.get('/api/users/');
 	};
 
+	//create a new user
 	userFactory.create = function(userData){
 		// since this is a post method we need to include userData
 		// from our form
 		console.log("got to user services");
 		console.log(userData.username);
 		return $http.post('/api/users', userData);
+	};
+
+	//log a user in
+	userFactory.login = function(userData){
+		console.log("userService userdata.username: " + userData.username);
+		return $http.post('/api/authenticate', userData);
 	};
 
 	userFactory.delete = function(id){

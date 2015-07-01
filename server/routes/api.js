@@ -18,7 +18,9 @@ module.exports = function(app, express) {
 
 
 	apiRouter.post('/authenticate',function(req, res){
+		console.log("very top of authenticate" + req.body.username);
 		User.findOne({username: req.body.username})
+			.select('username password')
 			.exec(function(err,user){
 				if(err) throw err;
 
@@ -27,7 +29,7 @@ module.exports = function(app, express) {
 					res.json({success: false, message: 'Error: Username not found'});
 				}
 				else if(user){
-					console.log("made it to 30");
+					console.log("looking at user: " + user.username);
 					//check if the passwords match
 					var validPass = user.comparePassword(req.body.password);
 					console.log("made it to 33");
@@ -47,6 +49,9 @@ module.exports = function(app, express) {
 
 
 		});
+
+
+
 
 
 
@@ -97,6 +102,10 @@ module.exports = function(app, express) {
 			});
 		});
 
+
+
+
+
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
 	apiRouter.route('/users/:user_id')
@@ -143,6 +152,35 @@ module.exports = function(app, express) {
 				res.json({ message: 'Successfully deleted' });
 			});
 		});
+
+
+
+
+	//middleware to verify token
+	//not sure where this should go yet. but i think it goes overtop of all functions that need to be logged in to use
+	//not sure how this stops them from getting into vendor main and stuff though
+	apiRouter.use(function(req,res,next){
+		//**********************************
+		//it was toke\n in the book, but the \ and n were on different lines, not sure if its supposed to be like this, page 98 of mean
+		var token = req.body.token || req.param('token') || req.headers['x-access-toke\n'];
+
+		if(token){
+			jwt.verify(token,superSecret,function(err,decoded){
+				if(err){
+					return res.status(403).send({success: false, message: 'failed to authenticate token'});
+				}
+				else{
+					//authentication was successful
+					req.decoded = decoded;
+					next()
+				}
+			});
+		}
+		else{
+			//there was no token
+			return res.status(403).send({success: false, message: 'No token provided'});
+		}
+	});
 
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
