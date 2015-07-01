@@ -1,13 +1,13 @@
 <form id="form1" class="form-horizontal" ng-controller="userCreateController as userCreate" ng-submit="userCreate.attemptSave()">
  
   <fieldset>
-    <label style="font-size:50px"><b>Registration<b></label>
+    <label style="font-size:50px"><b>Registration</b></label>
     <br/><br/>
 
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Username:</label>
+      <label for="inputUsername" class="col-lg-2 control-label">Username:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Username" ng-model="userCreate.userData.username">
+        <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="userCreate.userData.username">
       </div>
     </div>
     
@@ -19,9 +19,9 @@
     </div>
 
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Confirm Password:</label>
+      <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password:</label>
       <div class="col-lg-4 offset-col-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" ng-model="userCreate.userData.password2">
+        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model="userCreate.userData.password2">
       </div>
     </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Phone:</label>
+      <label for="inputPhone" class="col-lg-2 control-label">Phone:</label>
       <div class="col-lg-4 offset-col-6">
         <input type="text" class="form-control" id="inputPhone" placeholder="Phone" ng-model="userCreate.userData.phone">
       </div>
@@ -73,11 +73,18 @@
 	  <div class="col-lg-4 offset-col-6">
 	    <textarea class="form-control" rows="5" id="inputBio" placeholder="Bio" ng-model="userCreate.userData.bio"></textarea>
 	  </div>
-	
 	</div>
-    
-    <div class="col-lg-2" style="height:15px;"></div>
 
+
+    <div class="col-lg-1" style="height:15px;"></div>
+    <div class="form-group">
+      <div class="col-lg-6 offset-col-6">
+        <alert ng-if = "userCreate.alert.msg" type="{{userCreate.alert.type}}" close="userCreate.closeAlert()">{{userCreate.alert.msg}}</alert>
+      </div>
+    </div>
+
+
+    <div class="col-lg-2" style="height:15px;"></div>
     <div class="form-group">
       <div class="col-lg-3">
         <button type="submit" form="form1" class="btn btn-primary btn-block">Submit</button>
