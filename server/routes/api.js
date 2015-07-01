@@ -22,28 +22,33 @@ module.exports = function(app, express) {
 
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
-			
-			var vendor = new Vendor();		// create a new instance of the User model
-			vendor.Boothname = req.body.name;  // set the users name (comes from the request)
+			console.log("INTO API/users POST");
+			console.log("boothname:", req.body.boothName, "email:", req.body.email);
+			var vendor = new User();		// create a new instance of the User model
+			vendor.boothName = req.body.boothName;  // set the users name (comes from the request)
 			vendor.username = req.body.username;  // set the users username (comes from the request)
-			vendor.password = req.body.password;  // set the users password (comes from the request)
-			vendor.email = req.body.password;
-			vendor.bio = req.body.password;
-			vendor.products = req.body.password;
-
+			vendor.password = req.body.password1;  // set the users password (comes from the request)
+			vendor.email = req.body.email;
+			vendor.bio = req.body.bio;
+			vendor.phone = req.body.phone;
+			vendor.boothtype = req.body.boothType;
+			vendor.products = req.body.products;
 
 			vendor.save(function(err) {
 				if (err) {
+					console.log("error in api for saving object", err);
 					// duplicate entry
-					if (err.code == 11000) 
+					if (err.code == 11000)
 						return res.json({ success: false, message: 'A user with that username already exists. '});
-					else 
+					else
 						return res.send(err);
 				}
 
 				// return a message
 				res.json({ message: 'User created!' });
 			});
+			
+
 
 		})
 

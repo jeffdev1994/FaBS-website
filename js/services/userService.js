@@ -21,6 +21,8 @@ angular.module('userService', [])
 	userFactory.create = function(userData){
 		// since this is a post method we need to include userData
 		// from our form
+		console.log("got to user services");
+		console.log(userData.username);
 		return $http.post('/api/users', userData);
 	};
 

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
+
 // schema for vendor
 var VendorSchema = new Schema({
 	boothName: { type: String, required: true},
@@ -9,10 +10,11 @@ var VendorSchema = new Schema({
 	password: { type: String, required: true, select: false },
 	email: { type: String, required: true},
 	bio: { type: String, required: true},
-
+	phone: { type: String, required: true},
+	boothtype: { type: String, required: true},
 	//this is how to make an array. use products.push(object)
 	//http://mongoosejs.com/docs/schematypes.html
-	products: [],
+	products: { type: String, required: true},
 	bookedBooths: []
 });
 
@@ -21,7 +23,7 @@ VendorSchema.pre('save', function(next) {
 	var vendor = this;
 
 	// hash the password only if the password has been changed or user is new
-	if (!user.isModified('password')) return next();
+	if (!vendor.isModified('password')) return next();
 
 	// generate the hash
 	bcrypt.hash(vendor.password, null, null, function(err, hash) {
