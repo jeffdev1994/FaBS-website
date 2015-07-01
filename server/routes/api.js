@@ -16,6 +16,40 @@ module.exports = function(app, express) {
 		res.json({ message: 'Welcome to the User API for Lab 7' });	
 	});
 
+
+	apiRouter.post('/authenticate',function(req, res){
+		User.findOne({username: req.body.username})
+			.exec(function(err,user){
+				if(err) throw err;
+
+				//if no user with that username was found
+				if(!user){
+					res.json({success: false, message: 'Error: Username not found'});
+				}
+				else if(user){
+					console.log("made it to 30");
+					//check if the passwords match
+					var validPass = user.comparePassword(req.body.password);
+					console.log("made it to 33");
+					//if passwords dont match, fail
+					if(!validPass){
+						console.log("made it to 36");
+						res.json({success: false, message: 'Error: Incorrect password'});
+					}
+					else{
+						//user was found, and password is correct. create token for them
+						//TODO: keep me logged in option, will apply to here
+						var token = jwt.sign({name: user.boothName, username: user.username},superSecret,{expiresInMinutes: 150});
+						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
+					}
+				}
+			});
+
+
+		});
+
+
+
 	// on routes that end in /users
 	// ----------------------------------------------------
 	apiRouter.route('/users')
