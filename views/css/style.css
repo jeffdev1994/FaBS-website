@@ -4,7 +4,7 @@ main 					{
 /*********************************************************************************/
 /* Backgrounds                                                                   */
 /*********************************************************************************/
-	#home-bg{
+	/*#home-bg{
 		background:		url("../img/tree-background.jpg") no-repeat center center fixed;
 		-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
@@ -18,9 +18,46 @@ main 					{
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
 		background-size:			cover;
+		height: 100%;
+	}*/
+
+	#bg-markethome{
+	  position: fixed; 
+	  top: -50%; 
+	  left: -50%; 
+	  width: 200%; 
+	  height: 200%;
+	  z-index:-1;
+	}
+	#bg-markethome img {
+	  position: absolute; 
+	  top: 0; 
+	  left: 0; 
+	  right: 0; 
+	  bottom: 0; 
+	  margin: auto; 
+	  min-width: 50%;
+	  min-height: 50%;
 	}
 
-
+	#bg-home{
+	  position: fixed; 
+	  top: -50%; 
+	  left: -50%; 
+	  width: 200%; 
+	  height: 200%;
+	  z-index:-1;
+	}
+	#bg-home img {
+	  position: absolute; 
+	  top: 0; 
+	  left: 0; 
+	  right: 0; 
+	  bottom: 0; 
+	  margin: auto; 
+	  min-width: 50%;
+	  min-height: 50%;
+	}
 
 /*********************************************************************************/
 /* Basic                                                                         */
@@ -299,14 +336,12 @@ header .navbar 		{
 	margin-top: -5.25%;
 	margin-left: .25%;
 	padding: 5% 5% 2% 5%;
-
 }
-
 
 #calendar{
 	padding: 5px 5px 5px 5px;
-
 }
+
 #marketMain #userProfile{
 	width: 24%;
 	float: left;
@@ -322,7 +357,6 @@ header .navbar 		{
 #marketMain #bookingHistory{
 	width: 24%;
 	float: left;
-
 }
 
 #userProfile{
