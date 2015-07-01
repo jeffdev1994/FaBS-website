@@ -285,6 +285,7 @@ header .navbar 		{
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
+		padding-right: 2%;
 	}
 		.loginbox.buttons{
 			padding: 0 0 0 0;
@@ -318,10 +319,12 @@ header .navbar 		{
 
 .glyphicon.glyphicon-chevron-right{
 	font-size: 30px;
+	color:white;
 }
 
 .glyphicon.glyphicon-chevron-left{
 	font-size: 30px;
+	color:white;
 }
 
 #left{
@@ -341,6 +344,10 @@ header .navbar 		{
 #calendar{
 	padding: 5px 5px 5px 5px;
 }
+#marketMain{
+	margin-left:2%;
+	margin-right:2%;
+}
 
 #marketMain #userProfile{
 	width: 24%;
@@ -357,6 +364,7 @@ header .navbar 		{
 #marketMain #bookingHistory{
 	width: 24%;
 	float: left;
+	background-color: white;
 }
 
 #userProfile{
@@ -373,6 +381,10 @@ header .navbar 		{
 
 #dateandmap{
 	height: 100%;
+}
+
+#notices{
+	background-color: white;
 }
 
 
