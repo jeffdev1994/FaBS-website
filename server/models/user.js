@@ -23,7 +23,7 @@ VendorSchema.pre('save', function(next) {
 	var vendor = this;
 
 	// hash the password only if the password has been changed or user is new
-	if (!user.isModified('password')) return next();
+	if (!vendor.isModified('password')) return next();
 
 	// generate the hash
 	bcrypt.hash(vendor.password, null, null, function(err, hash) {
