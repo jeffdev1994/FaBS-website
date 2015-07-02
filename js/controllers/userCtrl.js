@@ -41,6 +41,30 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 	};
 })
 
+
+.controller('userLoginController', function(User, $location){
+		var vm = this;
+
+		vm.loginData = {username: "", password: ""};
+
+
+
+		vm.attemptLogin = function(){
+			console.log("attempting login - start");
+			console.log(vm.loginData.username);
+			console.log(vm.loginData.password);
+			User.login(vm.loginData)
+				.success(function(data){
+					if(data.success == false){
+						vex.dialog.alert(data.message);
+					}
+					else{
+						$location.path("/markethome");
+					}
+				});
+		};
+	})
+
 // STEP 7 - add create user controller
 .controller('userCreateController', function(User, $location) {
 
@@ -147,7 +171,6 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 					vm.processing = false;
 					vm.message = data.message;
 					//if it makes it to here, then user was successfully created, perhaps a popup. then back to login page
-					//TODO:
 					//alert("new user successfully created! please login");
 					vex.dialog.alert(vm.userData.username + ' successfully created! Please login');
 					$location.path("/");
