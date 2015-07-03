@@ -285,7 +285,8 @@ header .navbar 		{
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
-		padding-right: 2%;
+		padding-top: 2%;
+		padding-bottom: 2%;
 	}
 		.loginbox.buttons{
 			padding: 0 0 0 0;
