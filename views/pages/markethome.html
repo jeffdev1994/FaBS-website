@@ -26,25 +26,21 @@
 				</div>
 			
 				<div class="panel-body">
-						<div class="well well-lg">
-							The Owl and the Pussy-cat went to sea
-							In a beautiful pea green boat,
-							They took some honey, and plenty of money,
-							Wrapped up in a five pound note.
-							The Owl looked up to the stars above,
-							And sang to a small guitar,
-							'O lovely Pussy! O Pussy my love,
-							What a beautiful Pussy you are,
-							You are,
-							You are!
-							<br><br>
-							What a beautiful Pussy you are!'The Owl and the Pussy-cat went to sea
-							In a beautiful pea green boat,
-							They took some honey, and plenty of money,
-							Wrapped up in a five pound note.
-							The Owl looked up to the stars above,
-							And sang to a small guitar,
-							'O lovely aksd 
+						<div class="well well-lg" ng-controller="mainController as MC">
+							username: {{MC.userinfo.username}}
+							<br>
+							booth name: {{MC.userinfo.boothName}}
+							<br>
+							email: {{MC.userinfo.email}}
+							<br>
+							{{MC.userinfo.bio}}
+							<br>
+							{{MC.userinfo.phone}}
+							<br>
+							{{MC.userinfo.boothtype}}
+							<br>
+							{{MC.userinfo.products}}
+							<br>
 						</div>
 				</div>
 			</div>

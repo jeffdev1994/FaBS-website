@@ -1,13 +1,23 @@
-angular.module('mainCtrl', [])
+angular.module('mainCtrl', ['userService','dataService','authService','ui.bootstrap'])
 
 // #####  SIMPLE ANGULAR APP  #####
 
-.controller('mainController', function(){
+.controller('mainController', function(User,Data, $location){
 
 	var vm = this;
 
 	// basic variable to display
-	vm.message ="";
+	vm.userpromise = User.get(Data.getID(),Data.token);
+	vm.userinfo;
+
+	//the return value from User.get is a promise. this waits until the promise is fulfilled. then gives the object to userinfo
+	vm.userpromise.then(function(user){
+		vm.userinfo = user.data;
+		});
+
+
+
+
 
 	// a list of students that will be displayed on the home page
 	vm.students = [

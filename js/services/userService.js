@@ -7,10 +7,10 @@ angular.module('userService', [])
 	var userFactory = {};
 
 	// get a single user
-	userFactory.get = function(id) {
+	userFactory.get = function(id,token) {
 		// since this call requires a user ID we'll add the id to
 		// the end of the URL
-		return $http.get('/api/users/' + id);
+		return $http.get('/api/users/' + id+ '?token='+token);
 	};
 
 	// get all users
@@ -23,7 +23,6 @@ angular.module('userService', [])
 		// since this is a post method we need to include userData
 		// from our form
 		console.log("got to user services");
-		console.log(userData.username);
 		return $http.post('/api/users', userData);
 	};
 

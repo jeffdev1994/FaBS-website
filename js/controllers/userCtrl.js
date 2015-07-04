@@ -1,6 +1,6 @@
-angular.module('userCtrl', ['userService','ui.bootstrap'])
+angular.module('userCtrl', ['userService','dataService','authService','ui.bootstrap'])
 
-.controller('userController', function(User) {
+.controller('userController', function(User, Data) {
 
 	var vm = this;
 
@@ -42,7 +42,7 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 })
 
 
-.controller('userLoginController', function(User, $location){
+.controller('userLoginController', function(User,Data, $location){
 		var vm = this;
 
 		vm.loginData = {username: "", password: ""};
@@ -59,7 +59,10 @@ angular.module('userCtrl', ['userService','ui.bootstrap'])
 						vex.dialog.alert(data.message);
 					}
 					else{
-						$location.path("/markethome");
+						//send this id to main controller. so that we can find it, and display their info
+						Data.setID(data.id);
+						Data.token = data.token;
+						$location.url("/markethome");
 					}
 				});
 		};

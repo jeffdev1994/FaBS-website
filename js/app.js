@@ -1,2 +1,2 @@
 // #####  SIMPLE ANGULAR APP  #####
-angular.module('userApp', ['app.routes','userService','mainCtrl','userCtrl']);
+angular.module('userApp', ['app.routes','userService','dataService','mainCtrl','userCtrl']);
