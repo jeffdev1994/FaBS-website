@@ -29,6 +29,7 @@ main 					{
 	  height: 200%;
 	  z-index:-1;
 	}
+
 	#bg-markethome img {
 	  position: absolute; 
 	  top: 0; 
@@ -347,11 +348,12 @@ header .navbar 		{
 }
 #marketMain{
 	margin-left:2%;
-	margin-right:2%;
-}
+/*	margin-right:2%;
+*/}
 
 #marketMain #userProfile{
 	width: 24%;
+	height: 75%;
 	float: left;
 	margin-right: 1%;
 }
