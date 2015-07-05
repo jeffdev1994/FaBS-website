@@ -3,13 +3,13 @@
   <img src="views/img/Blue-background.jpg" alt="">
 </div>
 
-	<div class = "row">
+	<div class = "row" ng-controller="mainController as MC">
 		<div class="col-sm-offset-0 col-sm-10">
 			<img src="views/img/banner_main.png" style="width:100%; border: 3px solid grey; padding: 10px 10px 10px 10px;"></img>
 		</div>
 
 		<div class="col-sm-offset-0 col-sm-2">
-		        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block">Logout</button></a>
+		        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
 		        <div style="height:5px;"></div>
 		        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 		</div>

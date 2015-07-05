@@ -16,11 +16,17 @@ module.exports = function(app, express) {
 		res.json({ message: 'Welcome to the User API for Lab 7' });	
 	});
 
-
+/*
+	apiRouter.get('/users12345/:username', function(req,res){
+		User.findOne({username: req.body.username},'_id',function(err, id){
+			res.json(id);
+		});
+	});
+*/
 	apiRouter.post('/authenticate',function(req, res){
 		console.log("very top of authenticate" + req.body.username);
 		User.findOne({username: req.body.username})
-			.select('username password')
+			.select('username password ')
 			.exec(function(err,user){
 				if(err) throw err;
 
@@ -41,8 +47,8 @@ module.exports = function(app, express) {
 					else{
 						//user was found, and password is correct. create token for them
 						//TODO: keep me logged in option, will apply to here
-						var token = jwt.sign({name: user.boothName, username: user.username},superSecret,{expiresInMinutes: 150});
-						res.json({success: true , message: 'Token set for 2.5 hours', token: token, id: user._id});
+						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
+						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
 					}
 				}
 			});
@@ -109,7 +115,8 @@ module.exports = function(app, express) {
 	apiRouter.use(function(req,res,next){
 		//**********************************
 		//it was toke\n in the book, but the \ and n were on different lines, not sure if its supposed to be like this, page 98 of mean
-		var token = req.body.token || req.param('token') || req.headers['x-access-toke\n'];
+		//console.log("****" + req.headers['x-access-token']);
+		var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
 		if(token){
 			jwt.verify(token,superSecret,function(err,decoded){
@@ -130,16 +137,16 @@ module.exports = function(app, express) {
 	});
 
 
-
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
 	apiRouter.route('/users/:user_id')
 
 		// get the user with that id
 		.get(function(req, res) {
+			//console.log(req.params.user._id);
 			User.findById(req.params.user_id, function(err, user) {
 				if (err) res.send(err);
-				console.log("@@@@@@@@ "+ user.username );
+				//console.log("@@@@@@@@ "+ user.username );
 				// return that user
 				res.json(user);
 			});
@@ -185,6 +192,9 @@ module.exports = function(app, express) {
 
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
+		//finds the user based on there token.
+		//this value is started by middleware
+
 		res.send(req.decoded);
 	});
 

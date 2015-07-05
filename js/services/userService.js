@@ -7,10 +7,10 @@ angular.module('userService', [])
 	var userFactory = {};
 
 	// get a single user
-	userFactory.get = function(id,token) {
+	userFactory.get = function(id) {
 		// since this call requires a user ID we'll add the id to
 		// the end of the URL
-		return $http.get('/api/users/' + id+ '?token='+token);
+		return $http.get('/api/users/' + id);
 	};
 
 	// get all users
