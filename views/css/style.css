@@ -23,14 +23,17 @@ main 					{
 
 	#booth-available{
 		text-align: center;
-		color: #990000;
-		background: #FFCCCC;
+		color: #009900;
+		background: #CCFFCC;
+	}
+	#booth-available:hover{
+		opacity: 0.6;
 	}
 	
 	#booth-unavailable{
 		text-align: center;
-		color: #009900;
-		background: #CCFFCC;
+		color: #990000;
+		background: #FFCCCC;
 	}
 	
 	#bg-markethome{
