@@ -389,6 +389,75 @@ header .navbar 		{
 #notices{
 	background-color: white;
 }
+/*************************
+ *  profile              *
+ *************************/
+
+ #profileName{
+ 	text-align: right;
+	border: solid 1px gray;
+	width: 100%;
+	margin-left: 100%;
+
+}
+#profileImage{
+	margin-left:55%;
+	position:absolute;
+	width:144px;
+	height:auto;
+}
+#profileProduct{
+	margin-left: 100%;
+	position:absolute;
+	background-image: url(../img/product_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+}
+
+#bio{
+	margin-left:9.5%;
+	margin-top: 6%;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+}
+
+#row2{
+	margin-left:118px;
+	margin-top:70px;
+
+}
+
+#addFields{
+	position:absolute;
+	visibility:hidden;
+	border: solid thick black;
+
+}
+
+#showButton{
+margin-left: -5%;
+}
+
+#subButton{
+	margin-left:100%;
+
+}
+textarea{
+	resize:none;
+	color:black;
+	border:3px solid #cccccc;
+
+}
+
+
+
+#productTitle{
+	margin-left:34%;
+
+}
 
 
 /* NGANIMATE

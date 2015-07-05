@@ -44,6 +44,9 @@
 	// route for registration page
 	.when("/registration", {
 		templateUrl: 'views/pages/registration.html'
+	})
+	.when("/profile", {
+		templateUrl: 'views/pages/profile.html'
 	});
 
 
