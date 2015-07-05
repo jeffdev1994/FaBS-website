@@ -21,6 +21,18 @@ main 					{
 		height: 100%;
 	}*/
 
+	#booth-available{
+		text-align: center;
+		color: #990000;
+		background: #FFCCCC;
+	}
+	
+	#booth-unavailable{
+		text-align: center;
+		color: #009900;
+		background: #CCFFCC;
+	}
+	
 	#bg-markethome{
 	  position: fixed; 
 	  top: -50%; 
