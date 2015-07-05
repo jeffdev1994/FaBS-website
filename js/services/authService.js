@@ -92,10 +92,15 @@ angular.module('authService',[])
         interceptorFactory.request = function(config){
             var token = AuthToken.getToken();
             //if token exists, put it in the header
-            //TODO: perhaps the keep me logged in option will actually apply to here instead. since it will allow me to just redirect them if they have a token
-            if(token)
+            if(token) {
                 config.headers['x-access-token'] = token;
-
+                console.log($location.path());
+                //TODO: only do this if the keep me logged in option is checked.
+                /*
+                if($location.path() == '/') {
+                    $location.url('/markethome');
+                }*/
+            }
             return config;
         };
 

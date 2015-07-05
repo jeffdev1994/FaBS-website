@@ -46,6 +46,7 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 		var vm = this;
 
 		vm.loginData = {username: "", password: ""};
+		vm.keepMeLoggedIn = false;
 
 
 
@@ -61,6 +62,10 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 						$location.url("/markethome");
 					}
 				});
+		};
+
+		vm.test = function(){
+			console.log(vm.keepMeLoggedIn);
 		};
 	})
 
