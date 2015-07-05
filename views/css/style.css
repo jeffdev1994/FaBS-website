@@ -13,8 +13,8 @@ main 					{
 	}
 
 	#markethome-bg{
-		/*background:		url("../img/Blue-background.jpg") no-repeat center center fixed;*/
-		background-color: #eeeeee;
+		background:		url("../img/wood-wallpaper.jpg") no-repeat center center fixed;
+		/*background-color: #eeeeee;*/
 		-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
@@ -250,7 +250,7 @@ ol{
 ===================== */
 header .navbar 		{
 	border-radius:0;
-	margin-bottom: 0;
+	/*margin-bottom: 1;*/
 }
 
 /* Button
