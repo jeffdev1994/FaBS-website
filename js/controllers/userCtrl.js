@@ -145,7 +145,7 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
-	vm.type = 'create';
+	//vm.type = 'create';
 
 	// function to create a user
 	vm.saveUser = function() {
