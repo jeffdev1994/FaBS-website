@@ -1,6 +1,6 @@
 angular.module('userCtrl', ['userService','dataService','authService','ui.bootstrap'])
 
-.controller('userController', function(User, Data) {
+.controller('userController', function(User, Data,Auth,AuthToken,AuthInterceptor) {
 
 	var vm = this;
 
@@ -42,7 +42,7 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 })
 
 
-.controller('userLoginController', function(User,Data, $location){
+.controller('userLoginController', function(User, Data, $location, Auth, AuthToken, AuthInterceptor){
 		var vm = this;
 
 		vm.loginData = {username: "", password: ""};
@@ -51,17 +51,13 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 
 		vm.attemptLogin = function(){
 			console.log("attempting login - start");
-			console.log(vm.loginData.username);
-			console.log(vm.loginData.password);
-			User.login(vm.loginData)
+			Auth.login(vm.loginData)
 				.success(function(data){
 					if(data.success == false){
 						vex.dialog.alert(data.message);
 					}
 					else{
-						//send this id to main controller. so that we can find it, and display their info
-						Data.setID(data.id);
-						Data.token = data.token;
+						//login successful, go to the markethome
 						$location.url("/markethome");
 					}
 				});
