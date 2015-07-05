@@ -47,7 +47,7 @@ module.exports = function(app, express) {
 					}
 					else{
 						//user was found, and password is correct. create token for them
-						//TODO: keep me logged in option, will apply to here
+						//TODO: consider how long the token should last. is 2.5 enough, or not long enough?
 						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
 						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
 					}

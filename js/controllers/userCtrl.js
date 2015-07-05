@@ -42,7 +42,7 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 })
 
 
-.controller('userLoginController', function(User, Data, $location, Auth, AuthToken, AuthInterceptor){
+.controller('userLoginController',function(User, Data, $location, Auth, $window){
 		var vm = this;
 
 		vm.loginData = {username: "", password: ""};
@@ -58,14 +58,12 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 						vex.dialog.alert(data.message);
 					}
 					else{
+						//checkbox value of 'keep me signed in'. save it so we can bypass login if user has token
+						$window.localStorage.setItem('keepLoggedIn', vm.keepMeLoggedIn);
 						//login successful, go to the markethome
 						$location.url("/markethome");
 					}
 				});
-		};
-
-		vm.test = function(){
-			console.log(vm.keepMeLoggedIn);
 		};
 	})
 

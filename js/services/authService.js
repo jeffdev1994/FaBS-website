@@ -85,7 +85,7 @@ angular.module('authService',[])
     })
 
 
-.factory('AuthInterceptor', function($q,$location,AuthToken){
+.factory('AuthInterceptor', function($q,$location,AuthToken, $window){
         var interceptorFactory = {};
 
         //happens on all http requests
@@ -95,11 +95,11 @@ angular.module('authService',[])
             if(token) {
                 config.headers['x-access-token'] = token;
                 console.log($location.path());
-                //TODO: only do this if the keep me logged in option is checked.
-                /*
-                if($location.path() == '/') {
-                    $location.url('/markethome');
-                }*/
+                if($window.localStorage.getItem('keepLoggedIn') == 'true') {
+                    if ($location.path() == '/') {
+                        $location.url('/markethome');
+                    }
+                }
             }
             return config;
         };
