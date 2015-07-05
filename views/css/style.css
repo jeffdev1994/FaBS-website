@@ -1,6 +1,7 @@
 main 					{
 	/*padding-top:30px;*/
 }
+
 /*********************************************************************************/
 /* Backgrounds                                                                   */
 /*********************************************************************************/
@@ -13,7 +14,7 @@ main 					{
 	}
 
 	#markethome-bg{
-		background:		url("../img/wood-wallpaper.jpg") no-repeat center center fixed;
+		background:		url("../img/sky-background.jpg") no-repeat center center fixed;
 		/*background-color: #eeeeee;*/
 		-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
