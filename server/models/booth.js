@@ -29,4 +29,6 @@ BoothSchema.methods.ban = function() {
 /**other methods that vendor has to implement will go in here. dont know if we
  actually need to bother with the getters and setters.*/
 
+
 module.exports = mongoose.model('booth', BoothSchema);
+
