@@ -13,7 +13,8 @@ main 					{
 	}
 
 	#markethome-bg{
-		background:		url("views/img/Blue-background.jpg") no-repeat center center fixed;
+		/*background:		url("views/img/Blue-background.jpg") no-repeat center center fixed;*/
+		background-color: blue;
 		-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
