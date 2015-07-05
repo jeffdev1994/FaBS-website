@@ -20,7 +20,7 @@ main 					{
 		-o-background-size: 		cover;
 		background-size:			cover;
 		/*height: 100%;*/
-	}*/
+	}
 
 	/*#bg-markethome{
 	  position: fixed; 
@@ -310,32 +310,22 @@ header .navbar 		{
 }
 
 #left{
-
 	margin-top: -.5%;
 	padding: 5% 5% -5% 4%;
-
 }
 
 #right{
-
 	margin-top: -5.25%;
 	margin-left: .25%;
 	padding: 5% 5% 2% 5%;
-
 }
-
 
 #calendar{
 	padding: 5px 5px 5px 5px;
-<<<<<<< HEAD
+
 }
 #marketMain{
 	margin-left:2%;
-/*	margin-right:2%;
-*/}
-=======
->>>>>>> vendormain
-
 }
 #marketMain #userProfile{
 	width: 24%;
@@ -353,7 +343,6 @@ header .navbar 		{
 #marketMain #bookingHistory{
 	width: 24%;
 	float: left;
-
 }
 
 #userProfile{
@@ -377,13 +366,9 @@ header .navbar 		{
 	margin-right: 1000px;*/
 }
 
-
-
 /********************
  *user profile page *
  ********************/
-
-
 #profileName{
 	border: solid 2px gray;
 	width: 100%;
@@ -399,19 +384,16 @@ header .navbar 		{
 #profileProduct{
 	margin-left: 100%;
 	position:absolute;
-
 }
 
 #bio{
 	margin-left:118px;
 	margin-top: 6%;
-
 }
 
 #row2{
 	margin-left:118px;
 	margin-top:70px;
-
 }
 
 #subButton{
@@ -426,16 +408,9 @@ textarea{
 
 }
 
-
-
 #productTitle{
 	margin-left:34%;
-
 }
-
-
-
-
 
 /* NGANIMATE
 ====================== */
