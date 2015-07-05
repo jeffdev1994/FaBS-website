@@ -4,13 +4,13 @@
  -->
 </div>
 
-	<div class = "row">
+	<div class = "row" ng-controller="mainController as MC">
 		<div class="col-sm-offset-0 col-sm-10">
 			<img src="views/img/banner_main.png" style="width:100%; border: 3px solid grey; padding: 10px 10px 10px 10px;"></img>
 		</div>
 
 		<div class="col-sm-offset-0 col-sm-2">
-		        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block">Logout</button></a>
+		        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
 		        <div style="height:5px;"></div>
 		        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 		</div>
@@ -26,20 +26,23 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">Profile</h3>
 				</div>
-			
-				<div class="panel-body" style="padding-bottom:-6%;">
-						<div class="well well-lg">
-							The Owl and the Pussy-cat went to sea
-							In a beautiful pea green boat,
-							They took some honey, and plenty of money,
-							Wrapped up in a five pound note.
-							The Owl looked up to the stars above,
-							The Owl looked up to the stars above,
-							You are,
-							You are!
-							<br><br>
-							What a beautiful Pussy you are!'The Owl and the Pussy-cat went to sea
-							In a beautiful pea green boat, ok ok ok ok ok ok ok ok ok ok 
+
+				<div class="panel-body">
+						<div class="well well-lg" ng-controller="mainController as MC">
+							username: {{MC.userinfo.username}}
+							<br>
+							booth name: {{MC.userinfo.boothName}}
+							<br>
+							email: {{MC.userinfo.email}}
+							<br>
+							bio: {{MC.userinfo.bio}}
+							<br>
+							phone: {{MC.userinfo.phone}}
+							<br>
+							boothtype: {{MC.userinfo.boothtype}}
+							<br>
+							products: {{MC.userinfo.products}}
+							<br>
 						</div>
 				</div>
 			</div>
