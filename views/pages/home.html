@@ -11,56 +11,63 @@
         </div>
     </div>
 </div> -->
-<div id="bg-home">
-  <img src="views/img/tree-background.jpg" alt="">
-</div>
-
-<div >
+<div id="home-bg">
     <form class="form-horizontal" ng-controller="userLoginController as userLogin" ng-submit="userLogin.attemptLogin()">
         <div class="row">
-
-            <div class="col-md-offset-0 col-md-1"><br></div>
-            <div class="col-md-offset-0 col-md-6">
-                <img src="views/img/Market_square.png" class="col-md-offset-0 col-md-12" style="padding-left:20px height:500px;">
+            <div class="1u"></div>
+            <div class="6u">
+                <img src="views/img/Market_square.png" class="11u fits">
             </div>
 
-            <div class="col-md-offset-0 col-md-4">   
+            
+
+            <div class="4u">
                 <div class="row">
                     <br><br><br><br><br><br><br><br><br>
                     <div class="loginbox">
-                        <div class="form-group" style="padding-left: 8%; padding-top:2%;">
-                            <label for="inputusername" class="col-lg-offset-0 col-lg-3 control-label">Username:</label>
+                        <div class="form-group">
+
+                            <label for="inputusername" class="col-lg-3 control-label">Username:</label>
+
                             <div class="col-lg-8">
                                <input type="text" class="form-control" id="inputusername" placeholder="username" ng-model="userLogin.loginData.username">
                             </div>
+
                             <br><br><br>
+
                             <label for="inputPassword" class="col-lg-3 control-label">Password:</label>
                             <div class="col-lg-8">
                                 <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userLogin.loginData.password">
                             </div>
+
                             <br><br><br>
+
                             <div class="col-lg-offset-3 checkbox">
+
                                 <label>
                                     <input type="checkbox"> Keep me signed in
                                 </label>
+
                             </div>
+
                             <br><br>
+
                             <div class="">
-                                <button type="submit" class="col-md-offset-0 col-md-11 btn btn-success button" >Login</button>
-                                <!-- <br><p>&nbsp;</p> -->
-                                <a href="/registration"><button type="submit" class="col-md-offset-0 col-md-11 btn btn-default button" style="">Sign Up</button></a>
+                                <button type="submit" class="11u btn btn-success button" >Login</button>
+                                <br><p>&nbsp;</p>
+                                <a href="/registration"><button type="submit" class="11u btn btn-default button" style="">Sign Up</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-offset-0 col-md-1"><br></div>
+            <div class="1u"></div>
 
         </div>
     </form>
 </div>
-</form>
+
 
 <!-- display the list using ng-repeat -->
 <!-- <div class="info">
