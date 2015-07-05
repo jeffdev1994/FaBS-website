@@ -24,3 +24,9 @@ build/Release
 
 ##### Dependency directory
 node_modules
+*.name
+.idea/FaBS-website.iml
+.idea/.name
+*.iml
+.idea/jsLibraryMappings.xml
+*.xml

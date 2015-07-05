@@ -1,47 +1,33 @@
 main 					{
 	padding-top:30px;
 }
+/*********************************************************************************/
+/* Backgrounds                                                                   */
+/*********************************************************************************/
+	#home-bg{
+		background:		url("../img/tree-background.jpg") no-repeat center center fixed;
+		-webkit-background-size: 	cover;
+		-moz-background-size: 		cover;
+		-o-background-size: 		cover;
+		background-size:			cover;
+	}
+
+	#markethome-bg{
+		background:		url("../img/Blue-background.jpg") no-repeat center center fixed;
+		-webkit-background-size: 	cover;
+		-moz-background-size: 		cover;
+		-o-background-size: 		cover;
+		background-size:			cover;
+	}
+
+
 
 /*********************************************************************************/
 /* Basic                                                                         */
 /*********************************************************************************/
-	*{border:0px solid #eee;margin:0;padding:0;list-style:none}
-	html,body,#bg,#bg table,#bg td,#cont{width:100%;height:100%;overflow:hidden}
-	body{font-family:Arial,Helvetica,sans-serif;font-size:10px;cursor:default;background:url(loading.gif);color:#000}
-	img{display:block}
-	#bg div{position:absolute;width:200%;height:200%;top:-50%;left:-50%;z-index: -5}
-	#bg td{vertical-align:middle;text-align:center}
-	#bg img{min-height:50%;min-width:50%;margin:0 auto}
-
-	body
-	{
-		/*background-image:		url("../img/tree-background.jpg");
-		background-image:		-moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)),		url('images/bg01.png');
-		background-image:		-webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)),	url('images/bg01.png');
-		background-image:		-o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)),		url('images/bg01.png');
-		background-image:		-ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)),		url('images/bg01.png');
-		background-image:		linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)),			url('images/bg01.png');
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size:		cover;
-		background-position:	center center fixed;
-		background-repeat:		no-repeat;*/
+	body{
+		
 	}
-
-		body.is-loading *
-		{
-			-moz-transition: none !important;
-			-webkit-transition: none !important;
-			-o-transition: none !important;
-			-ms-transition: none !important;
-			transition: none !important;
-			-moz-animation: none !important;
-			-webkit-animation: none !important;
-			-o-animation: none !important;
-			-ms-animation: none !important;
-			animation: none !important;
-		}
 
 	body,input,select,textarea
 	{
@@ -51,237 +37,142 @@ main 					{
 		font-weight: 300;
 	}
 
-	a
-	{
+	a{
 		color: #0090c5;
 		text-decoration: underline;
 	}
 
-		a:hover
-		{
+		a:hover{
 			text-decoration: none;
 		}
 
-	h1, h2, h3, h4, h5, h6
-	{
+	h1, h2, h3, h4, h5, h6{
 		color: #444;
 		font-weight: 800;
 	}
 
-	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
-	{
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 		color: inherit;
 		text-decoration: none;
 		outline: 0;
 	}
 
-	h2.alt
-	{
-		color: #eee;
-		text-shadow: 2px 2px #000;
-	}
-
-	h2.alt2
-	{
-		color: #222;
-		text-shadow: 2px 2px #eee;
-	}
-
-	b, strong
-	{
+	b, strong{
 		font-weight: 600;
 		color: #444;
 	}
 
-	i, em
-	{
+	i, em{
 		font-style: italic;
 	}
 
-	br.clear
-	{
+	br.clear{
 		clear: both;
 	}
 
-	sub
-	{
+	sub{
 		position: relative;
 		top: 0.5em;
 		font-size: 0.8em;
 	}
 
-	sup
-	{
+	sup{
 		position: relative;
 		top: -0.5em;
 		font-size: 0.8em;
 	}
 
-	hr
-	{
+	hr{
 		border: 0;
 		border-top: solid 1px #eee;
 	}
 
-	blockquote
-	{
+	blockquote{
 		border-left: solid 0.5em #eee;
 		padding: 1em 0 1em 2em;
 		font-style: italic;
 	}
 
-	p, ul, ol, dl, table
-	{
+	p, ul, ol, dl{
 		margin-bottom: 2em;
 	}
 
 	/* Section/Article */
 
-		section,
-		article
-		{
+		section, article{
 			margin-bottom: 0em;
 		}
 
-			section > :last-child,
-			article > :last-child
-			{
+			section > :last-child, article > :last-child{
 				margin-bottom: 0;
 			}
 
 			section:last-child,
-			article:last-child
-			{
+			article:last-child{
 				margin-bottom: 0;
 			}
 
-		header
-		{
+		header{
 			margin: 0 0 2em 0;
 		}
 
-			header h2, header h3
-			{
+			header h2, header h3{
 				margin: 0 0 0.25em 0;
 			}
 
-			header p
-			{
+			header p{
 				margin: 0;
 			}
 
-		footer
-		{
+		footer{
 			margin: 0.5em 0 0 0;
-		}
-
-/* Image
-===================== */
-.image
-{
-	display: inline-block;
-	outline: 0;
-}
-
-	.image img
-	{
-		display: block;
-		width: 100%;
-		border-radius: 8px;
-	}
-
-	.image.fit
-	{
-		display: block;
-		width: 100%;
-	}
-
-	.image.icon
-	{
-		display: block;
-		width: 100%;
-	}
-
-	.image.featured
-	{
-		display: block;
-		width: 100%;
-		margin: 0 0 2.5em 0;
-	}
-
-	.image.left
-	{
-		float: left;
-		margin: 0 2em 2em 0;
-	}
-
-	.image.centered
-	{
-		display: block;
-		margin: 0 0 2.5em 0;
-	}
-		.image.centered img
-		{
-			margin: 0 auto;
-			width: auto;
 		}
 
 /* List
 ===================== */
-ul
-{
+ul{
 }
 
-	ul.default
-	{
+	ul.default{
 		list-style: disc;
 		padding-left: 1em;
 	}
-		ul.default li
-		{
+		ul.default li{
 			padding-left: 0.5em;
 		}
 
-	ul.actions
-	{
+	ul.actions{
 	}
-		ul.actions li
-		{
+		ul.actions li{
 			display: inline-block;
 			padding: 0 0 0 0.25em;
 			margin: 0 0 0 0.25em;
 		}
-			ul.actions li:first-child
-			{
+			ul.actions li:first-child{
 				margin-left: 0;
 				padding-left: 0;
 			}
 
-	ul.menu li
-	{
+	ul.menu li{
 		border-left: solid 1px #e0e0e0;
 		display: inline-block;
 		padding: 0 0 0 0.75em;
 		margin: 0 0 0 0.75em;
 	}
 
-		ul.menu li:first-child
-		{
+		ul.menu li:first-child{
 			border-left: 0;
 			margin-left: 0;
 			padding-left: 0;
 		}
 
-ol
-{
+ol{
 }
-	ol.default
-	{
+	ol.default{
 		list-style: decimal;
 		padding-left: 1.25em;
 	}
-		ol.default li
-		{
+		ol.default li{
 			padding-left: 0.25em;
 		}
 
@@ -296,8 +187,7 @@ header .navbar 		{
 		input[type="button"],
 		input[type="submit"],
 		input[type="reset"],
-		.button
-		{
+		.button{
 			font-size: 1.35em;
 			padding: 0.6em 1.5em;
 		}
@@ -305,25 +195,21 @@ header .navbar 		{
 			input[type="button"].big,
 			input[type="submit"].big,
 			input[type="reset"].big,
-			.button.big
-			{
+			.button.big{
 				font-size: 2.25em;
 				padding: 0.8em 0.9em;
 			}
 
-			.button.icon
-			{
+			.button.icon{
 			}
 
-				.button.icon:before
-				{
+				.button.icon:before{
 					margin-right: 0.5em;
 					top: 0.05em;
 				}
 
 
-			.button.login
-			{
+			.button.login{
 				position: absolute;
 				right: 0.15em;
 				top: 50%;
@@ -333,50 +219,43 @@ header .navbar 		{
 
 /* Box
 ===================== */
-	.box
-	{
+	.box{
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 		font-size: 30px;
 	}
-		.box.gray
-		{
+		.box.gray{
 			background: #f8f8f8;
 		}
 
-	.blackbox
-	{
+	.blackbox{
 		background: #000;
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 	}
 
-	.whitebox
-	{
+	.whitebox{
 		background: #fff;
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 	}
 
-	.loginbox
-	{
+	.loginbox{
 		background-color: rgba(200,200,200,.7);
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
 	}
-		.loginbox.buttons
-		{
+		.loginbox.buttons{
 			padding: 0 0 0 0;
 			margin:  0 0 0 0;
 			width: 100%;
 		}
 
-	.buttonbox
-	{
+	.buttonbox{
 		border-radius: 6px;
 		box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.015);
 		box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
@@ -469,10 +348,57 @@ header .navbar 		{
 
 
 
+/********************
+ *user profile page *
+ ********************/
+
+
 #profileName{
-border: solid 2px gray;
-width: 100%;
-margin-left: 100%;
+	border: solid 2px gray;
+	width: 100%;
+	margin-left: 100%;
+
+}
+#profileImage{
+	margin-left:55%;
+	position:absolute;
+	width:144px;
+	height:auto;
+}
+#profileProduct{
+	margin-left: 100%;
+	position:absolute;
+
+}
+
+#bio{
+	margin-left:118px;
+	margin-top: 6%;
+
+}
+
+#row2{
+	margin-left:118px;
+	margin-top:70px;
+
+}
+
+#subButton{
+	margin-left:535px;
+
+}
+textarea{
+	resize:none;
+	background-color: #f2f2f2;
+	color:black;
+	border:3px solid #cccccc;
+
+}
+
+
+
+#productTitle{
+	margin-left:34%;
 
 }
 
@@ -517,46 +443,18 @@ margin-left: 100%;
 /*********************************************************************************/
 /* Banner                                                                        */
 /*********************************************************************************/
-
-	#banner
-	{
+	#banner{
 		padding: 1em;
 	}
-
-		#banner h2
-		{
+		#banner h2{
 			font-size: 3.5em;
 			margin: 0.1em 0 0.35em 0;
 		}
-
-		#banner p
-		{
+		#banner p{
 			font-size: 2.75em;
 			line-height: 1.35em;
 			margin: 0;
 		}
-
-
-
-		#banner ul
-		{
+		#banner ul{
 			margin: 0 0 0 2em;
 		}
-
-/*********************************************************************************/
-/* Footer                                                                        */
-/*********************************************************************************/
-
-	#footer
-	{
-	}
-
-	#copyright
-	{
-		padding: 4em 0 0 0;
-		text-align: center;
-	}
-
-	.black {
-		background: #000;
-	}
