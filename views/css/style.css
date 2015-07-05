@@ -31,10 +31,26 @@ main 					{
 		opacity: 0.6;
 	}
 	
+	#booth-available:active{
+		opacity: 1;
+		color:#006600;
+		background: #669966;
+	}
+	
 	#booth-unavailable{
 		text-align: center;
 		color: #990000;
 		background: #FFCCCC;
+	}
+	
+	#booth-unavailable:hover{
+		opacity: 0.6;
+	}
+	
+	#booth-unavailable:active{
+		opacity: 1;
+		color:#660000;
+		background: #CC9999;
 	}
 	
 	/*#bg-markethome{
