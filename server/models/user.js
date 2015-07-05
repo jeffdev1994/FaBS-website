@@ -17,7 +17,9 @@ var VendorSchema = new Schema({
 	//this is how to make an array. use products.push(object)
 	//http://mongoosejs.com/docs/schematypes.html
 	products: { type: String, required: true},
-	bookedBooths: []
+	bookedBooths: [],
+	//holds some sort of identifier for booths they have booked before
+	history: []
 });
 
 // hash the password before the user is saved
