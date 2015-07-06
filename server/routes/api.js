@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var Booth       = require('../models/booth');
+var Day       = require('../models/day');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -17,13 +18,7 @@ module.exports = function(app, express) {
 		res.json({ message: 'Welcome to the User API for Lab 7' });	
 	});
 
-/*
-	apiRouter.get('/users12345/:username', function(req,res){
-		User.findOne({username: req.body.username},'_id',function(err, id){
-			res.json(id);
-		});
-	});
-*/
+
 	apiRouter.post('/authenticate',function(req, res){
 		console.log("very top of authenticate" + req.body.username);
 		User.findOne({username: req.body.username})
@@ -47,7 +42,6 @@ module.exports = function(app, express) {
 					}
 					else{
 						//user was found, and password is correct. create token for them
-						//TODO: consider how long the token should last. is 2.5 enough, or not long enough?
 						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
 						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
 					}
@@ -138,6 +132,9 @@ module.exports = function(app, express) {
 		}
 	});
 
+
+	//when creating a booth. it adds itself into users, and into the day
+	//if the day is not created yet, it will created, that is why the /days route may not be needed
 	apiRouter.route('/booths')
 		.post(function(req,res){
 			var booth = new Booth();		// create a new instance of the Booth model
@@ -154,6 +151,27 @@ module.exports = function(app, express) {
 
 				// return a message
 				res.json({ message: 'Booth created!' });
+			});
+		});
+
+
+	//TODO: may not actually need this
+	apiRouter.route('/days')
+		.post(function(req,res){
+			var day = new Day();
+			day.dayName = req.body.dayName;
+
+			day.save(function(err) {
+				if (err) {
+					console.log("error in api for saving day", err);
+					if (err.code == 11000)
+						return res.json({ success: false, message: 'A day with that name already exists.'});
+					else
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'day created!' });
 			});
 		});
 

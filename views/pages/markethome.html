@@ -59,18 +59,22 @@
 					<div id="dateandmap" style="margin-top:2%;">
 						<div id="calendar" class="col-sm-offset-3 col-sm-6">
 						
-							<div class="form-group">
-								<input type="date" class="form-control">
+							<div class="form-group" ng-controller="marketController as market">
+								<input type="date" class="form-control" ng-model = "market.date" >
 							</div>
 						</div>
 					</div>
 
-					<div id="gangstaMap" class="col-sm-12" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85);; padding-top:5%;">
+					<div id="gangstaMap" class="col-sm-12" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85);; padding-top:5%;" ng-controller="marketController as market">
 						<!-- <img id="gangstaCat" src="http://thefunniestpictures.com/wp-content/uploads/2013/09/funny-pics-al-catpone.jpg"/-->
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-primary" style="width: 30%; float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<!--TODO: once i have this specific one working, expand it to all the others-->
+								<!--have two of them, if variable is 0, it will show unavailable, if 1 it will show available-->
+								<div class="panel-body" ng-if = "market.B19Av" id="booth-available" ng-click = market.B19()>9 AM</div>
+								<!-- if its unavailable, it cant be clicked-->
+								<div class="panel-body" ng-if = "!market.B19Av" id="booth-unavailable" >9 AM</div>
 								<div style="border-top: 1px solid grey;">
 									<div class="panel-body" id="booth-unavailable">2 PM</div>
 								</div>

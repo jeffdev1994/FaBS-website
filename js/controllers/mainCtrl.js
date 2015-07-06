@@ -27,6 +27,51 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		Auth.logout();
 	};
 
+})
+
+.controller('marketController', function(User, Data, Auth, $location){
+	var vm = this;
+
+		//date user chosen by the datepicker, set to current date by default
+	vm.date = new Date();
+
+		//TODO:consider changing this to an array instead and initalizing with a forloop over day.booths
+	//availability of booth b19
+	vm.B19Av = 1;
+	/*doing individual functions for each part of the map. this will be 24 in total
+	*but allow us to uniquely identify the time and booth they are clicking on
+	* syntact is B (booth number) (time, 9 or 2)
+	 */
+	vm.B19 = function(){
+		//if booth 1 at 9am is booked, create a booth for it.
+		//maybe i should first check if its been created?
+		//   ->i will account for this by just changing the availability and adding the user id if its been created, and they can update it
+		//i need to get the 'userinfo' variable from mainController, before i have enough info to create a booth
+
+		//plus one cuz month is 0 based
+		console.log(vm.date.getFullYear() + "/" + (vm.date.getMonth() + 1)+ "/" +vm.date.getDate());
+
+		vm.boothInfo = {
+			booth_id : 1,
+			timeSlot : 10001400,
+			dateSlot : vm.date.getFullYear() + "/" + (vm.date.getMonth() + 1)+ "/" +vm.date.getDate()
+			//user_id : userinfo._id;
+		}
+		
+
+	};
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 

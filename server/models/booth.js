@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var User       = require('../models/user');
+var Day       = require('../models/day');
 var Schema = mongoose.Schema;
 
 
@@ -17,6 +19,51 @@ var BoothSchema = new Schema({
     user_id: {type: String}
 });
 
+BoothSchema.post('save', function(booth){
+    //this needs to add itself to booked booths of user, and booths of day
+   console.log("this booth belongs to %s and should go in day %s",booth.user_id,booth.dateSlot);
+
+    User.findById(booth.user_id, function(err, vendor) {
+        vendor.bookedBooths.push(booth);
+
+        vendor.save(function(err){
+            if (err) throw err;
+
+            console.log('user updated with new booth');
+        })
+    });
+
+    Day.findOne({dayName: booth.dateSlot})
+        .exec(function(err,day){
+            if(err) throw err
+
+            //if that day is not there, create one
+            if(!day){
+                var day = new Day();
+                day.dayName = booth.dateSlot;
+                day.booths.push(booth);
+
+                day.save(function(err){
+                    if (err) throw err;
+
+                    console.log('new day created');
+                });
+            }
+            //if the booth is there, add the booth to it
+            else if(day){
+                day.booths.push(booth);
+
+                day.save(function(err){
+                   if(err) throw err;
+
+                    console.log('booth added to day');
+                });
+            }
+        });
+
+
+
+});
 
 // method to check if a user should be banned after canceling it
 BoothSchema.methods.ban = function() {
