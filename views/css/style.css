@@ -1,6 +1,7 @@
 main 					{
 	/*padding-top:30px;*/
 }
+
 /*********************************************************************************/
 /* Backgrounds                                                                   */
 /*********************************************************************************/
@@ -13,14 +14,46 @@ main 					{
 	}
 
 	#markethome-bg{
-		/*background:		url("views/img/Blue-background.jpg") no-repeat center center fixed;*/
-		background-color: blue;
+		background:		url("../img/sky-background.jpg") no-repeat center center fixed;
+		/*background-color: #eeeeee;*/
 		-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
 		background-size:			cover;
 		/*height: 100%;*/
 	}
+
+	#booth-available{
+		text-align: center;
+		color: #009900;
+		background: #CCFFCC;
+	}
+	#booth-available:hover{
+		opacity: 0.6;
+	}
+	
+	#booth-available:active{
+		opacity: 1;
+		color:#006600;
+		background: #669966;
+	}
+	
+	#booth-unavailable{
+		text-align: center;
+		color: #990000;
+		background: #FFCCCC;
+	}
+	
+	#booth-unavailable:hover{
+		opacity: 0.6;
+	}
+	
+	#booth-unavailable:active{
+		opacity: 1;
+		color:#660000;
+		background: #CC9999;
+	}
+
 
 	/*#bg-markethome{
 	  position: fixed; 
@@ -30,7 +63,6 @@ main 					{
 	  height: 200%;
 	  z-index:-1;
 	}
-
 	#bg-markethome img {
 	  position: absolute; 
 	  top: 0; 
@@ -40,9 +72,25 @@ main 					{
 	  margin: auto; 
 	  min-width: 50%;
 	  min-height: 50%;
+	}
+	#bg-home{
+	  position: fixed; 
+	  top: -50%; 
+	  left: -50%; 
+	  width: 200%; 
+	  height: 200%;
+	  z-index:-1;
+	}
+	#bg-home img {
+	  position: absolute; 
+	  top: 0; 
+	  left: 0; 
+	  right: 0; 
+	  bottom: 0; 
+	  margin: auto; 
+	  min-width: 50%;
+	  min-height: 50%;
 	}*/
-
-
 
 /*********************************************************************************/
 /* Basic                                                                         */
@@ -202,6 +250,7 @@ ol{
 ===================== */
 header .navbar 		{
 	border-radius:0;
+	/*margin-bottom: 1;*/
 }
 
 /* Button
@@ -343,6 +392,7 @@ header .navbar 		{
 #marketMain #bookingHistory{
 	width: 24%;
 	float: left;
+	background-color: rgba(255,255,255,.85);
 }
 
 #userProfile{
@@ -361,10 +411,6 @@ header .navbar 		{
 	height: 100%;
 }
 
-.container{
-	/*margin-left: 5%;
-	margin-right: 1000px;*/
-}
 
 /********************
  *user profile page *
@@ -394,6 +440,11 @@ header .navbar 		{
 #row2{
 	margin-left:118px;
 	margin-top:70px;
+}
+
+#notices{
+	background-color: rgba(255,200,200,.85);
+
 }
 
 #subButton{

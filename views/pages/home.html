@@ -11,63 +11,66 @@
         </div>
     </div>
 </div> -->
-<div id="home-bg">
-    <form class="form-horizontal" ng-controller="userLoginController as userLogin" ng-submit="userLogin.attemptLogin()">
-        <div class="row">
-            <div class="1u"></div>
-            <div class="6u">
-                <img src="views/img/Market_square.png" class="11u fits">
-            </div>
 
-            
+<main>
+    <div id="home-bg">
+        <form class="form-horizontal" ng-controller="userLoginController as userLogin" ng-submit="userLogin.attemptLogin()">
+            <div class="row">
+                <div class="1u"></div>
+                <div class="6u">
+                    <img src="views/img/Market_square.png" class="11u fits">
+                </div>
 
-            <div class="4u">
-                <div class="row">
-                    <br><br><br><br><br><br><br><br><br>
-                    <div class="loginbox">
-                        <div class="form-group">
+                
 
-                            <label for="inputusername" class="col-lg-3 control-label">Username:</label>
+                <div class="4u">
+                    <div class="row">
+                        <br><br><br><br><br><br><br><br><br>
+                        <div class="loginbox">
+                            <div class="form-group">
 
-                            <div class="col-lg-8">
-                               <input type="text" class="form-control" id="inputusername" placeholder="username" ng-model="userLogin.loginData.username">
-                            </div>
+                                <label for="inputusername" class="col-lg-3 control-label">Username:</label>
 
-                            <br><br><br>
+                                <div class="col-lg-8">
+                                   <input type="text" class="form-control" id="inputusername" placeholder="username" ng-model="userLogin.loginData.username">
+                                </div>
 
-                            <label for="inputPassword" class="col-lg-3 control-label">Password:</label>
-                            <div class="col-lg-8">
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userLogin.loginData.password">
-                            </div>
+                                <br><br><br>
 
-                            <br><br><br>
+                                <label for="inputPassword" class="col-lg-3 control-label">Password:</label>
+                                <div class="col-lg-8">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userLogin.loginData.password">
+                                </div>
 
-                            <div class="col-lg-offset-3 checkbox">
+                                <br><br><br>
 
-                                <label>
-                                    <input type="checkbox"> Keep me signed in
-                                </label>
+                                <div class="col-lg-offset-3 checkbox">
 
-                            </div>
+                                    <label>
+                                        <input type="checkbox" ng-model = "userLogin.keepMeLoggedIn" ng-click = "userLogin.test()"> Keep me signed in
+                                    </label>
 
-                            <br><br>
+                                </div>
 
-                            <div class="">
-                                <button type="submit" class="11u btn btn-success button" >Login</button>
-                                <br><p>&nbsp;</p>
-                                <a href="/registration"><button type="submit" class="11u btn btn-default button" style="">Sign Up</button></a>
+                                <br><br>
+
+                                <div class="">
+                                    <button type="submit" class="11u btn btn-success button" >Login</button>
+                                    <br><p>&nbsp;</p>
+                                    <a href="/registration"><button type="submit" class="11u btn btn-default button" style="">Sign Up</button></a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="1u"></div>
+
             </div>
-
-            <div class="1u"></div>
-
-        </div>
-    </form>
-</div>
-
+        </form>
+    </div>
+</main>
 
 <!-- display the list using ng-repeat -->
 <!-- <div class="info">
@@ -87,7 +90,7 @@
     </tbody>
     </table>
 
-    	form to add computer to the list
+        form to add computer to the list
      <form class="form-inline" ng-submit="main.addStudent()">  
          <input type="text" class="form-control" placeholder="First" ng-model="main.studentData.first">
          <input type="text" class="form-control" placeholder="Last" ng-model="main.studentData.last">

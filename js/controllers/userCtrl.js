@@ -42,10 +42,11 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 })
 
 
-.controller('userLoginController', function(User, Data, $location, Auth, AuthToken, AuthInterceptor){
+.controller('userLoginController',function(User, Data, $location, Auth, $window){
 		var vm = this;
 
 		vm.loginData = {username: "", password: ""};
+		vm.keepMeLoggedIn = false;
 
 
 
@@ -57,6 +58,8 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 						vex.dialog.alert(data.message);
 					}
 					else{
+						//checkbox value of 'keep me signed in'. save it so we can bypass login if user has token
+						$window.localStorage.setItem('keepLoggedIn', vm.keepMeLoggedIn);
 						//login successful, go to the markethome
 						$location.url("/markethome");
 					}
@@ -145,7 +148,7 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
-	vm.type = 'create';
+	//vm.type = 'create';
 
 	// function to create a user
 	vm.saveUser = function() {

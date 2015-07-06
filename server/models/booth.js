@@ -12,7 +12,7 @@ var BoothSchema = new Schema({
     timeSlot: {type: Number, required: true},
     //yyyy/mm/dd
     //this and timeslot are from the SRS. could change it to more simple conventions
-    dateSlot: {type: Number, required: true},
+    dateSlot: {type: String, required: true},
     //mongo assigns an _id to things. and this is what we use to search for users
     user_id: {type: String}
 });
@@ -29,4 +29,6 @@ BoothSchema.methods.ban = function() {
 /**other methods that vendor has to implement will go in here. dont know if we
  actually need to bother with the getters and setters.*/
 
-module.exports = mongoose.model('Vendor', VendorSchema);
+
+module.exports = mongoose.model('booth', BoothSchema);
+

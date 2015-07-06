@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
+var Booth       = require('../models/booth');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -46,7 +47,7 @@ module.exports = function(app, express) {
 					}
 					else{
 						//user was found, and password is correct. create token for them
-						//TODO: keep me logged in option, will apply to here
+						//TODO: consider how long the token should last. is 2.5 enough, or not long enough?
 						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
 						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
 					}
@@ -97,6 +98,7 @@ module.exports = function(app, express) {
 
 		})
 
+		//TODO:	needs to be put under the middleware
 		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {
 
@@ -136,6 +138,24 @@ module.exports = function(app, express) {
 		}
 	});
 
+	apiRouter.route('/booths')
+		.post(function(req,res){
+			var booth = new Booth();		// create a new instance of the Booth model
+			booth.booth_id = req.body.booth_id;  // set the users name (comes from the request)
+			booth.timeSlot = req.body.timeSlot;  // set the users username (comes from the request)
+			booth.dateSlot = req.body.dateSlot;  // set the users password (comes from the request)
+			booth.user_id = req.body.user_id;
+
+			booth.save(function(err) {
+				if (err) {
+					console.log("error in api for saving booth", err);
+					return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Booth created!' });
+			});
+		});
 
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
