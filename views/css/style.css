@@ -394,7 +394,7 @@ header .navbar 		{
  *************************/
 
  #profileName{
- 	text-align: right;
+ 	text-align: left;
 	border: solid 1px gray;
 	width: 100%;
 	margin-left: 100%;
@@ -433,7 +433,7 @@ header .navbar 		{
 #addFields{
 	position:absolute;
 	visibility:hidden;
-	border: solid thick black;
+	margin-left: 2%;
 
 }
 

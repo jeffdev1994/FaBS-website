@@ -1,11 +1,17 @@
-<form class="form-horizontal">
+<form class="form-horizontal" ng-controller="profileController as PC">
  
   <fieldset>
-
-
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-2">
+        <a href="/markethome"> <button type="submit" class="btn btn-primary btn-md btn-block">Back</button></a>
+      </div>
+      <div class="col-sm-offset-6 col-sm-2" style="left-margin:100px">
+         <button type="submit" class="btn btn-primary btn-md btn-block">Support Request</button></a>
+      </div>
+</div>
     <div class="form-group">
       <div class="col-lg-4" ng-controller = 'mainController as MC'>
-        <input autocomplete='off' class='col-lg-6 control-label'type="text" name="profileName" id="profileName" value="{{MC.userinfo.boothName}}" maxlength='50' size="25">
+        <input autocomplete='off' class='col-lg-6 control-label'type="text" name="profileName" align ="left" id="profileName" value="{{MC.userinfo.boothName}}" maxlength='50' size="25">
       </div>
     </div>
     <div class="form-group">
@@ -27,14 +33,14 @@
 <div id="addFields">
 
   <div class="form-group">
-        <label for="inputPassword" class="col-lg-2 control-label">Password:</label>
+        <label for="inputPassword" class="col-lg-2 control-label"> New Password:</label>
         <div class="col-lg-4 offset-col-6">
           <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userCreate.userData.password1">
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password:</label>
+        <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm New Password:</label>
         <div class="col-lg-4 offset-col-6">
           <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model="userCreate.userData.password2">
         </div>
@@ -42,29 +48,23 @@
 
       <div class="form-group">
         <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
-        <div class="col-lg-4 offset-col-6">
-          <input type="text" class="form-control" id="inputEmail" placeholder="Email" ng-model="userCreate.userData.email">
-        </div>
+      <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
+        <input autocomplete='off'   style="text-align:left" class='col-lg-12 control-label'type="text" name="email" id="email" value="{{MC.userinfo.email}}" maxlength='50' size="25">
+      </div>
       </div>
 
       <div class="form-group">
         <label for="inputPhone" class="col-lg-2 control-label">Phone:</label>
-        <div class="col-lg-4 offset-col-6">
-          <input type="text" class="form-control" id="inputPhone" placeholder="Phone" ng-model="userCreate.userData.phone">
-        </div>
+      <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
+        <input autocomplete='off' style="text-align:left" class='col-lg-12 control-label'type="text" name="phone" id="phone" value="{{MC.userinfo.phone}}" maxlength='50' size="25">
+      </div>
       </div>
     
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Booth Name:</label>
-      <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="boothName" placeholder="Booth Name" ng-model="userCreate.userData.boothName">
-      </div>
-    </div>
 </div>
 
   <div class="col-lg-12" style="margin-left:20%">
       <div class="form-group col-lg-3">
-          <button type="submit" class="btn btn-primary btn-block" id="showButton" onclick="toggleShow">Show Additional Details</button>
+          <button class="btn btn-primary btn-block" id="showButton" ng-click=PC.toggleShow()>Show Additional Details</button>
       </div>
 
       <div class="form-group col-lg-3">
@@ -75,10 +75,3 @@
   </fieldset>
 </form>
 
-<script>
-function toggleShow() {
-  alert("help");
-    document.getElementById("addFields").style.visibility = "visible";
-    document.getElementById("addFields").style.position = "relative";
-}
-</script>
