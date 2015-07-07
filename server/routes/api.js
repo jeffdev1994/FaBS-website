@@ -27,7 +27,7 @@ module.exports = function(app, express) {
 	apiRouter.post('/authenticate',function(req, res){
 		console.log("very top of authenticate" + req.body.username);
 		User.findOne({username: req.body.username})
-			.select('username password ')
+			.select('username password isAdmin')
 			.exec(function(err,user){
 				if(err) throw err;
 
@@ -49,7 +49,7 @@ module.exports = function(app, express) {
 						//user was found, and password is correct. create token for them
 						//TODO: consider how long the token should last. is 2.5 enough, or not long enough?
 						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
-						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
+						res.json({success: true, isAdmin: user.isAdmin, message: 'Token set for 2.5 hours', token: token});
 					}
 				}
 			});

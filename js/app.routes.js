@@ -48,8 +48,12 @@
 	//route for user profile page
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'
-	});
+	})
 
+	//route for admin main page after log in
+	.when("/adminhome", {
+		templateUrl: 'views/pages/adminhome.html',
+	});
 
 
 	// Added to remove the # from URLs

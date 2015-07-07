@@ -19,6 +19,7 @@ var VendorSchema = new Schema({
 	products: { type: String, required: true},
 	bookedBooths: [],
 	//holds some sort of identifier for booths they have booked before
+	isAdmin: { type: Boolean, required: true, default: false},
 	history: []
 });
 
