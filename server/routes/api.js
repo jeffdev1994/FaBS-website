@@ -136,27 +136,57 @@ module.exports = function(app, express) {
 	//when creating a booth. it adds itself into users, and into the day
 	//if the day is not created yet, it will created, that is why the /days route may not be needed
 	apiRouter.route('/booths')
-		.post(function(req,res){
+		.post(function(req,res) {
 			var booth = new Booth();		// create a new instance of the Booth model
 			booth.booth_id = req.body.booth_id;  // set the users name (comes from the request)
 			booth.timeSlot = req.body.timeSlot;  // set the users username (comes from the request)
 			booth.dateSlot = req.body.dateSlot;  // set the users password (comes from the request)
 			booth.user_id = req.body.user_id;
 
-			booth.save(function(err) {
+			booth.save(function (err) {
 				if (err) {
 					console.log("error in api for saving booth", err);
-					return res.send(err);
-				}
+					if (err.code == 11000)
+						return res.json({success: false, message: 'a booth with that id already exists'});
+					else
+						return res.json({success: false, message: 'possibly missing required fields'});
+				} else {
 
-				// return a message
-				res.json({ message: 'Booth created!' });
+					// return a message
+					res.json({message: 'Booth created!'});
+				}
 			});
 		});
+/**
+		.put(function(req, res) {
+			Booth.findOne({
+				booth_id: req.body.booth_id,
+				timeSlot: req.body.timeSlot,
+				dateSlot: req.body.dateSlot
+			}, function (err, booth) {
+
+				if (err) res.send(err);
+
+				// set the new user information if it exists in the request
+				if (req.body.user_id) booth.user_id = req.body.user_id;
+				if (req.body.available) booth.available = req.body.available;
+
+				// save the user
+				booth.save(function (err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({message: 'booth updated!'});
+				});
+
+			});
+		});
+*/
 
 
-	//TODO: may not actually need this
+
 	apiRouter.route('/days')
+		//TODO: may not actually need this post method. booths always create days, and that is done without this
 		.post(function(req,res){
 			var day = new Day();
 			day.dayName = req.body.dayName;
@@ -174,6 +204,26 @@ module.exports = function(app, express) {
 				res.json({ message: 'day created!' });
 			});
 		});
+
+
+
+	apiRouter.route('/days/:dayName')
+		.get(function(req, res){
+			Day.findOne({dayName: req.params.dayName})
+				.exec(function(err,day){
+					if(err) throw err;
+
+					//if that day is not there
+					if(!day){
+						return res.json({ success: false, message: 'day not created yet.'});
+					}
+					//if the booth is there, return it
+					else if(day){
+						res.json(day);
+					}
+				});
+		});
+
 
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------

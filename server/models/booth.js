@@ -19,6 +19,8 @@ var BoothSchema = new Schema({
     user_id: {type: String}
 });
 
+BoothSchema.index({ booth_id: 1, timeSlot: 1, dateSlot: 1}, { unique: true });
+
 BoothSchema.post('save', function(booth){
     //this needs to add itself to booked booths of user, and booths of day
    console.log("this booth belongs to %s and should go in day %s",booth.user_id,booth.dateSlot);
@@ -35,7 +37,7 @@ BoothSchema.post('save', function(booth){
 
     Day.findOne({dayName: booth.dateSlot})
         .exec(function(err,day){
-            if(err) throw err
+            if(err) throw err;
 
             //if that day is not there, create one
             if(!day){

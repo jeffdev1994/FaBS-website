@@ -1,18 +1,18 @@
-// STEP 3
+//this is really more of a market service then booth service
 angular.module('boothService', [])
 
     .factory('Booth', function($http) {
 
         // create a new object
         var boothFactory = {};
-/*
+
         // get a single user
-        boothFactory.get = function(id) {
+        boothFactory.getDay = function(dayName) {
             // since this call requires a user ID we'll add the id to
             // the end of the URL
-            return $http.get('/api/users/' + id);
+            return $http.get('/api/days/' + dayName);
         };
-
+/*
         // get all users
         boothFactory.all = function() {
             return $http.get('/api/users/');
@@ -26,7 +26,6 @@ angular.module('boothService', [])
             return $http.post('/api/booths', boothData);
         };
 
-
-        return userFactory;
+        return boothFactory;
 
     });
