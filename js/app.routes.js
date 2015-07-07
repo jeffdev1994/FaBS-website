@@ -48,6 +48,11 @@
 	//route for user profile page
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'
+	})
+
+	//route for admin profile page
+	.when("/adminhome", {
+		templateUrl: 'views/pages/adminhome.html'
 	});
 
 
