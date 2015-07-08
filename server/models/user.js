@@ -19,7 +19,8 @@ var VendorSchema = new Schema({
 	products: { type: String, required: true},
 	bookedBooths: [Schema.Types.booth],
 	//holds some sort of identifier for booths they have booked before
-	history: []
+	history: [],
+	banned: {type: Boolean, default: false}
 });
 
 // hash the password before the user is saved

@@ -22,31 +22,10 @@ var BoothSchema = new Schema({
 BoothSchema.index({ booth_id: 1, timeSlot: 1, dateSlot: 1}, { unique: true });
 
 
-////before it is removed, remove it from user booths, and day
-//BoothSchema.post('remove', function(booth){
-//    console.log("*********this booth belongs to  and should be removed from day ");
-//
-//    //db.vendor.update(
-//    //    {},
-//    //    {$pull: {bookedBooths: {_id : booth._id}}},
-//    //    {multi: true}
-//    //);
-//});
-
 //before the booth is deleted, remove it from the user and the day
 BoothSchema.pre('remove', function (next) {
     var booth = this;
     console.log('%s has been removed', booth._id);
-
-    //remove from the user
-    User.findByIdAndUpdate(booth.user_id, {$pull: {bookedBooths: {_id : booth._id}}}, function(err, data){
-        //console.log(err, data);
-    });
-
-    //remove from the day
-    Day.findOneAndUpdate({dayName: booth.dateSlot},{$pull: {booths: {_id : booth._id}}},function(err, data ){
-        //console.log(err, data);
-    });
 
     //check if they should be banned
     var date = new Date();
@@ -62,7 +41,7 @@ BoothSchema.pre('remove', function (next) {
         boothtime.setHours(10);
     else
         boothtime.setHours(16);
-
+    //testing
     console.log("******************************");
     console.log(date);
     console.log(boothtime);
@@ -71,8 +50,23 @@ BoothSchema.pre('remove', function (next) {
         //TODO: have to set a banned variable or something in the user (currently isnt a field for that). and somehow get a message back to them that they are now banned
         //possibly make it so everytime they refresh the page and are banned, it shows an alert, that way we wont have to do anything here
         //just check for banned in main controller each time.
-
+        User.findByIdAndUpdate(booth.user_id, {$pull: {bookedBooths: {_id : booth._id}}, banned: true}, function(err, data){
+            //console.log(err, data);
+        });
     }
+    else{
+        //remove from the user
+        User.findByIdAndUpdate(booth.user_id, {$pull: {bookedBooths: {_id : booth._id}}}, function(err, data){
+            //console.log(err, data);
+        });
+    }
+
+    //remove from the day
+    Day.findOneAndUpdate({dayName: booth.dateSlot},{$pull: {booths: {_id : booth._id}}},function(err, data ){
+        //console.log(err, data);
+    });
+
+
 
     next();
 });
