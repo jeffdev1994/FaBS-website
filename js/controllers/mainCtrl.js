@@ -24,6 +24,16 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		});
 
 	});
+	
+	vm.getNeatTime = function(booth) {
+		var returnval = booth.dateSlot;
+		if (booth.timeSlot == '10001400') {
+			returnval += ' AM';
+		} else {
+			returnval += ' PM';
+		}
+		return returnval;
+	};
 
 
 	vm.logout = function(){
@@ -138,7 +148,9 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		});
 	};
 
-
+	vm.cancelBooking = function(booth_id, timeSlot) {
+	
+	};
 
 
 
