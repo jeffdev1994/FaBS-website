@@ -21,12 +21,9 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		});
 
 	});
-
-
 	vm.logout = function(){
 		Auth.logout();
 	};
-
 });
 
 
