@@ -38,7 +38,6 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//TODO: consider adding in a timer interval, so the page refreshes and they see what booths are available
 	//https://codeforgeek.com/2014/09/refresh-div-angularjs-interval/
-		
 		//date user chosen by the datepicker, set to current date by default
 	vm.date = new Date();
 
@@ -65,7 +64,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 				}
 
 				//the ones which have a booth, set to 0
+				//it goes 1-12 for morning booths, then 13-24 for afternoon booths. example: 1 and 13 are morning and afternoon of booth 1
 				for(i=0; i < day.data.booths.length; i++){
+					//have access to the user_id of the owner of the booth here.
+					//will have to query for that user to put there username and link to their profile page on each booked book
+					//TODO: have the username and link to profile page on each booked booth - maybe
 					vm.boothNum = day.data.booths[i].booth_id;
 					vm.boothTime = day.data.booths[i].timeSlot;
 					if(vm.boothTime == 16002000)
@@ -118,6 +121,8 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 							//alert("new user successfully created! please login");
 							vex.dialog.alert('Congratulations! Booth booked for ' + vm.boothInfo.dateSlot + " at " + userTime);
 							//TODO:reset the calender - not working!
+							//i can either find out how to refresh just a div, or find out why change date isnt
+							//doing the same thing from inside here
 							vm.changeDate();
 						}
 					});
