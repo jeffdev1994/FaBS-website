@@ -3,13 +3,13 @@
 		<div class="row">
 			<div class="1u"></div>
 			<div class="10u">
-			<div class = "row" ng-controller="mainController as MC">
+			<div class = "row" ng-controller="adminmarketController as AC">
 				<div class="col-sm-offset-0 col-sm-10">
 					<img src="views/img/banner_main.png" style="width:100%; border: 3px solid grey; padding: 10px 10px 10px 10px;"></img>
 				</div>
 
 				<div class="col-sm-offset-0 col-sm-2">
-				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
+				        <a href="/adminhome"> <button type="submit" class="btn btn-success btn-md btn-block">RETURN</button></a>
 				        <div style="height:5px;"></div>
 				        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 				</div>
@@ -23,15 +23,26 @@
 					<div class="panel panel-primary">
 					
 						<div class="panel-heading">
-							<h3 class="panel-title">Users</h3>
+							<h3 class="panel-title">Profile</h3>
 						</div>
 
 						<div class="panel-body">
-								<table class="well well-lg" ng-controller="adminController as AC" >
-									<tr ng-repeat="user in AC.users | orderBy:'username'">
-		<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
-									</tr>
-								</table>
+								<div class="well well-lg" ng-controller="adminmarketController as AC">
+									Username: {{AC.theuserinfo.username}}
+									<br>
+									Email: {{AC.theuserinfo.email}}
+									<br>
+									Phone: {{AC.theuserinfo.phone}}
+									<br>
+									Booth Name: {{AC.theuserinfo.boothName}}
+									<br>
+									Booth Type: {{AC.userinfo.boothtype}}
+									<br>
+									Products: {{AC.theuserinfo.products}}
+									<br>
+									Bio: {{AC.theuserinfo.bio}}
+									<br>
+								</div>
 						</div>
 					</div>
 				</div>
