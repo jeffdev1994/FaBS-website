@@ -24,6 +24,16 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		});
 
 	});
+	
+	vm.getNeatTime = function(booth) {
+		var returnval = booth.dateSlot;
+		if (booth.timeSlot == '10001400') {
+			returnval += ' AM';
+		} else {
+			returnval += ' PM';
+		}
+		return returnval;
+	};
 
 
 	vm.logout = function(){
@@ -32,7 +42,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 })
 
-.controller('marketController', function($rootScope, User, Data,Booth, Auth, $location){
+.controller('marketController', function($rootScope, User, Data, Booth, Auth, $location){
 	var vm = this;
 
 
@@ -82,6 +92,15 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//call it initially so that the date is correct after loading
 	vm.changeDate();
+	
+	vm.boothAlreadyBooked = function() {
+		vex.dialog.alert({
+			message: 'This booth has already been booked',
+			afterClose: function() {
+				vm.changeDate();
+			}
+		});
+	};
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
@@ -101,7 +120,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			dateSlot : vm.date.getFullYear() + "-" + (vm.date.getMonth() + 1)+ "-" +vm.date.getDate(),
 			user_id : $rootScope.userinfo._id
 		};
-
+		
 		vex.dialog.confirm({
 			message: 'Confirm booking for ' + vm.boothInfo.dateSlot + " at " + userTime,
 			callback: function(answer) {
@@ -117,24 +136,24 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 						}
 						else {
 							console.log("booth created .SUCCESS");
-							//if it makes it to here, then user was successfully created, perhaps a popup. then back to login page
-							//alert("new user successfully created! please login");
+							
 							vex.dialog.alert('Congratulations! Booth booked for ' + vm.boothInfo.dateSlot + " at " + userTime);
-							//TODO:reset the calender - not working!
-							//i can either find out how to refresh just a div, or find out why change date isnt
-							//doing the same thing from inside here
-							vm.changeDate();
 						}
 					});
 				}
 				//if they answered no, just dont do anything
+			},
+			
+			//update calander after dialogue closes
+			afterClose: function() {
+				vm.changeDate();
 			}
 		});
-
-
 	};
 
-
+	vm.cancelBooking = function(booth_id, timeSlot) {
+	
+	};
 
 
 
