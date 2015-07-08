@@ -2,7 +2,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 // #####  SIMPLE ANGULAR APP  #####
 
-.controller('mainController', function($rootScope, User, Data, Auth, $location){
+.controller('mainController', function($rootScope, User, Data,Booth, Auth, $location){
 
 
 	var vm = this;
@@ -36,9 +36,48 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	};
 
 
+
 	vm.logout = function(){
 		Auth.logout();
 	};
+
+	//TODO: still need to give a confirmation they want to do it. and update the page after it has happened
+	vm.cancelBooth = function(booth){
+		console.log('attmepting to delete booth');
+
+		vex.dialog.confirm({
+			message: 'Are you sure you want to cancel your reservation for ' + booth.dateSlot + '? If it is within 24 hours of the booking time, you will be unable to book another booth for 48 hours',
+			callback: function(answer) {
+				//if they answer yes, then do the booking
+				if(answer){
+					Booth.delete(booth._id)
+						.success(function(data){
+							//TODO: this is where the message about them being banned will be displayed
+							if(data.success == false){
+								vex.dialog.alert( "Something went wrong! Please contact the farmers market if you wish to find out what happened");
+							}
+							else{
+								vex.dialog.alert('Booth has been cancelled');
+							}
+						});
+				}
+				//if they answered no, just dont do anything
+			},
+
+			//update calander after dialogue closes
+			afterClose: function() {
+				//vm.changeDate();
+				//dont have changeDate in this controller, and that wont update the booked booths anyways
+				//TODO:possibly just refresh the page
+			}
+		});
+
+
+
+
+
+
+	}
 
 })
 
@@ -150,19 +189,6 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			}
 		});
 	};
-
-	vm.cancelBooking = function(booth_id, timeSlot) {
-	
-	};
-
-
-
-
-
-
-
-
-
 
 });
 

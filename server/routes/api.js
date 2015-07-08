@@ -157,6 +157,24 @@ module.exports = function(app, express) {
 				}
 			});
 		});
+
+
+
+
+	apiRouter.route('/booths/:booth_id')
+		.delete(function(req, res) {
+			console.log("into delete route for booths");
+
+			Booth.findById(req.params.booth_id, function(err, booth){
+				if (err) console.log(err);
+
+				booth.remove(function(err){
+					console.log("into delete route for booths2");
+				});
+
+				res.json({ message: 'Successfully deleted' });
+			});
+		});
 /**
 		.put(function(req, res) {
 			Booth.findOne({

@@ -26,6 +26,10 @@ angular.module('boothService', [])
             return $http.post('/api/booths', boothData);
         };
 
+        boothFactory.delete = function(booth_id){
+            return $http.delete('/api/booths/' + booth_id);
+        }
+
         return boothFactory;
 
     });
