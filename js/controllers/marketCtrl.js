@@ -180,7 +180,7 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
         console.log(date);
         var message = '<b>Please make it to the venue appropriately to account for time required to set up your booth. Cheers!</b> </p> <div style="margin-top:5%"class="ngdialog-buttons"><button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Close</button></div>';
         var dialog = ngDialog.open({
-                    template: '<p>Congratulations! You have successfully booked the ' + data.boothName + ' booth for the ' + data.timeSlot +" session, on " + date + '.\n' + message,                  
+                    template: '<p>Congratulations! You have successfully booked the ' + data.boothName + ' booth for the ' + data.timeSlot +" session, on " + date + '.\n' + message,          
                     plain: true,
                     closeByDocument: false,
                     closeByEscape: false
@@ -225,8 +225,7 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
             callback: function(answer) {
             //if they answer yes, then do the booking
                 if(answer){
-
-                    confirmBooking(data)
+                    confirmBooking(data);
                 }
             //if they answered no, just dont do anything
             },
@@ -234,6 +233,7 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
             //update calander after dialogue closes
             afterClose: function() {
                 refreshScreen();
+                $scope.apply();
             }
         });
 
@@ -245,7 +245,6 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
 
             Market.saveBooking(data)
                 .success(function(status){
-
                     console.log("Booking confirmed");
                     $scope.openTimed(data);
                     console.log(status);
