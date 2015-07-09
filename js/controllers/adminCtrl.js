@@ -37,7 +37,6 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 
 })
 
-
 .controller('supportRequest', function(User, Data, $window) {
 	var vm = this;
 
@@ -77,7 +76,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 								vex.dialog.alert("Something went wrong! Please contact the farmers market if you wish to find out what happened");
 							}
 							else{
-								vex.dialog.alert('Request is now closed');
+								
 							}
 						});
 				}

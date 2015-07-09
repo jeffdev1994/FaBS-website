@@ -11,7 +11,7 @@
 				<div class="col-sm-offset-0 col-sm-2">
 				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
 				        <div style="height:5px;"></div>
-				        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
+				        <a href="/profile"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 				</div>
 			</div>
 
@@ -19,6 +19,7 @@
 
 			<div id="marketMain">
 
+				<!--PROFILE INFO-->
 				<div id="userProfile" ng-controller="mainController as MC">
 					<div class="panel panel-primary">
 					
@@ -42,8 +43,8 @@
 					</div>
 				</div>
 
+				<!--CALENDAR -->
 				<div id="market">
-
 					<div id="notices" style="border: 1px solid grey; border-radius: 5px; margin: 0% 1.5% 1.5% 1.5%;">
 						<center>
 							<font size="5">Important Notices</font><br>
@@ -185,9 +186,9 @@
 
 				</div>
 
+				<!--BOOKING HISTORY-->
 				<div id="bookingHistory" style="border: 1px solid gray; border-radius: 5px; float: left;">
 					<table class="table table-striped table-hover">
-					  
 					<thead>
 					<tr>
 					  <th></th>

@@ -11,7 +11,7 @@
 				<div class="col-sm-offset-0 col-sm-2">
 				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
 				        <div style="height:5px;"></div>
-				        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
+				        <a href="/profile"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 				</div>
 			</div>
 
@@ -32,7 +32,7 @@
 						<div class="panel-body" style="background-color:#F8F5F0;">
 								<table class="" style="width:75%; margin:auto;" ng-controller="adminController as AC" >
 									<tr ng-repeat="user in AC.users | orderBy:'username'">
-		<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
+										<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
 									</tr>
 								</table>
 						</div>
@@ -193,7 +193,6 @@
 						
 						<tbody ng-controller="supportRequest as suppReq">
 						<tr class="active" ng-repeat="request in suppReq.requests | orderBy:'date'">
-							<!--TODO: possibly restrict the size of the text, before it just makes a new line. now if its long, it just pushed everything over and looks bad-->
 							<td style="width:90px;">{{request.title}}</td>
 							<td><div style="font-size: 90%;">{{suppReq.getNiceDate(request.date)}}</div></td>
 							<td style="width:25%;">
