@@ -84,7 +84,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 .controller('marketController', function($rootScope, User, Data, Booth, Auth, $location){
 	var vm = this;
 
-
+	vm.isSunday;
 	//TODO: consider adding in a timer interval, so the page refreshes and they see what booths are available
 	//https://codeforgeek.com/2014/09/refresh-div-angularjs-interval/
 		//date user chosen by the datepicker, set to current date by default
@@ -94,6 +94,12 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	vm.boothAV = [];
 
 	vm.changeDate = function(){
+		//find out if the day is a sunday or not
+		if(vm.date.getDay() == 0)
+			vm.isSunday = true;
+		else
+			vm.isSunday = false;
+
 		vm.dateString = vm.date.getFullYear() + "-" + (vm.date.getMonth() + 1)+ "-" +vm.date.getDate();
 		vm.daypromise = Booth.getDay(vm.dateString);
 
