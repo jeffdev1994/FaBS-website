@@ -172,7 +172,7 @@ module.exports = function(app, express) {
 				if (err) res.send(err);
 
 				// return the users
-				res.json(requests);
+				res.json({success: true, message: 'Request deleted!'});
 			});
 		});
 
