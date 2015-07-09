@@ -29,8 +29,8 @@
 
 						</div>
 
-						<div class="panel-body">
-								<table class="well well-lg" style="width:75%; margin:auto;" ng-controller="adminController as AC" >
+						<div class="panel-body" style="background-color:#F8F5F0;">
+								<table class="" style="width:75%; margin:auto;" ng-controller="adminController as AC" >
 									<tr ng-repeat="user in AC.users | orderBy:'username'">
 		<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
 									</tr>
@@ -194,9 +194,9 @@
 						<tbody ng-controller="supportRequest as suppReq">
 						<tr class="active" ng-repeat="request in suppReq.requests | orderBy:'date'">
 							<!--TODO: possibly restrict the size of the text, before it just makes a new line. now if its long, it just pushed everything over and looks bad-->
-							<td>{{request.title}}</td>
-							<td><div style="font-size: 75%;">{{suppReq.getNiceDate(request.date)}}</div></td>
-							<td>
+							<td style="width:90px;">{{request.title}}</td>
+							<td><div style="font-size: 90%;">{{suppReq.getNiceDate(request.date)}}</div></td>
+							<td style="width:25%;">
 								<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="suppReq.openReq(request.body)"></a>
 								<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="suppReq.clearReq(request._id);"></a>
 							</td>

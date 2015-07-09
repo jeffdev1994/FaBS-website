@@ -19,30 +19,25 @@
 
 			<div id="marketMain">
 
-				<div id="userProfile">
+				<div id="userProfile" ng-controller="mainController as MC">
 					<div class="panel panel-primary">
 					
 						<div class="panel-heading">
 							<h3 class="panel-title">Profile</h3>
 						</div>
 
-						<div class="panel-body">
-								<div class="well well-lg" ng-controller="mainController as MC">
-									Username: {{MC.userinfo.username}}
-									<br>
-									Email: {{MC.userinfo.email}}
-									<br>
-									Phone: {{MC.userinfo.phone}}
-									<br>
-									Booth Name: {{MC.userinfo.boothName}}
-									<br>
-									Booth Type: {{MC.userinfo.boothtype}}
-									<br>
-									Products: {{MC.userinfo.products}}
-									<br>
-									Bio: {{MC.userinfo.bio}}
-									<br>
-								</div>
+						<div class="panel-body" style="background-color:#F8F5F0;">
+							<div class="table-responsive">
+							  <table class="table">
+							  	<tr><td>Username: <div class="user-item">{{MC.userinfo.username}}</div></td></tr>
+							   	<tr><td>Email: <div class="user-item">{{MC.userinfo.email}}</div></td></tr>
+							   	<tr><td>Phone: <div class="user-item">{{MC.userinfo.phone}}</div></td></tr>
+							   	<tr><td>Booth Name: <div class="user-item">{{MC.userinfo.boothName}}</div></td></tr>
+							   	<tr><td>Booth Type: <div class="user-item">{{MC.userinfo.boothtype}}</div></td></tr>
+							   	<tr><td>Products: <div class="user-item">{{MC.userinfo.products}}</div></td></tr>
+							   	<tr><td>Bio: <div class="user-item">{{MC.userinfo.bio}}</div></td></tr>
+							  </table>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -80,13 +80,11 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 								vex.dialog.alert('Request is now closed');
 							}
 						});
-
 				}
 				//if they answered no, just dont do anything
 			},
 
 			//refresh page after it is deleted
-			//TODO: it refreshes even if you cancel.  doesnt work if you put the reloud in the callback
 			afterClose: function() {
 				if(callAnswer){
 					callAnswer=false;
