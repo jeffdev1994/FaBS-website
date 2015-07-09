@@ -1,8 +1,9 @@
-var bodyParser = require('body-parser'); 	// get body-parser
+var bodyParser = require('body-parser');
 var User       = require('../models/user');
-var Booth       = require('../models/booth');
+var Booking    = require('../models/booking');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
+var moment     = require('moment');
 
 // super secret for creating tokens
 var superSecret = config.secret;
@@ -11,10 +12,10 @@ module.exports = function(app, express) {
 
 	var apiRouter = express.Router();
 
-	// test route to make sure everything is working 
+	// test route to make sure everything is working
 	// accessed at GET http://localhost:8080/api
 	apiRouter.get('/', function(req, res) {
-		res.json({ message: 'Welcome to the User API for Lab 7' });	
+		res.json({ message: 'Welcome to the User API for Fernwood Farmers Market' });
 	});
 
 /*
@@ -93,7 +94,7 @@ module.exports = function(app, express) {
 				// return a message
 				res.json({ message: 'User created!' });
 			});
-			
+
 
 
 		})
@@ -128,7 +129,7 @@ module.exports = function(app, express) {
 				else{
 					//authentication was successful
 					req.decoded = decoded;
-					next()
+					next();
 				}
 			});
 		}
@@ -138,22 +139,37 @@ module.exports = function(app, express) {
 		}
 	});
 
-	apiRouter.route('/booths')
+	apiRouter.route('/booking')
 		.post(function(req,res){
-			var booth = new Booth();		// create a new instance of the Booth model
-			booth.booth_id = req.body.booth_id;  // set the users name (comes from the request)
-			booth.timeSlot = req.body.timeSlot;  // set the users username (comes from the request)
-			booth.dateSlot = req.body.dateSlot;  // set the users password (comes from the request)
-			booth.user_id = req.body.user_id;
+			var booking      = new Booking();		// create a new instance of the Booth model
+			booking.timeSlot = req.body.timeSlot;
+			booking.date     = moment(req.body.date, "MM-DD-YYYY");
+			booking.boothName = req.body.boothName;
+			booking.userId   = req.decoded.id;
+			
+			console.log(req);
 
-			booth.save(function(err) {
+			booking.save(function(err) {
 				if (err) {
 					console.log("error in api for saving booth", err);
-					return res.send(err);
+					return res.status(500).send(err);
 				}
 
 				// return a message
 				res.json({ message: 'Booth created!' });
+			});
+		});
+
+	apiRouter.route('/booking/:curDate')
+		.get(function(req, res){
+			var curDate = moment(req.params.curDate, "MM-DD-YYYY");
+
+			Booking.find({date: curDate}, function(err, booking) {
+				if (err) {
+					console.log("Invalid Date?", err);
+					return res.send(err);
+				}
+				res.json(booking);
 			});
 		});
 
@@ -208,11 +224,9 @@ module.exports = function(app, express) {
 
 
 
-
-
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
-		//finds the user based on there token.
+		//finds the user based on their token.
 		//this value is started by middleware
 
 		res.send(req.decoded);

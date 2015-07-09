@@ -23,32 +23,32 @@ main 					{
 		/*height: 100%;*/
 	}
 
-	#booth-available{
+	.booth-available{
 		text-align: center;
 		color: #009900;
 		background: #CCFFCC;
 	}
-	#booth-available:hover{
+	.booth-available:hover{
 		opacity: 0.6;
 	}
-	
-	#booth-available:active{
+
+	.booth-available:active{
 		opacity: 1;
 		color:#006600;
 		background: #669966;
 	}
-	
-	#booth-unavailable{
+
+	.booth-unavailable{
 		text-align: center;
 		color: #990000;
 		background: #FFCCCC;
 	}
-	
-	#booth-unavailable:hover{
+
+	.booth-unavailable:hover{
 		opacity: 0.6;
 	}
-	
-	#booth-unavailable:active{
+
+	.booth-unavailable:active{
 		opacity: 1;
 		color:#660000;
 		background: #CC9999;
@@ -56,38 +56,38 @@ main 					{
 
 
 	/*#bg-markethome{
-	  position: fixed; 
-	  top: -50%; 
-	  left: -50%; 
-	  width: 200%; 
+	  position: fixed;
+	  top: -50%;
+	  left: -50%;
+	  width: 200%;
 	  height: 200%;
 	  z-index:-1;
 	}
 	#bg-markethome img {
-	  position: absolute; 
-	  top: 0; 
-	  left: 0; 
-	  right: 0; 
-	  bottom: 0; 
-	  margin: auto; 
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  margin: auto;
 	  min-width: 50%;
 	  min-height: 50%;
 	}
 	#bg-home{
-	  position: fixed; 
-	  top: -50%; 
-	  left: -50%; 
-	  width: 200%; 
+	  position: fixed;
+	  top: -50%;
+	  left: -50%;
+	  width: 200%;
 	  height: 200%;
 	  z-index:-1;
 	}
 	#bg-home img {
-	  position: absolute; 
-	  top: 0; 
-	  left: 0; 
-	  right: 0; 
-	  bottom: 0; 
-	  margin: auto; 
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  margin: auto;
 	  min-width: 50%;
 	  min-height: 50%;
 	}*/
@@ -96,7 +96,7 @@ main 					{
 /* Basic                                                                         */
 /*********************************************************************************/
 	body{
-		
+
 	}
 
 	body,input,select,textarea
@@ -494,6 +494,14 @@ textarea{
 @-moz-keyframes spin {
 	from 	{ -moz-transform:rotate(0deg); }
 	to 	{ -moz-transform:rotate(360deg); }
+}
+
+/*********************************************************************************/
+/* Hide                                                                        */
+/*********************************************************************************/
+
+.hideDiv{
+	display: none;
 }
 
 

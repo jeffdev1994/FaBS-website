@@ -39,6 +39,8 @@
 	//route for vendor main page after log in
 	.when("/markethome", {
 		templateUrl: 'views/pages/markethome.html',
+        controller: 'marketController',
+        controllerAs: 'market'
 	})
 
 	// route for registration page
@@ -55,4 +57,3 @@
 	// Added to remove the # from URLs
 	$locationProvider.html5Mode(true);
 });
-

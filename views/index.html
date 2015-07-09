@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css">
 	<link rel="stylesheet" href="../views/css/style.css">
 	<link rel="stylesheet" href="../views/css/skel.css">
+	<link rel="stylesheet" type="text/css" href="./js/bower_components/ngDialog/css/ngDialog.min.css">
+	<link rel="stylesheet" type="text/css" href="./js/bower_components/ngDialog/css/ngDialog-theme-default.min.css">
 
 
 	<!-- JS -->
@@ -23,15 +25,20 @@
 	<script src= "./js/app.js"></script>
 	<script src="./js/app.routes.js"></script>
 
-
+	<!-- Angular Libraries goes here -->
+	<script src="./js/bower_components/moment/moment.js"></script>
+	<script src="./js/bower_components/angular-moment/angular-moment.js"></script>
+	<script src="./js/bower_components/ngDialog/js/ngDialog.min.js"></script>
 
 	<!-- Add Angular controllers here -->
 	<script src="./js/controllers/mainCtrl.js"></script>
 	<script src="./js/controllers/userCtrl.js"></script>
+	<script src="./js/controllers/marketCtrl.js"></script>
 	<!-- Add Angular services here-->
 	<script src="./js/services/userService.js"></script>
 	<script src="./js/services/dataService.js"></script>
 	<script src="./js/services/authService.js"></script>
+	<script src="./js/services/marketService.js"></script>
 	<!-- Add main Angular app files here -->
 
 
@@ -45,7 +52,7 @@
 	<link href="http://github.hubspot.com/vex/css/vex.css" rel="stylesheet" />
 	<link href="http://github.hubspot.com/vex/css/vex-theme-default.css" rel="stylesheet" />
 	<script>vex.defaultOptions.className = 'vex-theme-default';</script>
-	
+
 
 </head>
 
@@ -55,14 +62,14 @@
 <header>
 	<div class="navbar navbar-default">
 	<div class="container">
-		<div class="nav navbar-nav navbar-left">			
+		<div class="nav navbar-nav navbar-left">
 			<span class="navbar-brand">
 				<a href = "/" style= "color: #fdfdfd; text-decoration:none;">
-					<span class="glyphicon glyphicon-picture"></span> 
+					<span class="glyphicon glyphicon-picture"></span>
 					Fernwood Farmers Market
 				</a>
 			</span>
-		</div>	
+		</div>
 		<!-- <ul class="nav navbar-nav">
 			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
 		</ul> -->

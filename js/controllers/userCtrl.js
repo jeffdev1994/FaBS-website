@@ -161,8 +161,8 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 		User.create(vm.userData)
 			.success(function(data) {
 				//if it passes all the checks, and comes back unsuccessful. then it must be username
-				if(data.success == false){
-					console.log("user created not sucessful");
+				if(data.success === false){
+					console.log("Registration unsuccessful");
 					vm.addAlert("Error: Username: '" + vm.userData.username + "' is already taken, try a different one");
 					vm.processing = false;
 					vm.message = data.message;
