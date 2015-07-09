@@ -26,7 +26,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	};
 })
 
-.controller('supportRequest', function(User, Data, Auth,$scope) {
+.controller('supportRequest', function(User, Data, Auth,$scope, $window) {
 	var vm = this;
 
 	vm.requestpromise = User.getRequests();
@@ -46,7 +46,32 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
      vm.clearReq = function(){
      	vex.dialog.alert('Support request cleared!');
-		 User.deleteRequest();
+
+
+		 vex.dialog.confirm({
+			 message: 'Are you sure you want to close this support request?',
+			 callback: function(answer) {
+				 //if they answer yes
+				 if(answer){
+					 User.deleteRequest(requestID)
+						 .success(function(data){
+							 //TODO: this is where the message about them being banned will be displayed
+							 if(data.success == false){
+								 vex.dialog.alert( "Something went wrong! Please contact the farmers market if you wish to find out what happened");
+							 }
+							 else{
+								 vex.dialog.alert('Request is now closed');
+							 }
+						 });
+				 }
+				 //if they answered no, just dont do anything
+			 },
+
+			 //refresh page after it is deleted
+			 afterClose: function() {
+				 $window.location.reload();
+			 }
+		 });
      }
  })
 
