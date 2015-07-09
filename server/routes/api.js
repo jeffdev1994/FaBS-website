@@ -59,17 +59,12 @@ module.exports = function(app, express) {
 		});
 
 
-
-
-
-
 	// on routes that end in /users
 	// ----------------------------------------------------
 	apiRouter.route('/users')
 
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
-			console.log("INTO API/users POST");
 			console.log("boothname:", req.body.boothName, "email:", req.body.email);
 			var vendor = new User();		// create a new instance of the User model
 			vendor.boothName = req.body.boothName;  // set the users name (comes from the request)
@@ -95,8 +90,6 @@ module.exports = function(app, express) {
 				res.json({ message: 'User created!' });
 			});
 
-
-
 		})
 
 		//TODO:	needs to be put under the middleware
@@ -105,10 +98,20 @@ module.exports = function(app, express) {
 
 			User.find({}, function(err, users) {
 				if (err) res.send(err);
-
 				// return the users
 				res.json(users);
+			})
+
+		.delete(function(req, res) {
+			User.remove({
+				_id: req.params.user_id
+			}, function(err, user) {
+				if (err) res.send(err);
+				
+				res.json({ message: 'Successfully deleted' });
 			});
+		});
+
 		});
 
 
