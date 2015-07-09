@@ -23,6 +23,11 @@ main 					{
 		/*height: 100%;*/
 	}
 
+	.scrollable-menu {
+    height: auto;
+    max-height: 700px;
+    overflow-x: hidden;
+}
 	.booth-available{
 		text-align: center;
 		color: #009900;
@@ -383,6 +388,7 @@ header .navbar 		{
 	width: 24%;
 	float: left;
 	background-color: rgba(255,255,255,.85);
+	margin-right: -5%;
 }
 
 #userProfile{

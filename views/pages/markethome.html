@@ -1,4 +1,4 @@
-<main >
+<main>
 	<div id="markethome-bg">
 		<div class="row">
 			<div class="1u"></div>
@@ -289,94 +289,41 @@
 
 				</div>
 
-				<div id="bookingHistory" style="border: 1px solid gray; border-radius: 5px; float: left;">
+				<div id="bookingHistory" style="border: 1px solid gray; border-radius: 5px; float: left;" class="scrollable-menu">
 					<table class="table table-striped table-hover">
 
 					<thead>
-					<tr>
-					  <th></th>
-					  <th>Bookings</th>
-					  <th>Date</th>
-					  <div style="padding-top:3%">
-					  	<th id="history" class="btn btn-default btn-sm">History</th>
-						  </div>
+						<tr>
+							<th>#</th>
+							<th>Bookings</th>
+							<th>Date</th>
+							<div style="padding-top:3%">
+<!-- 								<center><th id="history" class="btn btn-default btn-sm">History</th></center>
+ -->							</div>
+							<th></th>
 						</tr>
 					</thead>
 
 					<tbody>
-					<tr>
+
+					     <tr style="font-size:15px;" ng-repeat="booking in bookings">					         
+					         <td>{{ $index+1 }}</td>
+					         <td>{{ booking.boothName }}</td>
+					         <td>{{booking.timeSlot}}, {{ booking.date | date: 'MMM d, y'}}</td>
+							 <td><center><a id="{{booking._id}}" href="#" class="btn btn-danger btn-xs" ng-click="deleteBooking($event)">&nbsp;X&nbsp;</a></center></td>
+					     </tr>
+
+				    </tbody>
+
+<!-- 					<tr>
 					  <td>1</td>
 					  <td>Vegetables</td>
 					  <td>27/6/15</td>
 					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
 					</tr>
-					<tr class="info">
-					  <td>2</td>
-					  <td>Fuit</td>
-					  <td>30/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="success">
-					  <td>3</td>
-					  <td>Clothes</td>
-					  <td>5/5/20</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr>
-					  <td>1</td>
-					  <td>Vegetables</td>
-					  <td>27/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="info">
-					  <td>2</td>
-					  <td>Fuit</td>
-					  <td>30/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="success">
-					  <td>3</td>
-					  <td>Clothes</td>
-					  <td>5/5/20</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr>
-					  <td>1</td>
-					  <td>Vegetables</td>
-					  <td>27/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="info">
-					  <td>2</td>
-					  <td>Fuit</td>
-					  <td>30/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr>
-					  <td>1</td>
-					  <td>Vegetables</td>
-					  <td>27/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="info">
-					  <td>2</td>
-					  <td>Fuit</td>
-					  <td>30/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-					<tr class="success">
-					  <td>3</td>
-					  <td>Clothes</td>
-					  <td>5/5/20</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
-						<tr class="info">
-					  <td>2</td>
-					  <td>Fuit</td>
-					  <td>30/6/15</td>
-					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
-					</tr>
+
 					</tbody>
+ -->
 					</table>
 				</div>
 				</div>

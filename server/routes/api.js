@@ -176,22 +176,27 @@ module.exports = function(app, express) {
 			});
 		});
 
-		User.remove({
-				_id: req.params.user_id
-			}, function(err, user) {
-				if (err) res.send(err);
-
-				res.json({ message: 'Successfully deleted' });
-			});
-
-	apiRouter.route('/booking/:id')
+	apiRouter.route('/users/cancelBooking/:id')
 		.delete(function(req,res){
 			Booking.remove({
 				_id: req.params.id
 			}, function(err, user) {
 				if (err) res.send(err);
 
-				res.json({ message: 'Successfully deleted' });
+				res.json({ message: 'The associated booking has been successfully deleted!' });
+			});
+		});
+
+	apiRouter.route('/users/bookings')
+		.get(function(req, res) {
+			Booking.find({userId: req.decoded.id}, function(err, bookings) {
+				if (err) {
+					console.log("error in api for getting bookings", err);
+					return res.status(500).send(err);
+				}
+
+				// return a message
+				res.json(bookings);
 			});
 		});
 

@@ -5,18 +5,57 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
     var boothName;
     var timeSlot;
     $scope.curDate = new Date();
+    $scope.bookings = [];
+
     var day = new moment($scope.curDate);
     $scope.Day = day.format("dddd, MMMM Do YYYY");
+
     console.log($scope.Day);
+
+    Market.getBookingForUser()
+        .success(function(data) {
+            $scope.bookings = data;
+            console.log(data);
+        })
+
+        .error(function(data, status){
+            console.log(data, status);
+        });
+
+    $scope.deleteBooking2 = function(){
+            
+        console.log("lol");
+        Market.cancelBooking($scope.ngDialogData)
+            .success(function(result){
+            console.log("Booking has been deleted!");
+            $route.reload();
+            $scope.closeThisDialog();
+            })
+
+            .error(function(result,status){
+            console.log(result,status);
+            $scope.closeThisDialog();
+            });
+    };
+
+    $scope.deleteBooking = function($event){
+
+        var id = $event.srcElement.id;
+            var dialog = ngDialog.open({
+            template: "./views/pages/cancelBookingDialog.html",
+            controller: 'marketController',
+            data: id
+        });
+    };
 
     $scope.openTimed = function(data) {
        
         var date = new moment(data.date);
         date = date.format("dddd, MMMM Do YYYY");
         console.log(date);
-        var message = "<b>Please make it to the venue appropriately to account for time required to set up your booth. Cheers!</b>";
+        var message = '<b>Please make it to the venue appropriately to account for time required to set up your booth. Cheers!</b> </p> <div style="margin-top:5%"class="ngdialog-buttons"><button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Close</button></div>';
         var dialog = ngDialog.open({
-                    template: '<p>Congratulations! You have successfully booked the ' + data.boothName + ' booth for the ' + data.timeSlot +" session, on " + date + '.\n' + message + '</p>',
+                    template: '<p>Congratulations! You have successfully booked the ' + data.boothName + ' booth for the ' + data.timeSlot +" session, on " + date + '.\n' + message,                  
                     plain: true,
                     closeByDocument: false,
                     closeByEscape: false

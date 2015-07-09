@@ -18,9 +18,12 @@ angular.module('marketService', [])
             return $http.post('/api/booking/', data);
         };
 
-        marketFactory.delete = function(id){
+        marketFactory.getBookingForUser = function() {
+            return $http.get('/api/users/bookings');
+        };
 
-        return $http.delete('/api/booking/' + id);
+        marketFactory.cancelBooking = function(id){
+            return $http.delete('/api/users/cancelBooking/'+ id);
 
         };
 
