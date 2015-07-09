@@ -30,7 +30,7 @@
 						</div>
 
 						<div class="panel-body">
-								<table class="well well-lg" ng-controller="adminController as AC" >
+								<table class="well well-lg" style="width:75%; margin:auto;" ng-controller="adminController as AC" >
 									<tr ng-repeat="user in AC.users | orderBy:'username'">
 		<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
 									</tr>
@@ -195,7 +195,7 @@
 						<tr class="active" ng-repeat="request in suppReq.requests | orderBy:'date'">
 							<!--TODO: possibly restrict the size of the text, before it just makes a new line. now if its long, it just pushed everything over and looks bad-->
 							<td>{{request.title}}</td>
-							<td>{{suppReq.getNiceDate(request.date)}}</td>
+							<td><div style="font-size: 75%;">{{suppReq.getNiceDate(request.date)}}</div></td>
 							<td>
 								<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="suppReq.openReq(request.body)"></a>
 								<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="suppReq.clearReq(request._id);"></a>

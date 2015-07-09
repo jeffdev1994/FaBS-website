@@ -63,10 +63,12 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 
 	vm.clearReq = function(requestID){
 		console.log(requestID);
+		var callAnswer = false;
 		vex.dialog.confirm({
 			message: 'Are you sure you want to close this support request?',
 			callback: function(answer) {
 				//if they answer yes
+				callAnswer = answer;
 				if(answer){
 					User.deleteRequest(requestID)
 						.success(function(data){
@@ -86,7 +88,10 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 			//refresh page after it is deleted
 			//TODO: it refreshes even if you cancel.  doesnt work if you put the reloud in the callback
 			afterClose: function() {
-				$window.location.reload();
+				if(callAnswer){
+					callAnswer=false;
+					$window.location.reload();
+				}
 			}
 		});
 	}
