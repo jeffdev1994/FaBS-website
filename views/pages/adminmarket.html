@@ -3,13 +3,13 @@
 		<div class="row">
 			<div class="1u"></div>
 			<div class="10u">
-			<div class = "row" ng-controller="mainController as MC">
+			<div class = "row" ng-controller="adminmarketController as AC">
 				<div class="col-sm-offset-0 col-sm-10">
 					<img src="views/img/banner_main.png" style="width:100%; border: 3px solid grey; padding: 10px 10px 10px 10px;"></img>
 				</div>
 
 				<div class="col-sm-offset-0 col-sm-2">
-				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
+				        <a href="/adminhome"> <button type="submit" class="btn btn-success btn-md btn-block">RETURN</button></a>
 				        <div style="height:5px;"></div>
 				        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 				</div>
@@ -19,29 +19,36 @@
 
 			<div id="marketMain">
 
-				<!--LOG IN AS USER -->
 				<div id="userProfile">
 					<div class="panel panel-primary">
 					
 						<div class="panel-heading">
-
-							<h3 class="panel-title" style="width: 50%; margin:auto;">Log in as user:</h3>
-
+							<h3 class="panel-title">Profile</h3>
 						</div>
 
 						<div class="panel-body">
-								<table class="well well-lg" ng-controller="adminController as AC" >
-									<tr ng-repeat="user in AC.users | orderBy:'username'">
-		<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
-									</tr>
-								</table>
+								<div class="well well-lg" ng-controller="adminmarketController as AC">
+									Username: {{AC.theuserinfo.username}}
+									<br>
+									Email: {{AC.theuserinfo.email}}
+									<br>
+									Phone: {{AC.theuserinfo.phone}}
+									<br>
+									Booth Name: {{AC.theuserinfo.boothName}}
+									<br>
+									Booth Type: {{AC.userinfo.boothtype}}
+									<br>
+									Products: {{AC.theuserinfo.products}}
+									<br>
+									Bio: {{AC.theuserinfo.bio}}
+									<br>
+								</div>
 						</div>
 					</div>
 				</div>
 
 				<div id="market">
 
-					<!--IMPORTANT NOTICES -->
 					<div id="notices" style="border: 1px solid grey; border-radius: 5px; margin: 0% 1.5% 1.5% 1.5%;">
 						<center>
 							<font size="5">Important Notices</font><br>
@@ -49,7 +56,6 @@
 						</center>
 					</div>
 
-					<!--CALENDAR -->
 					<div id="dateandmap" style="margin-top:2%;">
 						<div id="calendar" class="col-sm-offset-3 col-sm-6">
 						
@@ -59,8 +65,8 @@
 						</div>
 					</div>
 
-					<!-- MAP -->
 					<div id="gangstaMap" class="col-sm-12" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85);; padding-top:5%;">
+						<!-- <img id="gangstaCat" src="http://thefunniestpictures.com/wp-content/uploads/2013/09/funny-pics-al-catpone.jpg"/-->
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-primary" style="width: 30%; float:left;">
 								<div class="panel-heading">Merchandise</div>
@@ -184,66 +190,97 @@
 
 				</div>
 
-				<!--SUPPORT REQUESTS -->
 				<div id="bookingHistory" style="border: 1px solid gray; border-radius: 5px; float: left;">
 					<table class="table table-striped table-hover">
-						<thead>
-							<div style="height: 40px; width:50%; margin:auto; padding-top: 5%; color:#B20000; font-weight:bold;">Support Requests</div>
-						</thead>
-						
-						<tbody ng-controller="supportRequest as suppReq">
-							<tr class="active" ng-hide="hide1">
-							  <td>Problem 1</td>
-							  <td>27/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide2">
-							  <td>Problem 2</td>
-							  <td>30/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide3">
-							  <td>Problem 3</td>
-							  <td>5/5/20</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide4">
-							  <td>Problem 4</td>
-							  <td>27/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide5">
-							  <td>Problem 5</td>
-							  <td>30/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide6">
-							  <td>Problem 6</td>
-							  <td>5/5/20</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr> 
-						</tbody> 
-					</table>
+					  
+					<thead>
+					<tr>
+					  <th></th>
+					  <th>Bookings</th>
+					  <th>Date</th>
+					  <div style="padding-top:3%">
+					  	<th id="history" class="btn btn-default btn-sm">History</th>
+						  </div>
+						</tr>
+					</thead>
+					
+					<tbody>
+					<tr>
+					  <td>1</td>
+					  <td>Vegetables</td>
+					  <td>27/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="info">
+					  <td>2</td>
+					  <td>Fuit</td>
+					  <td>30/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="success">
+					  <td>3</td>
+					  <td>Clothes</td>
+					  <td>5/5/20</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr>
+					  <td>1</td>
+					  <td>Vegetables</td>
+					  <td>27/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="info">
+					  <td>2</td>
+					  <td>Fuit</td>
+					  <td>30/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="success">
+					  <td>3</td>
+					  <td>Clothes</td>
+					  <td>5/5/20</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr> 
+					<tr>
+					  <td>1</td>
+					  <td>Vegetables</td>
+					  <td>27/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="info">
+					  <td>2</td>
+					  <td>Fuit</td>
+					  <td>30/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr>
+					  <td>1</td>
+					  <td>Vegetables</td>
+					  <td>27/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="info">
+					  <td>2</td>
+					  <td>Fuit</td>
+					  <td>30/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr>
+					<tr class="success">
+					  <td>3</td>
+					  <td>Clothes</td>
+					  <td>5/5/20</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr> 
+						<tr class="info">
+					  <td>2</td>
+					  <td>Fuit</td>
+					  <td>30/6/15</td>
+					  <td><a href="#" class="btn btn-danger btn-xs">&nbsp;X&nbsp;</a></td>
+					</tr> 
+					</tbody> 
+					</table> 
 				</div>
-
+				</div>
 				<div class="1u"></div>
 			</div>
 		</div>

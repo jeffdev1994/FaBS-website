@@ -7,10 +7,10 @@ main 					{
 /*********************************************************************************/
 	#home-bg{
 		background:		url("../img/tree-background.jpg") no-repeat center center fixed;
-		-webkit-background-size: 	cover;
+		/*-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
-		background-size:			cover;
+		background-size:			cover;*/
 	}
 
 	#markethome-bg{
