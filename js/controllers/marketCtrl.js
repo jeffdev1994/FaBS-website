@@ -5,6 +5,28 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
     var boothName;
     var timeSlot;
     $scope.curDate = new Date();
+    var day = new moment($scope.curDate);
+    $scope.Day = day.format("dddd, MMMM Do YYYY");
+    console.log($scope.Day);
+
+    $scope.openTimed = function(data) {
+       
+        var date = new moment(data.date);
+        date = date.format("dddd, MMMM Do YYYY");
+        console.log(date);
+        var message = "<b>Please make it to the venue appropriately to account for time required to set up your booth. Cheers!</b>";
+        var dialog = ngDialog.open({
+                    template: '<p>Congratulations! You have successfully booked the ' + data.boothName + ' booth for the ' + data.timeSlot +" session, on " + date + '.\n' + message + '</p>',
+                    plain: true,
+                    closeByDocument: false,
+                    closeByEscape: false
+                });
+
+        setTimeout(function () {
+            dialog.close();
+        }, 15000);
+
+    };
 
     $scope.open = function($event){
         // console.log($event.srcElement.className);
@@ -20,8 +42,23 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
 
         console.log(data);
 
+        var srcElementClass = $event.srcElement.className;
+        var pattern = new RegExp("booth-unavailable");
+        var result = pattern.test(srcElementClass);
+
+        var modalView;
+
+        if(result === true){
+            modalView = "./views/pages/bookedBoothDialog.html";
+            console.log('lol');
+        }
+
+        if(result === false){
+            modalView = "./views/pages/bookingDialog.html";
+        }
+
         ngDialog.open({
-            template: './views/pages/bookingDialog.html',
+            template: modalView,
             className: 'ngdialog-theme-default',
             controller: 'marketController',
             data: data
@@ -33,7 +70,9 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
 
             Market.saveBooking($scope.ngDialogData)
                 .success(function(status){
+
                     $scope.closeThisDialog();
+                    $scope.openTimed($scope.ngDialogData);
                     $route.reload();
                     console.log(status);
                 })
@@ -48,6 +87,8 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
         // console.log("newVal: " + newVal);
         // console.log("oldVal: " + oldVal);
         curDate = moment(newVal).format("MM-DD-YYYY");
+        $scope.Day = moment(curDate).format("dddd, MMMM Do YYYY");
+        console.log($scope.Day);
         var curDateDay = moment(curDate).format('dddd');
 
         Market.getBookingForDate(curDate)
@@ -94,7 +135,7 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
                     toggleWeekdaySunday(curDateDay);
 
                     if(curDateDay !== "Sunday"){
-                        className1 = "#" + boothList[j] + "-9am";
+                        className1 = "#" + boothList[j] + "-10am";
                         className2 = "#" + boothList[j] + "-4pm";
                     }
 
@@ -120,8 +161,8 @@ angular.module('marketCtrl', ['marketService', 'angularMoment', 'ngDialog'])
                var paintBookings = function(data){
                     if(data.length > 0){
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].timeSlot === "9am") {
-                                angular.element($("#" + data[i].boothName + "-9am")).removeClass("booth-available").addClass("booth-unavailable");
+                            if (data[i].timeSlot === "10am") {
+                                angular.element($("#" + data[i].boothName + "-10am")).removeClass("booth-available").addClass("booth-unavailable");
                             } else {
                                 // console.log(data[i].boothName);
                                 angular.element($("#" + data[i].boothName + "-4pm")).removeClass("booth-available").addClass("booth-unavailable");

@@ -9,7 +9,7 @@ var BookingSchema = new Schema({
     },
     timeSlot: {
         type: String,
-        enum: ["9am", "4pm", "12pm"],
+        enum: ["10am", "4pm", "12pm"],
         required: true
     },
     date: {
