@@ -46,7 +46,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
      vm.clearReq = function(){
      	vex.dialog.alert('Support request cleared!');
-		 User.getRequests();
+		 User.deleteRequest();
      }
  })
 

@@ -45,6 +45,10 @@ angular.module('userService', [])
 		return $http.post('/api/support', requestData);
 	};
 
+	userFactory.deleteRequest = function(requestID){
+		return $http.delete('/api/support/' + requestID);
+	};
+
 	return userFactory;
 
 });
