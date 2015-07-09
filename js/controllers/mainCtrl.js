@@ -30,21 +30,23 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	var vm = this;
 
 	vm.requestpromise = User.getRequests();
+		console.log(vm.requestpromise);
 	vm.requests;
 
 	vm.requestpromise.then(function(requests){
+		console.log(requests);
 		vm.requests = requests;
 	});
 
 
 
 
-	vm.openReq = function(index){
-		vex.dialog.alert(vm.requests[index].body);
+	vm.openReq = function(body){
+		vex.dialog.alert(body);
      	//vex.dialog.alert('<div style="text-align:center;">Support Request:<br> Problem description here</div>');
      };
 
-     vm.clearReq = function(){
+     vm.clearReq = function(requestID){
      	vex.dialog.alert('Support request cleared!');
 
 

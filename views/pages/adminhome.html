@@ -192,54 +192,17 @@
 						</thead>
 						
 						<tbody ng-controller="supportRequest as suppReq">
-							<tr class="active" ng-hide="hide1">
-							  <td>Problem 1</td>
-							  <td>27/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
+						<tr ng-repeat="request in suppReq.requests | orderBy:'date'">
+							<tr class="active">
+								<td>{{request.title}}</td>
+								<td>{{request.date}}</td>
+								<td>
+									<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="suppReq.openReq(request.body)"></a>
+									<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="suppReq.clearReq(request._id);"></a>
+								</td>
 							</tr>
-							<tr class="active" ng-hide="hide2">
-							  <td>Problem 2</td>
-							  <td>30/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide3">
-							  <td>Problem 3</td>
-							  <td>5/5/20</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide4">
-							  <td>Problem 4</td>
-							  <td>27/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide5">
-							  <td>Problem 5</td>
-							  <td>30/6/15</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr>
-							<tr class="active" ng-hide="hide6">
-							  <td>Problem 6</td>
-							  <td>5/5/20</td>
-							  <td>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
-							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
-							  </td>
-							</tr> 
+						</tr>
+
 						</tbody> 
 					</table>
 				</div>
