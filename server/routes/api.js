@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var Booth       = require('../models/booth');
+var SupportRequest       = require('../models/support');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -137,6 +138,44 @@ module.exports = function(app, express) {
 			return res.status(403).send({success: false, message: 'No token provided'});
 		}
 	});
+
+	apiRouter.route('/support')
+		.post(function(req,res){
+			var support = new SupportRequest();
+			//just adds the date of when its being added
+			support.date = new Date();
+			support.title = req.body.title;
+			support.body = req.body.body;
+
+			support.save(function(err){
+				if(err){
+					console.log(err);
+					return res.send(err);
+				}
+				res.json({success: true, message: 'Request Created!'});
+			});
+
+		})
+
+		.get(function(req,res){
+			SupportRequest.find({}, function(err, requests) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json(requests);
+			});
+		});
+
+	apiRouter.route('/support/:id')
+		.delete(function(req,res){
+			SupportRequest.findByIdAndRemove(req.params.id, function(err, requests) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json(requests);
+			});
+		});
+
 
 	apiRouter.route('/booths')
 		.post(function(req,res){

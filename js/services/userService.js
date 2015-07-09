@@ -37,6 +37,14 @@ angular.module('userService', [])
 		return $http.delete('/api/users/' + id);
 	};
 
+	userFactory.getRequests = function(){
+		return $http.get('/api/support');
+	};
+
+	userFactory.makeRequest = function(requestData){
+		return $http.post('/api/support', requestData);
+	};
+
 	return userFactory;
 
 });

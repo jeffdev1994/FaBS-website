@@ -26,30 +26,27 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	};
 })
 
-.controller('supportRequest', function($scope) {
-	$scope.requests = [
-		{
-			id: "01",
-			text: "This is problem 1"
-		},
-		{
-			id: "02",
-			text: "This is problem 2"
-		},
-		{
-			id: "03",
-			text: "This is problem 3"
-		}
-	];
+.controller('supportRequest', function(User, Data, Auth,$scope) {
+	var vm = this;
+
+	vm.requestpromise = User.getRequests();
+	vm.requests;
+
+	vm.requestpromise.then(function(requests){
+		vm.requests = requests;
+	});
 
 
-	$scope.openReq = function(){
-     	vex.dialog.alert('<div style="text-align:center;">Support Request:<br> Problem description here</div>');
-     }
 
-     $scope.clearReq = function(){
+
+	vm.openReq = function(index){
+		vex.dialog.alert(vm.requests[index].body);
+     	//vex.dialog.alert('<div style="text-align:center;">Support Request:<br> Problem description here</div>');
+     };
+
+     vm.clearReq = function(){
      	vex.dialog.alert('Support request cleared!');
-     	$scope.hide1=true;
+		 User.getRequests();
      }
  })
 
