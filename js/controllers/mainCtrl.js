@@ -24,7 +24,34 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	vm.logout = function(){
 		Auth.logout();
 	};
-});
+})
+
+.controller('supportRequest', function($scope) {
+	$scope.requests = [
+		{
+			id: "01",
+			text: "This is problem 1"
+		},
+		{
+			id: "02",
+			text: "This is problem 2"
+		},
+		{
+			id: "03",
+			text: "This is problem 3"
+		}
+	];
 
 
+	$scope.openReq = function(){
+     	vex.dialog.alert('<div style="text-align:center;">Support Request:<br> Problem description here</div>');
+     }
+
+     $scope.clearReq = function(){
+     	vex.dialog.alert('Support request cleared!');
+     	$scope.hide1=true;
+     }
+ })
+
+;
 

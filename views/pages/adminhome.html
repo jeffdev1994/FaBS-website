@@ -200,62 +200,58 @@
 							<div style="height: 40px; width:50%; margin:auto; padding-top: 5%; color:#B20000; font-weight:bold;">Support Requests</div>
 						</thead>
 						
-						<tbody>
+						<tbody ng-controller="supportRequest as suppReq">
 							<tr class="active" ng-hide="hide1">
 							  <td>Problem 1</td>
 							  <td>27/6/15</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide1=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr>
 							<tr class="active" ng-hide="hide2">
 							  <td>Problem 2</td>
 							  <td>30/6/15</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide2=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr>
 							<tr class="active" ng-hide="hide3">
 							  <td>Problem 3</td>
 							  <td>5/5/20</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide3=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr>
 							<tr class="active" ng-hide="hide4">
 							  <td>Problem 4</td>
 							  <td>27/6/15</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide4=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr>
 							<tr class="active" ng-hide="hide5">
 							  <td>Problem 5</td>
 							  <td>30/6/15</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide5=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr>
 							<tr class="active" ng-hide="hide6">
 							  <td>Problem 6</td>
 							  <td>5/5/20</td>
-							  <td><a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="hide6=true"></a></td>
+							  <td>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="openReq();"></a>
+							  	<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-ok" ng-click="clearReq();"></a>
+							  </td>
 							</tr> 
 						</tbody> 
 					</table>
 				</div>
-
-				  <!-- Trigger the modal with a button -->
-				  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog">
-
-						  <!-- Modal content-->
-						  <div class="modal-content">
-						    <div class="modal-header">
-						      <button type="button" class="close" data-dismiss="modal">&times;</button>
-						      <h4 class="modal-title">Modal Header</h4>
-						    </div>
-						    <div class="modal-body">
-						      <p>Some text in the modal.</p>
-						    </div>
-						    <div class="modal-footer">
-						      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						    </div>
-						  </div>
-						</div>
-					</div>
 
 				<div class="1u"></div>
 			</div>
