@@ -176,6 +176,25 @@ module.exports = function(app, express) {
 			});
 		});
 
+		User.remove({
+				_id: req.params.user_id
+			}, function(err, user) {
+				if (err) res.send(err);
+
+				res.json({ message: 'Successfully deleted' });
+			});
+
+	apiRouter.route('/booking/:id')
+		.delete(function(req,res){
+			Booking.remove({
+				_id: req.params.id
+			}, function(err, user) {
+				if (err) res.send(err);
+
+				res.json({ message: 'Successfully deleted' });
+			});
+		});
+
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
 	apiRouter.route('/users/:user_id')

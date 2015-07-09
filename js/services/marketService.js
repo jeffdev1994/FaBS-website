@@ -18,6 +18,12 @@ angular.module('marketService', [])
             return $http.post('/api/booking/', data);
         };
 
+        marketFactory.delete = function(id){
+
+        return $http.delete('/api/booking/' + id);
+
+        };
+
         // var userID;
         // // get a single user
         // marketFactory.getID = function() {
