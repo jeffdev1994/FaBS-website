@@ -29,8 +29,8 @@ BoothSchema.pre('remove', function (next) {
 
     //check if they should be banned
     var date = new Date();
-    var twodays = date.getDate() + 2;
-    date.setDate(twodays);
+    var oneday = date.getDate() + 1;
+    date.setDate(oneday);
     //var dateString = date.getFullYear() + "-" + (date.getMonth() + 1)+ "-" +date.getDate();
     var boothtime = new Date(booth.dateSlot);
 
@@ -45,12 +45,12 @@ BoothSchema.pre('remove', function (next) {
     console.log("******************************");
     console.log(date);
     console.log(boothtime);
-    //if todays date+2days is greater then the time of the booking, then they will be banned
+    //if todays date+1day is greater then the time of the booking, then they will be banned
     if(date > boothtime){
-        //TODO: have to set a banned variable or something in the user (currently isnt a field for that). and somehow get a message back to them that they are now banned
-        //possibly make it so everytime they refresh the page and are banned, it shows an alert, that way we wont have to do anything here
-        //just check for banned in main controller each time.
-        User.findByIdAndUpdate(booth.user_id, {$pull: {bookedBooths: {_id : booth._id}}, banned: true}, function(err, data){
+        var bannedtill = new Date();
+        var twodays = bannedtill.getDate() + 2;
+        bannedtill.setDate(twodays);
+        User.findByIdAndUpdate(booth.user_id, {$pull: {bookedBooths: {_id : booth._id}}, banned: bannedtill}, function(err, data){
             //console.log(err, data);
         });
     }

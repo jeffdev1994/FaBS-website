@@ -2,7 +2,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 // #####  SIMPLE ANGULAR APP  #####
 
-.controller('mainController', function($rootScope, User, Data,Booth, Auth, $location){
+.controller('mainController', function($rootScope, User, Data,Booth, Auth, $location, $window){
 
 
 	var vm = this;
@@ -10,7 +10,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	vm.userpromise = Auth.getUser();
 	vm.userinfo;
 	vm.bookedBooths;
-	//TODO: can use this variable to display the history, if we get that figure out.
+	//TODO: can use this variable to display the history, if we get that figure out. -- for html use, angular is done
 	//it has all the booths that are older then today
 	vm.boothHistory = [];
 
@@ -86,7 +86,6 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		Auth.logout();
 	};
 
-	//TODO: still need to give a confirmation they want to do it. and update the page after it has happened
 	vm.cancelBooth = function(booth){
 		console.log('attmepting to delete booth');
 
@@ -113,8 +112,8 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			afterClose: function() {
 				//vm.changeDate();
 				//dont have changeDate in this controller, and that wont update the booked booths anyways
-				//TODO:possibly just refresh the page
-
+				//TODO:it reloads the page before the user clicks 'OK' on the alert
+				$window.location.reload();
 			}
 		});
 
@@ -199,7 +198,15 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
-		//TODO: **important** when a booth is booked, there is an object, if it is canceled the object will be deleted
+		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
+
+		vm.bannedDate = new Date($rootScope.userinfo.banned);
+		vm.currDate = new Date();
+		//if current date is bigger then banned date(further ahead)
+		if(vm.bannedDate > vm.currDate){
+			vex.dialog.alert('You are Currently Banned. This was caused by canceling a booking with 24 hours of reservation time. You may reserve booths again on ' + $rootScope.userinfo.banned.substring(0, 21) + ' 24-hour time.');
+			return;
+		}
 
 		//variable for displaying the time to user
 		vm.userTime;
@@ -215,7 +222,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			dateSlot : vm.date.getFullYear() + "-" + (vm.date.getMonth() + 1)+ "-" +vm.date.getDate(),
 			user_id : $rootScope.userinfo._id
 		};
-		
+
 		vex.dialog.confirm({
 			message: 'Confirm booking for ' + vm.boothInfo.dateSlot + " at " + userTime,
 			callback: function(answer) {
@@ -240,8 +247,9 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			},
 			
 			//update calander after dialogue closes
+			//TODO:it reloads the page before the user clicks 'OK' on the alert
 			afterClose: function() {
-				vm.changeDate();
+				$window.location.reload();
 			}
 		});
 	};

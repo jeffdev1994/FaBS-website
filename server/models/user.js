@@ -20,7 +20,8 @@ var VendorSchema = new Schema({
 	bookedBooths: [Schema.Types.booth],
 	//holds some sort of identifier for booths they have booked before
 	history: [],
-	banned: {type: Boolean, default: false}
+	//old date as default. we check if the banned date is greater then current date when they book. this obviously wont be greater then current date.
+	banned: {type: String, default: 'Sun May 15 1994 17:00:00 GMT-0700 (Pacific Daylight Time)'}
 });
 
 // hash the password before the user is saved
