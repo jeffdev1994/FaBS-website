@@ -88,15 +88,15 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	vm.cancelBooth = function(booth){
 		console.log('attmepting to delete booth');
-
+		var callAnswer = false;
 		vex.dialog.confirm({
 			message: 'Are you sure you want to cancel your reservation for ' + booth.dateSlot + '? If it is within 24 hours of the booking time, you will be unable to book another booth for 48 hours',
 			callback: function(answer) {
+				callAnswer = answer
 				//if they answer yes, then do the booking
 				if(answer){
 					Booth.delete(booth._id)
 						.success(function(data){
-							//TODO: this is where the message about them being banned will be displayed
 							if(data.success == false){
 								vex.dialog.alert( "Something went wrong! Please contact the farmers market if you wish to find out what happened");
 							}
@@ -110,10 +110,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 			//update calander after dialogue closes
 			afterClose: function() {
-				//vm.changeDate();
-				//dont have changeDate in this controller, and that wont update the booked booths anyways
-				//TODO:it reloads the page before the user clicks 'OK' on the alert
-				$window.location.reload();
+				//only reload the window if they answered yes
+				if(callAnswer){
+					callAnswer = false;
+					$window.location.reload();
+				}
 			}
 		});
 
@@ -199,7 +200,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
 		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
-
+		var callAnswer = false;
 		vm.bannedDate = new Date($rootScope.userinfo.banned);
 		vm.currDate = new Date();
 		//if current date is bigger then banned date(further ahead)
@@ -228,6 +229,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			callback: function(answer) {
 				//if they answer yes, then do the booking
 				if(answer){
+					callAnswer = answer;
 					//create the booth using the booth info
 					Booth.create(vm.boothInfo).success(function(data) {
 						//if it was false, then a booth of the same time date and id is already created
@@ -247,9 +249,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			},
 			
 			//update calander after dialogue closes
-			//TODO:it reloads the page before the user clicks 'OK' on the alert
 			afterClose: function() {
-				$window.location.reload();
+				if(callAnswer) {
+					callAnswer = false;
+					$window.location.reload();
+				}
 			}
 		});
 	};
