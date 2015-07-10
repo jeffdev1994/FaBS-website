@@ -475,10 +475,10 @@ textarea{
  *About Page *
  ********************/
 .about-header{
-	width: 120%;
+	width: 112%;
 	height: 60%;
 	position: relative;
-	margin-left: -10%;
+	margin-left: -6%;
 }
 .about-header::after{
 	content: "";
