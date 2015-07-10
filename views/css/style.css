@@ -471,6 +471,51 @@ textarea{
 	/*text-align: center;*/
 }
 
+/********************
+ *About Page *
+ ********************/
+.about-header{
+	width: 120%;
+	height: 60%;
+	position: relative;
+	margin-left: -10%;
+}
+.about-header::after{
+	content: "";
+	background-color: white;
+	opacity: 0.3;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: 1;
+}
+.hero {
+	background: url('../img/vegs-background.jpg') no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	display: table;
+	width: 100%;
+	margin-top: -2%;
+
+}
+.hero .contain {
+	color:white;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	height: 689px;
+	font-size: 500%;
+	opacity: 1;
+	padding:5%;
+}
+.big{
+	font-size: 500%;
+}
+
 
 /* NGANIMATE
 ====================== */
