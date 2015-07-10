@@ -9,6 +9,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	vm.userpromise = Auth.getUser();
 	vm.userinfo;
+	vm.bookedBooths;
+	//TODO: can use this variable to display the history, if we get that figure out.
+	//it has all the booths that are older then today
+	vm.boothHistory = [];
+
 
 	//the return value from Auth.getUser is a promise. this waits until the promise is fulfilled.
 	vm.userpromise.then(function(user){
@@ -21,6 +26,18 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			vm.userinfo = user.data;
 			//so it is accessible inside of marketcontroller as well
 			$rootScope.userinfo = user.data;
+
+			//split up the users booths into old and future booths
+			vm.bookedBooths = user.data.bookedBooths;
+			vm.currDate = new Date();
+			for(i=0; i<vm.bookedBooths.length;i++){
+				vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
+				if(vm.tempDate < vm.currDate){
+					vm.boothHistory.push(vm.bookedBooths[i]);
+					vm.bookedBooths.splice(i,1);
+				}
+			}
+			console.log(vm.boothHistory);
 		});
 
 	});
@@ -28,13 +45,41 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	vm.getNeatTime = function(booth) {
 		var returnval = booth.dateSlot;
 		if (booth.timeSlot == '10001400') {
-			returnval += ' AM';
+			returnval += ' 10 AM';
 		} else {
-			returnval += ' PM';
+			returnval += ' 4 PM';
 		}
 		return returnval;
 	};
 
+	vm.getNeatBooth = function(booth){
+		switch(booth.booth_id){
+			case 1:
+				return 'Merchandise 1';
+			case 2:
+				return 'Merchandise 2';
+			case 3:
+				return 'Merchandise 3';
+			case 4:
+				return 'Merchandise 4';
+			case 5:
+				return 'Merchandise 5';
+			case 6:
+				return 'Produce 1';
+			case 7:
+				return 'Produce 2';
+			case 8:
+				return 'Produce 3';
+			case 9:
+				return 'Produce 4';
+			case 10:
+				return 'Lunch 1';
+			case 11:
+				return 'Lunch 2';
+			case 12:
+				return 'Lunch 3';
+		}
+	};
 
 
 	vm.logout = function(){
@@ -69,6 +114,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 				//vm.changeDate();
 				//dont have changeDate in this controller, and that wont update the booked booths anyways
 				//TODO:possibly just refresh the page
+
 			}
 		});
 
@@ -81,20 +127,23 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 })
 
-.controller('marketController', function($rootScope, User, Data, Booth, Auth, $location){
+.controller('marketController', function($rootScope, User, Data, Booth, Auth, $location, $window){
 	var vm = this;
 
 	vm.isSunday;
-	//TODO: consider adding in a timer interval, so the page refreshes and they see what booths are available
-	//https://codeforgeek.com/2014/09/refresh-div-angularjs-interval/
-		//date user chosen by the datepicker, set to current date by default
-	vm.date = new Date();
+	vm.date;
+	//date chosen by the datepicker, set to what they chose last, or todays date if nothing in session memory
+	if($window.sessionStorage.getItem('time'))
+		vm.date = new Date($window.sessionStorage.getItem('time'));
+	else
+		vm.date = new Date();
 
 	//availability of array, goes morning 1-12 then afternoon 1-12
 	vm.boothAV = [];
 
 	vm.changeDate = function(){
 		//find out if the day is a sunday or not
+		$window.sessionStorage.setItem('time', vm.date);
 		if(vm.date.getDay() == 0)
 			vm.isSunday = true;
 		else
@@ -137,7 +186,8 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//call it initially so that the date is correct after loading
 	vm.changeDate();
-	
+
+	//popup to show a booth is already booked
 	vm.boothAlreadyBooked = function() {
 		vex.dialog.alert({
 			message: 'This booth has already been booked',

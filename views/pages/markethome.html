@@ -336,11 +336,11 @@
 						</tr>
 					</thead>
 					
-					<tbody ng-repeat="bookedBooth in MC.userinfo.bookedBooths | orderBy: ['dateSlot','timeSlot']">
+					<tbody ng-repeat="bookedBooth in MC.bookedBooths | orderBy: ['dateSlot','timeSlot']">
 					<!--TODO: right now we dont have anything to move booths from booked to history. so maybe we should just display booths for todays date/future, and in history, display booths that are behind todays date-->
 						<tr>
 						  <td>{{$index + 1}}</td>
-						  <td>{{MC.userinfo.boothtype}}</td>
+						  <td>{{MC.getNeatBooth(bookedBooth)}}</td>
 						  <td>{{MC.getNeatTime(bookedBooth)}}</td>
 							<!--can remove this line for something nicer. but the ng-click is how we will make the function run-->
 							<td><button type="button" ng-click = MC.cancelBooth(bookedBooth)>&nbsp;X&nbsp;</button></td>
