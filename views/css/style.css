@@ -407,7 +407,7 @@ header .navbar 		{
 	height:auto;
 }
 #profileProduct{
-	margin-left: 100%;
+	margin-left: 55%;
 	position:absolute;
 	background-image: url(../img/product_back.jpg);
 	background-position: bottom right;
