@@ -26,6 +26,14 @@ angular.module('userService', [])
 		return $http.post('/api/users', userData);
 	};
 
+	userFactory.update = function(userData){
+		// since this is a put method we need to include userData
+		// from our form
+		console.log("called update in API");
+		return $http.put('/api/users/'+userData._id, userData);
+	};
+
+
 	//log a user in
 	userFactory.login = function(userData){
 		console.log("userService userdata.username: " + userData.username);
