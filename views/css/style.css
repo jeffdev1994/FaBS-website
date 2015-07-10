@@ -459,6 +459,17 @@ textarea{
 
 }
 
+/*********************
+ * Suppport Request  *
+ ********************/
+ #textRequest{
+ 	margin-left:54%;
+ }
+ #request{
+ 	margin-left:6%;
+
+ }
+
 
 /* NGANIMATE
 ====================== */

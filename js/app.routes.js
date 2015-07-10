@@ -45,6 +45,11 @@
 	.when("/registration", {
 		templateUrl: 'views/pages/registration.html'
 	})
+
+	.when("/supreq", {
+		templateUrl: 'views/pages/supportrequest.html'
+	})
+
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'
 	});

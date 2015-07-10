@@ -1,4 +1,4 @@
-<form class="form-horizontal" ng-controller="profileController as PC">
+<form class="form-horizontal" ng-controller="profileController as PC" ng-submit="PC.attemptUpdate()">
  
   <fieldset>
     <div class="form-group">
@@ -6,26 +6,25 @@
         <a href="/markethome"> <button type="submit" class="btn btn-primary btn-md btn-block">Back</button></a>
       </div>
       <div class="col-sm-offset-6 col-sm-2" style="left-margin:100px">
-         <button type="submit" class="btn btn-primary btn-md btn-block">Support Request</button></a>
+         <a href="/supreq"><button type="submit" class="btn btn-primary btn-md btn-block">Support Request</button></a>
       </div>
 </div>
     <div class="form-group">
       <div class="col-lg-4" ng-controller = 'mainController as MC'>
-        <input autocomplete='off' class='col-lg-6 control-label'type="text" name="profileName" align ="left" id="profileName" value="{{MC.userinfo.boothName}}" maxlength='50' size="25">
+        <input class='col-lg-6 control-label'type="text" name="profileName" align ="left" id="profileName" ng-model = "PC.userinfo.boothName">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-4 offset-col-6">
-          <img src="http://drawception.com/pub/panels/2012/5-3/zmY8fjOEFK-2.png" id="profileImage">
 
-             <textarea rows="5" cols="75" id = "profileProduct" ng-controller = 'mainController as MC'>{{MC.userinfo.products}}
+             <textarea rows="5" cols="75" id = "profileProduct" ng-model = "PC.userinfo.products">
             </textarea>
 
       </div>
 
     </div>
-      <div id="row2" ng-controller = 'mainController as MC'>
-        <textarea rows="10" cols="97" id = "bio">{{MC.userinfo.bio}}        
+      <div id="row2">
+        <textarea rows="10" cols="97" id = "bio" ng-model = "PC.userinfo.bio">     
         </textarea>
 
       </div>    
@@ -35,28 +34,28 @@
   <div class="form-group">
         <label for="inputPassword" class="col-lg-2 control-label"> New Password:</label>
         <div class="col-lg-4 offset-col-6">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="userCreate.userData.password1">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model = "PC.userinfo.password1">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm New Password:</label>
         <div class="col-lg-4 offset-col-6">
-          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model="userCreate.userData.password2">
+          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model = "PC.userinfo.password2">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
       <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
-        <input autocomplete='off'   style="text-align:left" class='col-lg-12 control-label'type="text" name="email" id="email" value="{{MC.userinfo.email}}" maxlength='50' size="25">
+        <input autocomplete='off'   style="text-align:left" class='col-lg-12 control-label'type="text" name="email" id="email" ng-model = "PC.userinfo.email" maxlength='50' size="25">
       </div>
       </div>
 
       <div class="form-group">
         <label for="inputPhone" class="col-lg-2 control-label">Phone:</label>
       <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
-        <input autocomplete='off' style="text-align:left" class='col-lg-12 control-label'type="text" name="phone" id="phone" value="{{MC.userinfo.phone}}" maxlength='50' size="25">
+        <input autocomplete='off' style="text-align:left" class='col-lg-12 control-label'type="text" name="phone" id="phone" ng-model = "PC.userinfo.phone" maxlength='50' size="25">
       </div>
       </div>
     
