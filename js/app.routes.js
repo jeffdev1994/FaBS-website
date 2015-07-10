@@ -50,6 +50,10 @@
 		templateUrl: 'views/pages/supportrequest.html'
 	})
 
+	.when("/profview", {
+		templateUrl: 'views/pages/profileview.html'
+	})
+
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'
 	});

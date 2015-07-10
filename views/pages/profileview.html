@@ -1,0 +1,41 @@
+<form class="form-horizontal" ng-controller="profileController as PC" ng-submit="PC.attemptUpdate()">
+ 
+  <fieldset>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-2">
+        <a href="/markethome"> <button type="submit" class="btn btn-primary btn-md btn-block">Back</button></a>
+      </div>
+      <div class="col-sm-offset-6 col-sm-2" style="left-margin:100px">
+         <a href="/supreq"><button type="submit" class="btn btn-primary btn-md btn-block">Support Request</button></a>
+      </div>
+</div>
+    <div class="form-group">
+      <div class="col-lg-12" >
+        <h1 class='col-lg-6' name="boothNameView"  align="left" style="margin-left:18%"id="boothNameView">{{PC.userinfo.boothName}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-4 offset-col-6">
+        <div id = "profileProductView">{{PC.userinfo.products}}
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="col-lg-4 offset-col-6">
+        <div id = "profileBioView">{{PC.userinfo.bio}}
+        </div>
+      </div>
+    </div>    
+
+
+  <div class="col-lg-12" style="margin-left:20%">
+
+      <div class="form-group col-lg-3">
+          <button type="submit" class="btn btn-primary btn-block" id="subButton">Save Changes</button>
+      </div>
+ 
+  </div>
+  </fieldset>
+</form>
+

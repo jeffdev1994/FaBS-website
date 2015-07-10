@@ -397,15 +397,13 @@ header .navbar 		{
  	text-align: left;
 	border: solid 1px gray;
 	width: 100%;
-	margin-left: 100%;
+	margin-left: 60%;
+	font-weight:800;
+	font-size:36px;
+	color:#444;
 
 }
-#profileImage{
-	margin-left:55%;
-	position:absolute;
-	width:144px;
-	height:auto;
-}
+
 #profileProduct{
 	margin-left: 55%;
 	position:absolute;
@@ -470,6 +468,35 @@ textarea{
 
  }
 
+/*********************
+ * ProfileView       *
+ ********************/
+ #profileProductView{
+ 	padding-left:3px;
+ 	margin-left: 60%;
+	height:115px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/product_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
+  #profileBioView{
+    padding-left:3px;
+ 	margin-left: 60%;
+	height:225px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
 
 /* NGANIMATE
 ====================== */
