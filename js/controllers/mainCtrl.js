@@ -6,38 +6,51 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 
 	var vm = this;
+		vm.userinfo;
+		//all of the booths old and new
+		vm.bookedBooths;
+		//booths previous to today
+		vm.boothHistory = [];
+		//booths newer then today
+		vm.futureBooths = [];
 
-	vm.userpromise = Auth.getUser();
-	vm.userinfo;
-	vm.bookedBooths;
+	vm.userpromise = Auth.getUser().then(function(user){
 	//TODO: can use this variable to display the history, if we get that figure out. -- for html use, angular is done
-	//it has all the booths that are older then today
-	vm.boothHistory = [];
-
-
-	//the return value from Auth.getUser is a promise. this waits until the promise is fulfilled.
-	vm.userpromise.then(function(user){
 		//second layer of the call. getUser returns the _id, and then have to do a second call
 		//when i had it as 1 function, it was giving an error for not being able to edit header(?)
-		vm.userpromise2 = Auth.getUserInfo(user.data.id);
+		vm.userpromise2 = Auth.getUserInfo(user.data.id).then(function(user){
 		//getUserInfo takes the _id and returns the whole user object
-		vm.userpromise2.then(function(user){
+
 			//the final object that markethome will bind with.
+			//console.log(user.data);
 			vm.userinfo = user.data;
 			//so it is accessible inside of marketcontroller as well
 			$rootScope.userinfo = user.data;
 
 			//split up the users booths into old and future booths
 			vm.bookedBooths = user.data.bookedBooths;
+			console.log(vm.bookedBooths);
+			console.log(user.data.bookedBooths);
 			vm.currDate = new Date();
-			for(i=0; i<vm.bookedBooths.length;i++){
+			//TODO: it seems to be making values at 4 be greater then current date, if its also 2015??
+			//consider how the dateSlot is being put in
+			console.log(vm.bookedBooths.length);
+			vm.arrlength = vm.bookedBooths.length;
+			for(i=0; i<vm.arrlength;i++){
 				vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
+				console.log(i);
+				console.log("**" + vm.bookedBooths.length);
+				console.log(vm.tempDate);
+				console.log(vm.currDate);
+				console.log(vm.tempDate < vm.currDate);
+				console.log("*****");
 				if(vm.tempDate < vm.currDate){
 					vm.boothHistory.push(vm.bookedBooths[i]);
-					vm.bookedBooths.splice(i,1);
+				}
+				else{
+					vm.futureBooths.push(vm.bookedBooths[i]);
 				}
 			}
-			console.log(vm.boothHistory);
 		});
 
 	});
