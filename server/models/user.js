@@ -17,9 +17,11 @@ var VendorSchema = new Schema({
 	//this is how to make an array. use products.push(object)
 	//http://mongoosejs.com/docs/schematypes.html
 	products: { type: String, required: true},
-	bookedBooths: [],
+	bookedBooths: [Schema.Types.booth],
 	//holds some sort of identifier for booths they have booked before
-	history: []
+	history: [],
+	//old date as default. we check if the banned date is greater then current date when they book. this obviously wont be greater then current date.
+	banned: {type: String, default: 'Sun May 15 1994 17:00:00 GMT-0700 (Pacific Daylight Time)'}
 });
 
 // hash the password before the user is saved
