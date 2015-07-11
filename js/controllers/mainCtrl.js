@@ -32,7 +32,6 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			console.log(vm.bookedBooths);
 			console.log(user.data.bookedBooths);
 			vm.currDate = new Date();
-			//TODO: it seems to be making values at 4 be greater then current date, if its also 2015??
 			//consider how the dateSlot is being put in
 			console.log(vm.bookedBooths.length);
 			vm.arrlength = vm.bookedBooths.length;
@@ -155,6 +154,26 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 	vm.boothAV = [];
 
 	vm.changeDate = function(){
+		//dont allow them to go to a date that is older then today, or more then a year in advance
+		vm.todaydate = new Date();
+
+		vm.yesterdaydate = new Date();
+		vm.minusday = vm.yesterdaydate.getDate() -1;
+		vm.yesterdaydate.setDate(vm.minusday);
+
+		vm.nextyear = new Date();
+		vm.extrayear = vm.nextyear.getFullYear() + 1;
+		vm.nextyear.setFullYear(vm.extrayear);
+		if(vm.date < vm.yesterdaydate){
+			vex.dialog.alert("Sorry, you cannot view the history of the schedule");
+			vm.date = vm.todaydate;
+		}
+		else if(vm.date > vm.nextyear){
+			vex.dialog.alert("Sorry, you cannot book booths more then a year in advance");
+			vm.nextyearminusday = vm.nextyear.getDate() - 1;
+			vm.nextyear.setDate(vm.nextyearminusday);
+			vm.date = vm.nextyear;
+		}
 		//find out if the day is a sunday or not
 		$window.sessionStorage.setItem('time', vm.date);
 		if(vm.date.getDay() == 0)
