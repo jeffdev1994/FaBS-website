@@ -1,4 +1,4 @@
-<form class="form-horizontal" ng-controller="profileController as PC" ng-submit="PC.attemptUpdate()">
+<form class="form-horizontal" ng-controller="profileController as PC">
  
   <fieldset>
     <div class="form-group">
@@ -10,7 +10,7 @@
       </div>
 </div>
     <div class="form-group">
-      <div class="col-lg-4" >
+      <div class="col-lg-6" >
         <input class='col-lg-6 control-label'type="text" name="profileName" align ="left" id="profileName" ng-model = "PC.userinfo.boothName">
       </div>
     </div>
@@ -34,14 +34,14 @@
   <div class="form-group">
         <label for="inputPassword" class="col-lg-2 control-label"> New Password:</label>
         <div class="col-lg-4 offset-col-6">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model = "PC.userinfo.password1">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model = "PC.userPass.password1">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm New Password:</label>
         <div class="col-lg-4 offset-col-6">
-          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model = "PC.userinfo.password2">
+          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model = "PC.userPass.password2">
         </div>
       </div>
 
@@ -67,7 +67,7 @@
       </div>
 
       <div class="form-group col-lg-3">
-          <button type="submit" class="btn btn-primary btn-block" id="subButton">Save Changes</button>
+          <button  class="btn btn-primary btn-block" id="subButton" ng-click=PC.attemptUpdate()>Save Changes</button>
       </div>
  
   </div>

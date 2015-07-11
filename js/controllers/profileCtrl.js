@@ -7,6 +7,11 @@ angular.module('profileCtrl', ['userService','dataService','authService','ui.boo
 
 	vm.userpromise = Auth.getUser();
 	vm.userinfo;
+	vm.userPass = {
+		password1: "",
+		password2: ""
+	};
+
 
 	//the return value from Auth.getUser is a promise. this waits until the promise is fulfilled.
 	vm.userpromise.then(function(user){
@@ -21,19 +26,21 @@ angular.module('profileCtrl', ['userService','dataService','authService','ui.boo
 
 	});
 	vm.toggleShow=function() {
-    document.getElementById("addFields").style.visibility = "visible";
-    document.getElementById("addFields").style.position = "relative";
-    document.getElementById("showButton").style.visibility = "hidden";
+	    document.getElementById("addFields").style.visibility = "visible";
+	    document.getElementById("addFields").style.position = "relative";
+	    document.getElementById("showButton").style.visibility = "hidden";
 
 
 
-
-
-};
+	};
 
 	vm.attemptUpdate = function() {
 
 	    if (vm.validateForm()) {
+	    	if(vm.userPass.password1!=""){
+	    		vm.userinfo.password=vm.userPass.password1;
+	    	}
+	    	alert("Information Updated!");
 			vm.saveUser();
 			return true;
 		} else {
@@ -42,7 +49,6 @@ angular.module('profileCtrl', ['userService','dataService','authService','ui.boo
 			
 	};
 	vm.saveUser = function() {
-		console.log("saveUser() called");
 		vm.processing = true;
 		vm.message = '';
 
@@ -54,6 +60,41 @@ angular.module('profileCtrl', ['userService','dataService','authService','ui.boo
 	};
 
 	vm.validateForm = function() {
+
+		if (vm.userPass.password1 != vm.userPass.password2) {
+			alert("Error: Passwords do not match.");
+			return false;
+		}
+		if (vm.userPass.password1.length < 5 && vm.userPass.password1.length > 0) {
+			alert("Error: Password must be a least 5 characters.");
+			return false;
+		}
+
+		re = /.+@.+/;
+		if (!re.test(vm.userinfo.email)) {
+			alert("Error: Email address not valid (requires '@').");
+			return false;
+		}
+		//XXX-XXX-XXXX would be expected input, dont think its needed to do regex
+		if (vm.userinfo.phone.length < 10) {
+			alert("Error: Phone number must be atleast 10 numbers long.");
+			return false;
+		}
+		if (vm.userinfo.boothName.length < 1) {
+			alert("Error: Please enter a booth name.");
+			return false;
+		}
+
+		if (vm.userinfo.products.length < 2) {
+			alert("Error: Please enter some of the products you plan to sell.\nYou may edit this later.");
+			return false;
+		}
+		if (vm.userinfo.bio.length < 2) {
+			alert("Error: Please enter some information about your business and products.");
+			return false;
+		}
+
+
 		return true;
 
 	};
