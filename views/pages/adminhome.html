@@ -32,7 +32,7 @@
 						<div class="panel-body" style="background-color:#F8F5F0;">
 								<table class="" style="width:75%; margin:auto;" ng-controller="adminController as AC" >
 									<tr ng-repeat="user in AC.users | orderBy:'username'">
-										<td> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
+										<td> <button type="submit" class="btn btn-primary btn-md btn-block" ng-click = "AC.goToVendor(user)" >{{user.username}}</button></td>
 									</tr>
 								</table>
 						</div>
