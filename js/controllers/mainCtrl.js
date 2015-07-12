@@ -95,6 +95,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 
 	vm.logout = function(){
+		$window.sessionStorage.removeItem('time');
 		Auth.logout();
 	};
 
@@ -160,22 +161,16 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		//dont allow them to go to a date that is older then today, or more then a year in advance
 		vm.todaydate = new Date();
 
-		vm.yesterdaydate = new Date();
-		vm.minusday = vm.yesterdaydate.getDate() -1;
-		vm.yesterdaydate.setDate(vm.minusday);
+		vm.nextmonth = new Date();
+		vm.extramonth = vm.nextmonth.getMonth() + 1;
+		vm.nextmonth.setMonth(vm.extramonth);
 
-		vm.nextyear = new Date();
-		vm.extrayear = vm.nextyear.getFullYear() + 1;
-		vm.nextyear.setFullYear(vm.extrayear);
-		if(vm.date < vm.yesterdaydate){
-			vex.dialog.alert("Sorry, you cannot view the history of the schedule");
-			vm.date = vm.todaydate;
-		}
-		else if(vm.date > vm.nextyear){
-			vex.dialog.alert("Sorry, you cannot book booths more then a year in advance");
-			vm.nextyearminusday = vm.nextyear.getDate() - 1;
-			vm.nextyear.setDate(vm.nextyearminusday);
-			vm.date = vm.nextyear;
+		if(vm.date > vm.nextmonth){
+			vex.dialog.alert("Sorry, you cannot book booths more then a month in advance");
+			vm.nextmonthminusday = vm.nextmonth.getDate() - 1;
+			vm.nextmonth.setDate(vm.nextmonthminusday);
+			vm.date = vm.nextmonth;
+			return;
 		}
 		//find out if the day is a sunday or not
 		$window.sessionStorage.setItem('time', vm.date);
@@ -237,6 +232,18 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
+		vm.todaydate = new Date();
+		vm.yesterdaydate = new Date();
+		vm.minusday = vm.yesterdaydate.getDate() -1;
+		vm.yesterdaydate.setDate(vm.minusday);
+		if(vm.date < vm.yesterdaydate){
+			vex.dialog.alert("You cannot book booths in the past. You have no power here!");
+			vm.date = vm.todaydate;
+			$window.sessionStorage.setItem('time', vm.date);
+			return;
+		}
+
+
 		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
 		var callAnswer = false;
 		vm.bannedDate = new Date($rootScope.userinfo.banned);
