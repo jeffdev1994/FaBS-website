@@ -144,9 +144,8 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	vm.isSunday;
 	vm.date;
+	vm.day;
 
-	vm.day = moment(new Date()).format("dddd, MMMM Do YYYY");
-	console.log(vm.day);
 
 	//date chosen by the datepicker, set to what they chose last, or todays date if nothing in session memory
 	if($window.sessionStorage.getItem('time'))
@@ -217,7 +216,10 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 						vm.boothAV[vm.boothNum] = 0;
 				}
 			}
-		});
+		});	
+
+		vm.day = moment(vm.date).format("dddd, MMMM Do YYYY");
+		console.log(vm.day);
 	};
 
 	//call it initially so that the date is correct after loading
