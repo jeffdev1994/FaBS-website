@@ -412,56 +412,132 @@ header .navbar 		{
 }
 
 
-/********************
- *user profile page *
- ********************/
-#profileName{
-	border: solid 2px gray;
+/*************************
+ *  profile              *
+ *************************/
+
+ #profileName{
+ 	text-align: left;
+	border: solid 1px gray;
 	width: 100%;
-	margin-left: 100%;
+	margin-left: 39%;
+	font-weight:800;
+	font-size:36px;
+	color:#444;
 
 }
-#profileImage{
-	margin-left:55%;
-	position:absolute;
-	width:144px;
-	height:auto;
-}
+
 #profileProduct{
-	margin-left: 100%;
+	margin-left: 55%;
 	position:absolute;
+	background-image: url('../img/product_back.jpg');
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
 }
 
 #bio{
-	margin-left:118px;
-	margin-top: 6%;
+	margin-left:10.5%;
+	margin-top: 3%;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
 }
 
 #row2{
 	margin-left:118px;
 	margin-top:70px;
+
 }
 
-#notices{
-	background-color: rgba(255,200,200,.85);
+#addFields{
+	position:absolute;
+	visibility:hidden;
+	margin-left: 2%;
 
+}
+
+#showButton{
+margin-left: -5%;
 }
 
 #subButton{
-	margin-left:535px;
+	margin-left:70%;
 
 }
 textarea{
 	resize:none;
-	background-color: #f2f2f2;
 	color:black;
 	border:3px solid #cccccc;
 
 }
 
+
+
 #productTitle{
 	margin-left:34%;
+
 }
+
+/*********************
+ * Suppport Request  *
+ ********************/
+ #textRequest{
+ 	margin-left:54%;
+ }
+ #request{
+ 	margin-left:6%;
+
+ }
+
+/*********************
+ * ProfileView       *
+ ********************/
+ #profileProductView{
+ 	padding-left:3px;
+ 	margin-left: 60%;
+	height:115px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/product_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
+  #profileBioView{
+    padding-left:3px;
+ 	margin-left: 60%;
+	height:225px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
+
+  #boothNameView{
+  	font-weight: 800;
+  	font-size: 36px;
+  	font-family: sans-serif;
+
+  }
+ /********************
+  * Support Requests *
+  ********************/
+  #supReqHeader{
+	font-weight:800;
+	font-size:36px;
+	color:#444;
+  	
+  }
+
+
 
 /* NGANIMATE
 ====================== */

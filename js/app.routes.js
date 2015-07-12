@@ -45,6 +45,16 @@
 	.when("/registration", {
 		templateUrl: 'views/pages/registration.html'
 	})
+
+	.when("/profview", {
+		templateUrl: 'views/pages/profileview.html'
+	})
+
+	.when("/supreq", {
+		templateUrl: 'views/pages/supportrequest.html'
+	})
+
+
 	//route for user profile page
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'

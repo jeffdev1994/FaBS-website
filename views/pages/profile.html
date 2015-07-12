@@ -1,59 +1,76 @@
-<form class="form-horizontal">
+<form class="form-horizontal" ng-controller="profileController as PC">
  
   <fieldset>
-
-
     <div class="form-group">
-      <div class="col-lg-4">
-        <input autocomplete='off' class='col-lg-6 control-label'type="text" name="profileName" id="profileName" value="User profile name" maxlength='50' size="25">
+      <div class="col-sm-offset-1 col-sm-2">
+        <a href="/markethome"> <button type="submit" class="btn btn-primary btn-md btn-block">Back</button></a>
+      </div>
+      <div class="col-sm-offset-6 col-sm-2" style="left-margin:100px">
+         <a href="/supreq"><button type="submit" class="btn btn-primary btn-md btn-block">Support Request</button></a>
+      </div>
+</div>
+    <div class="form-group">
+      <div class="col-lg-6" >
+        <input class='col-lg-6 control-label'type="text" name="profileName" align ="left" id="profileName" ng-model = "PC.userinfo.boothName">
       </div>
     </div>
+    <div class="form-group">
+      <div class="col-lg-4 offset-col-6">
+
+             <textarea rows="5" cols="97" id = "profileProduct" ng-model = "PC.userinfo.products">
+            </textarea>
+
+      </div>
+
+    </div>
+      <div id="row2">
+        <textarea rows="10" cols="97" id = "bio" ng-model = "PC.userinfo.bio">     
+        </textarea>
+
+      </div>    
+
+<div id="addFields">
+
+  <div class="form-group">
+        <label for="inputPassword" class="col-lg-2 control-label"> New Password:</label>
+        <div class="col-lg-4 offset-col-6">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model = "PC.userPass.password1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm New Password:</label>
+        <div class="col-lg-4 offset-col-6">
+          <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model = "PC.userPass.password2">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
+      <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
+        <input autocomplete='off'   style="text-align:left" class='col-lg-12 control-label'type="text" name="email" id="email" ng-model = "PC.userinfo.email" maxlength='50' size="25">
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputPhone" class="col-lg-2 control-label">Phone:</label>
+      <div class="col-lg-4 offset-col-6" ng-controller = 'mainController as MC'>
+        <input autocomplete='off' style="text-align:left" class='col-lg-12 control-label'type="text" name="phone" id="phone" ng-model = "PC.userinfo.phone" maxlength='50' size="25">
+      </div>
+      </div>
     
-    <div class="form-group">
-      <div class="col-lg-4 offset-col-6">
-          <img src="http://drawception.com/pub/panels/2012/5-3/zmY8fjOEFK-2.png">
+</div>
+
+  <div class="col-lg-12" style="margin-left:20%">
+      <div class="form-group col-lg-3">
+          <button class="btn btn-primary btn-block" id="showButton" ng-click=PC.toggleShow()>Show Additional Details</button>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirm Password:</label>
-      <div class="col-lg-4 offset-col-6">
-        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+      <div class="form-group col-lg-3">
+          <button  class="btn btn-primary btn-block" id="subButton" ng-click=PC.attemptUpdate()>Save Changes</button>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
-      <div class="col-lg-4 offset-col-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="inputPhone" class="col-lg-2 control-label">Phone:</label>
-      <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
-      </div>
-    </div>
-
-    <!-- want to make this multi line, like a box, showing that it should be a decent paragraph-->
-    <div class="form-group">
-      <label for="inputBiographic" class="col-lg-2 control-label">Biographic Information:</label>
-      <div class="col-lg-4 offset-col-6">
-        <input type="text" class="form-control" id="inputBiographic" placeholder="Biographic Information">
-      </div>
-    </div>
-
-    <!-- still need to add in booth type, and products. booth type should be check boxes, products maybe a list?-->
-    <!-- these arent in the mock up, but are in the data dictionary as non optional, so they would have to go here-->
-    
-    <div class="col-lg-2" style="height:15px;"></div>
-
-    <div class="form-group">
-      <div class="col-lg-3">
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-      </div>
-    </div>
-
+ 
+  </div>
   </fieldset>
 </form>
+

@@ -268,7 +268,11 @@ module.exports = function(app, express) {
 				if (req.body.name) user.name = req.body.name;
 				if (req.body.username) user.username = req.body.username;
 				if (req.body.password) user.password = req.body.password;
-
+				if (req.body.products) user.products = req.body.products;
+				if (req.body.bio) user.bio = req.body.bio;
+				if (req.body.email) user.email = req.body.email;
+				if (req.body.phone) user.phone = req.body.phone;
+				if (req.body.boothName) user.boothName = req.body.boothName;
 				// save the user
 				user.save(function(err) {
 					if (err) res.send(err);
