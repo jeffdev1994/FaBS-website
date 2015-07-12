@@ -144,6 +144,10 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	vm.isSunday;
 	vm.date;
+
+	vm.day = moment(new Date()).format("dddd, MMMM Do YYYY");
+	console.log(vm.day);
+
 	//date chosen by the datepicker, set to what they chose last, or todays date if nothing in session memory
 	if($window.sessionStorage.getItem('time'))
 		vm.date = new Date($window.sessionStorage.getItem('time'));
