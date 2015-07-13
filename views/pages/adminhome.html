@@ -340,7 +340,7 @@
 						
 						<tbody ng-controller="supportRequest as suppReq">
 						<tr class="active" ng-repeat="request in suppReq.requests | orderBy:'date'">
-							<td style="width:90px;">{{request.title}}</td>
+							<td style="max-width:90px; margin-auto;">{{request.title}}</td>
 							<td><div style="font-size: 90%;">{{suppReq.getNiceDate(request.date)}}</div></td>
 							<td style="width:25%;">
 								<a href="#" class="btn btn-danger btn-xs glyphicon glyphicon-list-alt" ng-click="suppReq.openReq(request.body)"></a>
