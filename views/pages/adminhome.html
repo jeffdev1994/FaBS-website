@@ -10,8 +10,8 @@
 
 				<div class="col-sm-offset-0 col-sm-2">
 				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
-				        <div style="height:5px;"></div>
-				        <a href="/profile"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
+				        <!-- <div style="height:5px;"></div>
+				        <a href="/profile"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a> -->
 				</div>
 			</div>
 
@@ -56,10 +56,8 @@
 				</div>
 
 
-
-				<div id="market">
-
-					<!--IMPORTANT NOTICES -->
+					<!--CALENDAR -->
+				<div id="market" ng-controller="marketController as market">
 					<div id="notices" style="border: 1px solid grey; border-radius: 5px; margin: 0% 1.5% 1.5% 1.5%;">
 						<center>
 							<font size="5">Important Notices</font><br>
@@ -67,24 +65,133 @@
 						</center>
 					</div>
 
-					<!--CALENDAR -->
 					<div id="dateandmap" style="margin-top:2%;">
 						<div id="calendar" class="col-sm-offset-3 col-sm-6">
 						
-							<div class="form-group">
-								<input type="date" class="form-control">
+							<div class="form-group" >
+								<input type="date" class="form-control" style="text-align:center; font-size:18px" ng-model="market.date" ng-change=market.changeDate()>
 							</div>
 						</div>
 					</div>
 
-					<!-- MAP -->
-					<div id="gangstaMap" class="col-sm-12" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85);; padding-top:5%;">
+
+					<!--if the day is a sunday. display the whole map-->
+					<div id="gangstaMap" class="col-sm-12" ng-if = "market.isSunday" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85); padding-top:5%;">
+						<!-- <img id="gangstaCat" src="http://thefunniestpictures.com/wp-content/uploads/2013/09/funny-pics-al-catpone.jpg"/-->
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-primary" style="width: 30%; float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<!--have two of them, if variable is 0, it will show unavailable, if 1 it will show available-->
+								<div class="panel-body" ng-if = "market.boothAV[1]" id="booth-available" ng-click = market.bookBooth(1,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[1]" id="booth-unavailable" ng-click= market.boothAlreadyBooked() >10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+
+							<div class="panel panel-primary" style="width: 30%;float:left;">
+								<div class="panel-heading">Merchandise</div>
+								<div class="panel-body" ng-if = "market.boothAV[2]" id="booth-available" ng-click = market.bookBooth(2,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[2]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+							<div class="panel panel-primary" style="width: 30%;float:left;">
+								<div class="panel-heading">Merchandise</div>
+								<div class="panel-body" ng-if = "market.boothAV[3]" id="booth-available" ng-click = market.bookBooth(3,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[3]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+
+						<div style="padding-left:5%; padding-right: 2%;">
+							<div class="panel panel-primary" style="width: 30%; float:left;">
+								<div class="panel-heading">Merchandise</div>
+								<div class="panel-body" ng-if = "market.boothAV[4]" id="booth-available" ng-click = market.bookBooth(4,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[4]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+
+							<div class="panel panel-primary" style="width: 30%;float:left;">
+								<div class="panel-heading">Merchandise</div>
+								<div class="panel-body" ng-if = "market.boothAV[5]" id="booth-available" ng-click = market.bookBooth(5,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[5]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+							<div class="panel panel-success" style="width: 30%;float:left;">
+								<div class="panel-heading">Produce</div>
+								<div class="panel-body" ng-if = "market.boothAV[6]" id="booth-available" ng-click = market.bookBooth(6,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[6]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+
+						<div style="padding-left:5%; padding-right: 2%;">
+							<div class="panel panel-success" style="width: 30%; float:left;">
+								<div class="panel-heading">Produce</div>
+								<div class="panel-body" ng-if = "market.boothAV[7]" id="booth-available" ng-click = market.bookBooth(7,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[7]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+
+							<div class="panel panel-success" style="width: 30%;float:left;">
+								<div class="panel-heading">Produce</div>
+								<div class="panel-body" ng-if = "market.boothAV[8]" id="booth-available" ng-click = market.bookBooth(8,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[8]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+							<div class="panel panel-success" style="width: 30%;float:left;">
+								<div class="panel-heading">Produce</div>
+								<div class="panel-body" ng-if = "market.boothAV[9]" id="booth-available" ng-click = market.bookBooth(9,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[9]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+
+						<div style="padding-left:5%; padding-right: 2%;">
+							<div class="panel panel-warning" style="width: 30%; float:left;">
+								<div class="panel-heading">Lunch</div>
+								<div class="panel-body" ng-if = "market.boothAV[10]" id="booth-available" ng-click = market.bookBooth(10,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[10]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+
+							<div class="panel panel-warning" style="width: 30%;float:left;">
+								<div class="panel-heading">Lunch</div>
+								<div class="panel-body" ng-if = "market.boothAV[11]" id="booth-available" ng-click = market.bookBooth(11,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[11]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+
+							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
+							<div class="panel panel-warning" style="width: 30%;float:left;">
+								<div class="panel-heading">Lunch</div>
+								<div class="panel-body" ng-if = "market.boothAV[12]" id="booth-available" ng-click = market.bookBooth(12,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[12]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+					</div>
+
+
+
+
+
+					<!--if the day is not a sunday. display the whole map-->
+					<div id="gangstaMap" class="col-sm-12" ng-if = "!market.isSunday" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85); padding-top:5%;">
+						<!-- <img id="gangstaCat" src="http://thefunniestpictures.com/wp-content/uploads/2013/09/funny-pics-al-catpone.jpg"/-->
+						<div style="padding-left:5%; padding-right: 2%;">
+							<div class="panel panel-primary" style="width: 30%; float:left;">
+								<div class="panel-heading">Merchandise</div>
+								<!--have two of them, if variable is 0, it will show unavailable, if 1 it will show available-->
+								<div class="panel-body" ng-if = "market.boothAV[1]" id="booth-available" ng-click = market.bookBooth(1,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[1]" id="booth-unavailable" ng-click= market.boothAlreadyBooked() >10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[13]" id="booth-available" ng-click = market.bookBooth(1,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[13]" id="booth-unavailable" ng-click= market.boothAlreadyBooked() ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
@@ -92,18 +199,22 @@
 
 							<div class="panel panel-primary" style="width: 30%;float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[2]" id="booth-available" ng-click = market.bookBooth(2,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[2]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[14]" id="booth-available" ng-click = market.bookBooth(2,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[14]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
 							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
 							<div class="panel panel-primary" style="width: 30%;float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[3]" id="booth-available" ng-click = market.bookBooth(3,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[3]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[15]" id="booth-available" ng-click = market.bookBooth(3,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[15]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 							<div style="clear:both;"></div>
@@ -112,9 +223,11 @@
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-primary" style="width: 30%; float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[4]" id="booth-available" ng-click = market.bookBooth(4,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[4]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-available">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[16]" id="booth-available" ng-click = market.bookBooth(4,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[16]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
@@ -122,18 +235,22 @@
 
 							<div class="panel panel-primary" style="width: 30%;float:left;">
 								<div class="panel-heading">Merchandise</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[5]" id="booth-available" ng-click = market.bookBooth(5,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[5]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-available">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[17]" id="booth-available" ng-click = market.bookBooth(5,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[17]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
 							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
 							<div class="panel panel-success" style="width: 30%;float:left;">
 								<div class="panel-heading">Produce</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[6]" id="booth-available" ng-click = market.bookBooth(6,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[6]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-available">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[18]" id="booth-available" ng-click = market.bookBooth(6,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[18]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 							<div style="clear:both;"></div>
@@ -142,9 +259,11 @@
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-success" style="width: 30%; float:left;">
 								<div class="panel-heading">Produce</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[7]" id="booth-available" ng-click = market.bookBooth(7,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[7]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[19]" id="booth-available" ng-click = market.bookBooth(7,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[19]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
@@ -152,18 +271,22 @@
 
 							<div class="panel panel-success" style="width: 30%;float:left;">
 								<div class="panel-heading">Produce</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[8]" id="booth-available" ng-click = market.bookBooth(8,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[8]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[20]" id="booth-available" ng-click = market.bookBooth(8,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[20]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
 							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
 							<div class="panel panel-success" style="width: 30%;float:left;">
 								<div class="panel-heading">Produce</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[9]" id="booth-available" ng-click = market.bookBooth(9,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[9]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[21]" id="booth-available" ng-click = market.bookBooth(9,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[21]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 							<div style="clear:both;"></div>
@@ -172,9 +295,11 @@
 						<div style="padding-left:5%; padding-right: 2%;">
 							<div class="panel panel-warning" style="width: 30%; float:left;">
 								<div class="panel-heading">Lunch</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[10]" id="booth-available" ng-click = market.bookBooth(10,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[10]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-available">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[22]" id="booth-available" ng-click = market.bookBooth(10,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[22]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
@@ -182,18 +307,22 @@
 
 							<div class="panel panel-warning" style="width: 30%;float:left;">
 								<div class="panel-heading">Lunch</div>
-								<div class="panel-body" id="booth-unavailable">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[11]" id="booth-available" ng-click = market.bookBooth(11,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[11]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-available">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[23]" id="booth-available" ng-click = market.bookBooth(11,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[23]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 
 							<div style="width:3%;float:left;"><p>&nbsp;</p></div>
 							<div class="panel panel-warning" style="width: 30%;float:left;">
 								<div class="panel-heading">Lunch</div>
-								<div class="panel-body" id="booth-available">9 AM</div>
+								<div class="panel-body" ng-if = "market.boothAV[12]" id="booth-available" ng-click = market.bookBooth(12,10001400)>10am - 2pm</div>
+								<div class="panel-body" ng-if = "!market.boothAV[12]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>10am - 2pm</div>
 								<div style="border-top: 1px solid grey;">
-									<div class="panel-body" id="booth-unavailable">2 PM</div>
+									<div class="panel-body" ng-if = "market.boothAV[24]" id="booth-available" ng-click = market.bookBooth(12,16002000)>4pm - 8pm</div>
+									<div class="panel-body" ng-if = "!market.boothAV[24]" id="booth-unavailable" ng-click= market.boothAlreadyBooked()>4pm - 8pm</div>
 								</div>
 							</div>
 							<div style="clear:both;"></div>

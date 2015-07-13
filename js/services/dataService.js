@@ -20,5 +20,4 @@ angular.module('dataService', [])
         };
 
         return dataFactory;
-
     });
