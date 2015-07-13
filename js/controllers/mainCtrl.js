@@ -29,20 +29,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 			//split up the users booths into old and future booths
 			vm.bookedBooths = user.data.bookedBooths;
-			console.log(vm.bookedBooths);
-			console.log(user.data.bookedBooths);
 			vm.currDate = new Date();
 			//consider how the dateSlot is being put in
-			console.log(vm.bookedBooths.length);
 			vm.arrlength = vm.bookedBooths.length;
 			for(i=0; i<vm.arrlength;i++){
 				vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
-				console.log(i);
-				console.log("**" + vm.bookedBooths.length);
-				console.log(vm.tempDate);
-				console.log(vm.currDate);
-				console.log(vm.tempDate < vm.currDate);
-				console.log("*****");
 				if(vm.tempDate < vm.currDate){
 					vm.boothHistory.push(vm.bookedBooths[i]);
 				}
@@ -161,6 +152,16 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		//dont allow them to go to a date that is older then today, or more then a year in advance
 		vm.todaydate = new Date();
 
+		vm.yesterdaydate = new Date();
+		vm.minusday = vm.yesterdaydate.getDate() -1;
+		vm.yesterdaydate.setDate(vm.minusday);
+		if(vm.date < vm.yesterdaydate){
+			vex.dialog.alert("You cannot book booths in the past. You have no power here!");
+			vm.date = vm.todaydate;
+			$window.sessionStorage.setItem('time', vm.date);
+			return;
+		}
+
 		vm.nextmonth = new Date();
 		vm.extramonth = vm.nextmonth.getMonth() + 1;
 		vm.nextmonth.setMonth(vm.extramonth);
@@ -214,7 +215,6 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		});	
 
 		vm.day = moment(vm.date).format("dddd, MMMM Do YYYY");
-		console.log(vm.day);
 	};
 
 	//call it initially so that the date is correct after loading
@@ -232,16 +232,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
-		vm.todaydate = new Date();
-		vm.yesterdaydate = new Date();
-		vm.minusday = vm.yesterdaydate.getDate() -1;
-		vm.yesterdaydate.setDate(vm.minusday);
-		if(vm.date < vm.yesterdaydate){
-			vex.dialog.alert("You cannot book booths in the past. You have no power here!");
-			vm.date = vm.todaydate;
-			$window.sessionStorage.setItem('time', vm.date);
-			return;
-		}
+
 
 
 		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
