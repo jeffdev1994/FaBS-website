@@ -1,4 +1,4 @@
-angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
+angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothService'])
 
 .controller('adminController', function(User, Data, $location, $window) {
 
@@ -29,11 +29,108 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 	};
 })
 
-.controller('adminmarketController', function(User, Data, $location, $window) {
+.controller('adminmarketController', function(User, Data, Booth, $location, $window) {
 	var vm = this;
 
 	vm.theuserinfo = Data.getTheUser();
+
+	//all of the booths old and new
+	vm.bookedBooths;
+	//booths previous to today
+	vm.boothHistory = [];
+	//booths newer then today
+	vm.futureBooths = [];
+
+	//the final object that markethome will bind with.
+
+	//split up the users booths into old and future booths
+	vm.bookedBooths = vm.theuserinfo.bookedBooths;
+	vm.currDate = new Date();
+	//consider how the dateSlot is being put in
+	vm.arrlength = vm.bookedBooths.length;
+	for(i=0; i<vm.arrlength;i++){
+		vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
+
+		if(vm.tempDate < vm.currDate){
+			vm.boothHistory.push(vm.bookedBooths[i]);
+		}
+		else{
+			vm.futureBooths.push(vm.bookedBooths[i]);
+		}
+	}
+
 	console.log(vm.theuserinfo.username);
+	vm.getNeatTime = function(booth) {
+		var returnval = booth.dateSlot;
+		if (booth.timeSlot == '10001400') {
+			returnval += ' 10 AM';
+		} else {
+			returnval += ' 4 PM';
+		}
+		return returnval;
+	};
+
+	vm.getNeatBooth = function(booth){
+		switch(booth.booth_id){
+			case 1:
+				return 'Merchandise 1';
+			case 2:
+				return 'Merchandise 2';
+			case 3:
+				return 'Merchandise 3';
+			case 4:
+				return 'Merchandise 4';
+			case 5:
+				return 'Merchandise 5';
+			case 6:
+				return 'Produce 1';
+			case 7:
+				return 'Produce 2';
+			case 8:
+				return 'Produce 3';
+			case 9:
+				return 'Produce 4';
+			case 10:
+				return 'Lunch 1';
+			case 11:
+				return 'Lunch 2';
+			case 12:
+				return 'Lunch 3';
+		}
+	};
+
+	vm.cancelBooth = function(booth){
+		console.log('attmepting to delete booth');
+		var callAnswer = false;
+		vex.dialog.confirm({
+			message: 'Are you sure you want to cancel your reservation for ' + booth.dateSlot + '? If it is within 24 hours of the booking time, you will be unable to book another booth for 48 hours',
+			callback: function(answer) {
+				callAnswer = answer
+				//if they answer yes, then do the booking
+				if(answer){
+					Booth.delete(booth._id)
+						.success(function(data){
+							if(data.success == false){
+								vex.dialog.alert( "Something went wrong! Please contact the farmers market if you wish to find out what happened");
+							}
+							else{
+								vex.dialog.alert('Booth has been cancelled');
+							}
+						});
+				}
+				//if they answered no, just dont do anything
+			},
+
+			//update calander after dialogue closes
+			afterClose: function() {
+				//only reload the window if they answered yes
+				if(callAnswer){
+					callAnswer = false;
+					$location.url("/adminhome");
+				}
+			}
+		});
+	}
 
 })
 
@@ -218,6 +315,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 			message: 'Confirm booking for ' + vm.boothInfo.dateSlot + " at " + userTime,
 			callback: function(answer) {
 				//if they answer yes, then do the booking
+				$location.url("/adminhome");
 				if(answer){
 					callAnswer = answer;
 					//create the booth using the booth info
@@ -232,6 +330,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 							console.log("booth created .SUCCESS");
 							
 							vex.dialog.alert('Congratulations! Booth booked for ' + vm.boothInfo.dateSlot + " at " + userTime);
+
 						}
 					});
 				}
@@ -240,9 +339,11 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap'])
 			
 			//update calander after dialogue closes
 			afterClose: function() {
+				console.log("BEFORE IF!!!!!!!!!");
 				if(callAnswer) {
 					callAnswer = false;
-					$window.location.url("/adminhome");;
+					console.log("I GOT HERE!!!!!!!!!!!!!!");
+					
 				}
 			}
 		});
