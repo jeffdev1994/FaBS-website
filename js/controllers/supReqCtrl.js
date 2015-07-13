@@ -6,7 +6,7 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 	var vm = this;	
 		vm.supReq = {
 			title: "",
-			request: ""
+			body: ""
 		};
 
     vm.sendRequest = function() {
@@ -21,12 +21,13 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 
 
     vm.validateForm = function() {
-		if (vm.supReq.subject == "") {
+    	console.log("subject is " + vm.supReq.title);
+		if (vm.supReq.title == "") {
 			alert("Error: Subject field empty. Please fill all fields.");
 			return false;
 		}
 
-		if (vm.supReq.request == "") {
+		if (vm.supReq.body == "") {
 			alert("Error: request field empty. Please fill all fields.");
 			return false;
 		}
@@ -39,11 +40,29 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 	vm.saveRequest = function() {
 		vm.processing = true;
 		vm.message = '';
+		console.log("into save rqeust");
 
 		//console.log(vm.userData.username);
 		// use the create function in the userService
 		User.makeRequest(vm.supReq)
 			.success(function(data) {
+
+				if(data.success == false){
+					console.log("Support Request not sucessful");
+					vm.processing = false;
+
+				}
+				else {
+					vex.dialog.alert("Support Request sent.");
+					vm.processing = false;
+					//if it makes it to here, then user was successfully created, perhaps a popup. then back to login page
+					//alert("new user successfully created! please login");
+					$location.path("/markethome");
+
+				}
+
+
+
 		});
 	};
 
