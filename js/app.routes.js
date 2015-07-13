@@ -46,7 +46,7 @@
 		templateUrl: 'views/pages/registration.html'
 	})
 
-	.when("/profview", {
+	.when("/profview/:userID", {
 		templateUrl: 'views/pages/profileview.html'
 	})
 
