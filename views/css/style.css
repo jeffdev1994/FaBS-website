@@ -426,7 +426,7 @@ header .navbar 		{
  	text-align: left;
 	border: solid 1px gray;
 	width: 100%;
-	margin-left: 39%;
+	margin-left: 237px;
 	font-weight:800;
 	font-size:36px;
 	color:#444;
@@ -434,7 +434,7 @@ header .navbar 		{
 }
 
 #profileProduct{
-	margin-left: 55%;
+	margin-left: 237px;
 	position:absolute;
 	background-image: url('../img/product_back.jpg');
 	background-position: bottom right;
@@ -443,7 +443,7 @@ header .navbar 		{
 }
 
 #bio{
-	margin-left:10.5%;
+	margin-left:120px;
 	margin-top: 3%;
 	background-image: url(../img/bio_back.jpg);
 	background-position: bottom right;
@@ -490,10 +490,10 @@ textarea{
  * Suppport Request  *
  ********************/
  #textRequest{
- 	margin-left:54%;
+ 	margin-left:15px;
  }
  #request{
- 	margin-left:6%;
+ 	margin-left:120px;
 
  }
 
