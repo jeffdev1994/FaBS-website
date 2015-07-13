@@ -26,6 +26,13 @@ angular.module('userService', [])
 		return $http.post('/api/users', userData);
 	};
 
+
+	userFactory.update = function(userData){
+		// since this is a put method we need to include userData
+		// from our form
+		return $http.put('/api/users/'+userData._id, userData);
+	};
+
 	//log a user in
 	userFactory.login = function(userData){
 		console.log("userService userdata.username: " + userData.username);
@@ -35,6 +42,18 @@ angular.module('userService', [])
 	userFactory.delete = function(id){
 
 		return $http.delete('/api/users/' + id);
+	};
+
+	userFactory.getRequests = function(){
+		return $http.get('/api/support');
+	};
+
+	userFactory.makeRequest = function(requestData){
+		return $http.post('/api/support', requestData);
+	};
+
+	userFactory.deleteRequest = function(requestID){
+		return $http.delete('/api/support/' + requestID);
 	};
 
 	return userFactory;

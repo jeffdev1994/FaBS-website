@@ -11,7 +11,7 @@
 				<div class="col-sm-offset-0 col-sm-2">
 				        <a href="/"> <button type="submit" class="btn btn-success btn-md btn-block" ng-click = MC.logout()>Logout</button></a>
 				        <div style="height:5px;"></div>
-				        <a href="/main"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
+				        <a href="/profile"> <button type="submit" class="btn btn-primary btn-md btn-block">Account</button></a>
 				</div>
 			</div>
 
@@ -19,36 +19,52 @@
 
 			<div id="marketMain">
 
-				<div id="userProfile">
+				<!--PROFILE INFO-->
+				<div id="userProfile" ng-controller="mainController as MC">
 					<div class="panel panel-primary">
 					
 						<div class="panel-heading">
-							<h3 class="panel-title">Profile</h3>
+							<h3 class="panel-title">Your Profile</h3>
 						</div>
 
-						<div class="panel-body">
-								<div class="well well-lg">
-									Username: {{MC.userinfo.username}}
-									<br>
-									Email: {{MC.userinfo.email}}
-									<br>
-									Phone: {{MC.userinfo.phone}}
-									<br>
-									Booth Name: {{MC.userinfo.boothName}}
-									<br>
-									Booth Type: {{MC.userinfo.boothtype}}
-									<br>
-									Products: {{MC.userinfo.products}}
-									<br>
-									Bio: {{MC.userinfo.bio}}
-									<br>
-								</div>
+						<div class="panel-body" style="background-color:#F8F5F0;">
+							<div class="table-responsive">
+							  <table class="table">
+							  	<tr><td>Username: <div class="user-item">{{MC.userinfo.username}}</div></td></tr>
+							   	<tr><td>Email: <div class="user-item">{{MC.userinfo.email}}</div></td></tr>
+							   	<tr><td>Phone: <div class="user-item">{{MC.userinfo.phone}}</div></td></tr>
+							   	<tr><td>Booth Name: <div class="user-item">{{MC.userinfo.boothName}}</div></td></tr>
+							   	<tr><td>Booth Type: <div class="user-item">{{MC.userinfo.boothtype}}</div></td></tr>
+							   	<tr><td>Products: <div class="user-item">{{MC.userinfo.products}}</div></td></tr>
+							   	<tr><td>Bio: <div class="user-item">{{MC.userinfo.bio}}</div></td></tr>
+							  </table>
+							</div>
+
 						</div>
 					</div>
+					
+					<!--BOOTH INFO -->
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Booth Types</h3>
+						</div>
+
+						<div class="panel-body" style="background-color:#F8F5F0;">
+							<div class="table-responsive">
+							  <table class="table">
+							  	<tr><td><div style="color:#325D88">Merchandise: </div><div class="user-item">These booths focus on providing arts and crafts.</div></td></tr>
+							   	<tr><td><span style="color:#93C54B">Produce: </span><div class="user-item">Book these booths to sell fresh pickings from your garden/farm.</div></td></tr>
+							   	<tr><td><span style="color:#F47C3C">Lunch: </span><div class="user-item">Book a lunch booth to sell your prepared meals and snacks.</div></td></tr>
+							  </table>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 
+				<!--CALENDAR -->
 				<div id="market" ng-controller="marketController as market">
-
 					<div id="notices" style="border: 1px solid grey; border-radius: 5px; margin: 0% 1.5% 1.5% 1.5%;">
 						<center>
 							<font size="5">Important Notices</font><br>
@@ -331,10 +347,10 @@
 
 				</div>
 
-				<div id="
-				" style="border: 1px solid gray; border-radius: 5px; float: left;">
+
+				<!--BOOKING HISTORY-->
+				<div id="bookingHistory" style="border: 1px solid gray; border-radius: 5px; float: left;">
 					<table class="table table-striped table-hover">
-					  
 					<thead>
 					<tr>
 					  <th></th>

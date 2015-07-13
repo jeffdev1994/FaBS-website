@@ -12,13 +12,12 @@ angular.module('dataService', [])
 
         var userID;
         // get a single user
-        dataFactory.getID = function() {
+        dataFactory.getTheUser = function() {
             return userID;
         };
-        dataFactory.setID = function(id) {
+        dataFactory.setTheUser = function(id) {
             userID = id;
         };
 
         return dataFactory;
-
     });

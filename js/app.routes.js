@@ -45,11 +45,30 @@
 	.when("/registration", {
 		templateUrl: 'views/pages/registration.html'
 	})
+
+	.when("/profview/:userID", {
+		templateUrl: 'views/pages/profileview.html'
+	})
+
+	.when("/supreq", {
+		templateUrl: 'views/pages/supportrequest.html'
+	})
+
+
 	//route for user profile page
 	.when("/profile", {
 		templateUrl: 'views/pages/profile.html'
-	});
+	})
 
+	//route for admin market page when switching to user
+	.when("/adminmarket", {
+		templateUrl: 'views/pages/adminmarket.html',
+	})
+
+	//route for admin main page after log in
+	.when("/adminhome", {
+		templateUrl: 'views/pages/adminhome.html',
+	});
 
 
 	// Added to remove the # from URLs

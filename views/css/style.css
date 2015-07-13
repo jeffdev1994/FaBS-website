@@ -2,15 +2,19 @@ main 					{
 	/*padding-top:30px;*/
 }
 
+#notices{
+	background-color: rgba(255,200,255,.7);
+}
+
 /*********************************************************************************/
 /* Backgrounds                                                                   */
 /*********************************************************************************/
 	#home-bg{
 		background:		url("../img/tree-background.jpg") no-repeat center center fixed;
-		-webkit-background-size: 	cover;
+		/*-webkit-background-size: 	cover;
 		-moz-background-size: 		cover;
 		-o-background-size: 		cover;
-		background-size:			cover;
+		background-size:			cover;*/
 	}
 
 	#markethome-bg{
@@ -414,56 +418,184 @@ header .navbar 		{
 }
 
 
-/********************
- *user profile page *
- ********************/
-#profileName{
-	border: solid 2px gray;
+/*************************
+ *  profile              *
+ *************************/
+
+ #profileName{
+ 	text-align: left;
+	border: solid 1px gray;
 	width: 100%;
-	margin-left: 100%;
+	margin-left: 39%;
+	font-weight:800;
+	font-size:36px;
+	color:#444;
 
 }
-#profileImage{
-	margin-left:55%;
-	position:absolute;
-	width:144px;
-	height:auto;
-}
+
 #profileProduct{
-	margin-left: 100%;
+	margin-left: 55%;
 	position:absolute;
+	background-image: url('../img/product_back.jpg');
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
 }
 
 #bio{
-	margin-left:118px;
-	margin-top: 6%;
+	margin-left:10.5%;
+	margin-top: 3%;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
 }
 
 #row2{
 	margin-left:118px;
 	margin-top:70px;
+
 }
 
-#notices{
-	background-color: rgba(255,200,200,.85);
+#addFields{
+	position:absolute;
+	visibility:hidden;
+	margin-left: 2%;
 
+}
+
+#showButton{
+margin-left: -5%;
 }
 
 #subButton{
-	margin-left:535px;
+	margin-left:70%;
 
 }
 textarea{
 	resize:none;
-	background-color: #f2f2f2;
 	color:black;
 	border:3px solid #cccccc;
 
 }
 
+
+
 #productTitle{
 	margin-left:34%;
+
 }
+
+/*********************
+ * Suppport Request  *
+ ********************/
+ #textRequest{
+ 	margin-left:54%;
+ }
+ #request{
+ 	margin-left:6%;
+
+ }
+
+/*********************
+ * ProfileView       *
+ ********************/
+ #profileProductView{
+ 	padding-left:3px;
+ 	margin-left: 60%;
+	height:115px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/product_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
+  #profileBioView{
+    padding-left:3px;
+ 	margin-left: 60%;
+	height:225px;
+	width:798px;
+	overflow:auto;
+	color:black;
+	border:3px solid #cccccc;
+	background-image: url(../img/bio_back.jpg);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+
+ }
+
+  #boothNameView{
+  	font-weight: 800;
+  	font-size: 36px;
+  	font-family: sans-serif;
+
+  }
+ /********************
+  * Support Requests *
+  ********************/
+  #supReqHeader{
+	font-weight:800;
+	font-size:36px;
+	color:#444;
+  	
+  }
+
+/********************
+ *Admin Page *
+ ********************/
+.user-item{
+	opacity: 0.6;
+	/*text-align: center;*/
+}
+
+/********************
+ *About Page *
+ ********************/
+.about-header{
+	width: 112%;
+	height: 60%;
+	position: relative;
+	margin-left: -6%;
+}
+.about-header::after{
+	content: "";
+	background-color: white;
+	opacity: 0.3;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: 1;
+}
+.hero {
+	background: url('../img/vegs-background.jpg') no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	display: table;
+	width: 100%;
+	margin-top: -2%;
+
+}
+.hero .contain {
+	color:white;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	height: 689px;
+	font-size: 500%;
+	opacity: 1;
+	padding:5%;
+}
+.big{
+	font-size: 500%;
+}
+
 
 /* NGANIMATE
 ====================== */

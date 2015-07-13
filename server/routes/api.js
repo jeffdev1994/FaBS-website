@@ -2,6 +2,7 @@ var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var Booth       = require('../models/booth');
 var Day       = require('../models/day');
+var SupportRequest       = require('../models/support');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -22,7 +23,7 @@ module.exports = function(app, express) {
 	apiRouter.post('/authenticate',function(req, res){
 		console.log("very top of authenticate" + req.body.username);
 		User.findOne({username: req.body.username})
-			.select('username password ')
+			.select('username password isAdmin')
 			.exec(function(err,user){
 				if(err) throw err;
 
@@ -43,14 +44,14 @@ module.exports = function(app, express) {
 					else{
 						//user was found, and password is correct. create token for them
 						var token = jwt.sign({id: user._id, username: user.username},superSecret,{expiresInMinutes: 150});
-						res.json({success: true , message: 'Token set for 2.5 hours', token: token});
+						res.json({success: true, isAdmin: user.isAdmin, message: 'Token set for 2.5 hours', token: token});
 					}
 				}
 			});
 
 
 		});
-
+//-------------------------------
 
 
 
@@ -132,6 +133,43 @@ module.exports = function(app, express) {
 		}
 	});
 
+
+	apiRouter.route('/support')
+		.post(function(req,res){
+			var support = new SupportRequest();
+			//just adds the date of when its being added
+			support.date = new Date();
+			support.title = req.body.title;
+			support.body = req.body.body;
+
+			support.save(function(err){
+				if(err){
+					console.log(err);
+					return res.send(err);
+				}
+				res.json({success: true, message: 'Request Created!'});
+			});
+
+		})
+
+		.get(function(req,res){
+			SupportRequest.find({}, function(err, requests) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json(requests);
+			});
+		});
+
+	apiRouter.route('/support/:id')
+		.delete(function(req,res){
+			SupportRequest.findByIdAndRemove(req.params.id, function(err, requests) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json({success: true, message: 'Request deleted!'});
+			});
+		});
 
 	//when creating a booth. it adds itself into users, and into the day
 	//if the day is not created yet, it will created, that is why the /days route may not be needed
@@ -268,7 +306,11 @@ module.exports = function(app, express) {
 				if (req.body.name) user.name = req.body.name;
 				if (req.body.username) user.username = req.body.username;
 				if (req.body.password) user.password = req.body.password;
-
+				if (req.body.products) user.products = req.body.products;
+				if (req.body.bio) user.bio = req.body.bio;
+				if (req.body.email) user.email = req.body.email;
+				if (req.body.phone) user.phone = req.body.phone;
+				if (req.body.boothName) user.boothName = req.body.boothName;
 				// save the user
 				user.save(function(err) {
 					if (err) res.send(err);
@@ -305,4 +347,5 @@ module.exports = function(app, express) {
 	});
 
 	return apiRouter;
+
 };
