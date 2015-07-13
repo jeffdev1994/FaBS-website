@@ -5,7 +5,7 @@
 			<div class="10u">
 			<div class = "row" >
 				<div class="col-sm-offset-0 col-sm-10">
-					<img src="views/img/banner_main.png" style="width:100%; border: 3px solid grey; padding: 10px 10px 10px 10px;"></img>
+					<img src="views/img/banner_main.png" style="width:100%; padding: 10px 10px 10px 10px;"></img>
 				</div>
 
 				<div class="col-sm-offset-0 col-sm-2">
@@ -67,8 +67,8 @@
 				<div id="market" ng-controller="marketController as market">
 					<div id="notices" style="border: 1px solid grey; border-radius: 5px; margin: 0% 1.5% 1.5% 1.5%;">
 						<center>
-							<font size="5">Important Notices</font><br>
-							The market has been over taken by feline crime boss Al Catpone. Please pickup produce at Fairway.<br>
+							<h1 style="font-size:25px;font-weight:bold;font-family:serif;text-decoration:underline;">Important Notices<br><h1>
+							<p style="font-size:20px;"><br>Click on a valid time slot to book a booth!<p>
 						</center>
 					</div>
 
@@ -84,7 +84,7 @@
 
 					<!--if the day is a sunday. display the whole map-->
 					<div id="gangstaMap" class="col-sm-12" ng-if = "market.isSunday" style="border: 1px solid grey; border-radius: 5px; background-color:rgba(255,255,255,.85); padding-top:5%;">
-						<!-- <img id="gangstaCat" src="http://thefunniestpictures.com/wp-content/uploads/2013/09/funny-pics-al-catpone.jpg"/-->
+
 						<div style="width:100%; height: 30px;">
 							<p style="font-style:bold;font-family:serif;"><center>{{market.day}}</center></p>
 						</div>
