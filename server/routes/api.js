@@ -91,24 +91,10 @@ module.exports = function(app, express) {
 			
 
 
-		})
-
-		//TODO:	needs to be put under the middleware
-		// get all the users (accessed at GET http://localhost:8080/api/users)
-		.get(function(req, res) {
-
-			User.find({}, function(err, users) {
-				if (err) res.send(err);
-
-				// return the users
-				res.json(users);
-			});
 		});
 
 
 	//middleware to verify token
-	//not sure where this should go yet. but i think it goes overtop of all functions that need to be logged in to use
-	//not sure how this stops them from getting into vendor main and stuff though
 	apiRouter.use(function(req,res,next){
 		//**********************************
 		//it was toke\n in the book, but the \ and n were on different lines, not sure if its supposed to be like this, page 98 of mean
@@ -131,6 +117,19 @@ module.exports = function(app, express) {
 			//there was no token
 			return res.status(403).send({success: false, message: 'No token provided'});
 		}
+	});
+
+
+	//has to be below the middleware, so it cant go into .route('/users')
+	// get all the users
+	apiRouter.get('/users',function(req, res) {
+
+		User.find({}, function(err, users) {
+			if (err) res.send(err);
+
+			// return the users
+			res.json(users);
+		});
 	});
 
 
@@ -160,6 +159,7 @@ module.exports = function(app, express) {
 				res.json(requests);
 			});
 		});
+
 
 	apiRouter.route('/support/:id')
 		.delete(function(req,res){

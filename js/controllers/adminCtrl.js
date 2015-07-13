@@ -1,9 +1,24 @@
-angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothService'])
+angular.module('adminCtrl', ['userService','dataService','authService','ui.bootstrap', 'boothService'])
 
 
-.controller('adminController', function(User, Data, $location, $window) {
+.controller('adminController', function(User, Data, $location, $window, Auth) {
 
 	var vm = this;
+
+		//make sure user is an admin
+	Auth.getUser().then(function(user){
+		Auth.getUserInfo(user.data.id).then(function(user){
+			//if they are not an admin, redirect them to /markethome instead
+			if(user.data.isAdmin == false){
+				$location.url('/markethome');
+				return;
+			}
+			//if they are an admin, then just continue to the requested page
+		});
+	});
+
+
+
 	vm.users;
 
 	// set a processing variable to show loading things
@@ -30,8 +45,20 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 	};
 })
 
-.controller('adminmarketController', function(User, Data, Booth, $location, $window) {
+.controller('adminmarketController', function(User, Data, Booth, $location, $window, Auth) {
 	var vm = this;
+
+	//make sure the user is an admin
+	Auth.getUser().then(function(user){
+		Auth.getUserInfo(user.data.id).then(function(user){
+			//if they are not an admin, redirect them to /markethome instead
+			if(user.data.isAdmin == false){
+				$location.url('/markethome');
+				return;
+			}
+			//if they are an admin, then just continue to the requested page
+		});
+	});
 
 	vm.theuserinfo = Data.getTheUser();
 
@@ -196,6 +223,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 
 .controller('marketAdmin', function($rootScope, User, Data, Booth, Auth, $location, $window){
 	var vm = this;
+
 
 	vm.theuserinfo = Data.getTheUser();
 
