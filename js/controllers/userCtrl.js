@@ -57,11 +57,16 @@ angular.module('userCtrl', ['userService','dataService','authService','ui.bootst
 					if(data.success == false){
 						vex.dialog.alert(data.message);
 					}
-					else{
+					else if(!data.isAdmin){
 						//checkbox value of 'keep me signed in'. save it so we can bypass login if user has token
 						$window.localStorage.setItem('keepLoggedIn', vm.keepMeLoggedIn);
 						//login successful, go to the markethome
 						$location.url("/markethome");
+					}else{
+						//checkbox value of 'keep me signed in'. save it so we can bypass login if user has token
+						$window.localStorage.setItem('keepLoggedIn', vm.keepMeLoggedIn);
+						//login successful, go to the markethome
+						$location.url("/adminhome");
 					}
 				});
 		};
