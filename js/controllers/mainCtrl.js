@@ -147,6 +147,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//availability of array, goes morning 1-12 then afternoon 1-12
 	vm.boothAV = [];
+	vm.boothUserIDs = [];
 
 	vm.changeDate = function(){
 		//dont allow them to go to a date that is older then today, or more then a year in advance
@@ -206,10 +207,14 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 					//TODO: have the username and link to profile page on each booked booth - maybe
 					vm.boothNum = day.data.booths[i].booth_id;
 					vm.boothTime = day.data.booths[i].timeSlot;
-					if(vm.boothTime == 16002000)
+					if(vm.boothTime == 16002000) {
 						vm.boothAV[vm.boothNum + 12] = 0;
-					else if(vm.boothTime == 10001400)
+						vm.boothUserIDs[vm.boothNum + 12] = day.data.booths[i].user_id;
+					}
+					else if(vm.boothTime == 10001400) {
 						vm.boothAV[vm.boothNum] = 0;
+						vm.boothUserIDs[vm.boothNum] = day.data.booths[i].user_id;
+					}
 				}
 			}
 		});	
@@ -219,23 +224,10 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//call it initially so that the date is correct after loading
 	vm.changeDate();
-
-	//popup to show a booth is already booked
-	vm.boothAlreadyBooked = function() {
-		vex.dialog.alert({
-			message: 'This booth has already been booked',
-			afterClose: function() {
-				vm.changeDate();
-			}
-		});
-	};
+		
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
-
-
-
-		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
 		var callAnswer = false;
 		vm.bannedDate = new Date($rootScope.userinfo.banned);
 		vm.currDate = new Date();
