@@ -118,16 +118,6 @@ BoothSchema.post('save', function(booth){
 
 });
 
-
-
-// method to check if a user should be banned after canceling it
-BoothSchema.methods.ban = function() {
-    var booth = this;
-
-
-    return bcrypt.compareSync(password, vendor.password);
-};
-
 /**other methods that vendor has to implement will go in here. dont know if we
  actually need to bother with the getters and setters.*/
 
