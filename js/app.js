@@ -1,5 +1,5 @@
 // #####  SIMPLE ANGULAR APP  #####
-angular.module('userApp', ['app.routes','userService','authService','dataService','boothService','mainCtrl','userCtrl',"profileCtrl"])
+angular.module('userApp', ['app.routes','userService','authService','dataService','boothService','mainCtrl','userCtrl',"profileCtrl","profViewCtrl"])
 
 .config(function($httpProvider){
 
