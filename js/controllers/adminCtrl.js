@@ -288,7 +288,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 	vm.bookBooth = function(booth_id , timeSlot){
 		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
 		var callAnswer = false;
-		vm.bannedDate = new Date(vm.theuserinfo.banned);
+		vm.bannedDate = new Date($rootScope.userinfo.banned);
 		vm.currDate = new Date();
 		//if current date is bigger then banned date(further ahead)
 		if(vm.bannedDate > vm.currDate){
@@ -308,14 +308,13 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 			booth_id : booth_id, //this an timeSlot vals are from arguments
 			timeSlot : timeSlot,
 			dateSlot : vm.date.getFullYear() + "-" + (vm.date.getMonth() + 1)+ "-" +vm.date.getDate(),
-			user_id : vm.theuserinfo._id
+			user_id : $rootScope.userinfo._id
 		};
 
 		vex.dialog.confirm({
 			message: 'Confirm booking for ' + vm.boothInfo.dateSlot + " at " + userTime,
 			callback: function(answer) {
 				//if they answer yes, then do the booking
-				$location.url("/adminhome");
 				if(answer){
 					callAnswer = answer;
 					//create the booth using the booth info
@@ -328,9 +327,8 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 						}
 						else {
 							console.log("booth created .SUCCESS");
-							
 							vex.dialog.alert('Congratulations! Booth booked for ' + vm.boothInfo.dateSlot + " at " + userTime);
-
+							$location.url('/adminhome');
 						}
 					});
 				}
@@ -339,11 +337,8 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 			
 			//update calander after dialogue closes
 			afterClose: function() {
-				console.log("BEFORE IF!!!!!!!!!");
 				if(callAnswer) {
 					callAnswer = false;
-					console.log("I GOT HERE!!!!!!!!!!!!!!");
-					
 				}
 			}
 		});
