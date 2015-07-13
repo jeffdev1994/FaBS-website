@@ -26,7 +26,6 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 			alert("Error: Subject field empty. Please fill all fields.");
 			return false;
 		}
-
 		if (vm.supReq.body == "") {
 			alert("Error: request field empty. Please fill all fields.");
 			return false;
@@ -46,7 +45,6 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 		// use the create function in the userService
 		User.makeRequest(vm.supReq)
 			.success(function(data) {
-
 				if(data.success == false){
 					console.log("Support Request not sucessful");
 					vm.processing = false;
@@ -60,9 +58,6 @@ angular.module('supReqCtrl', ['userService','dataService','authService','ui.boot
 					$location.path("/markethome");
 
 				}
-
-
-
 		});
 	};
 

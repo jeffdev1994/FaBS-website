@@ -1,5 +1,6 @@
 angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothService'])
 
+
 .controller('adminController', function(User, Data, $location, $window) {
 
 	var vm = this;
@@ -131,6 +132,7 @@ angular.module('adminCtrl', ['userService','dataService','ui.bootstrap', 'boothS
 			}
 		});
 	}
+
 
 })
 

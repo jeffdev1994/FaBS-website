@@ -29,20 +29,11 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 			//split up the users booths into old and future booths
 			vm.bookedBooths = user.data.bookedBooths;
-			console.log(vm.bookedBooths);
-			console.log(user.data.bookedBooths);
 			vm.currDate = new Date();
 			//consider how the dateSlot is being put in
-			console.log(vm.bookedBooths.length);
 			vm.arrlength = vm.bookedBooths.length;
 			for(i=0; i<vm.arrlength;i++){
 				vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
-				console.log(i);
-				console.log("**" + vm.bookedBooths.length);
-				console.log(vm.tempDate);
-				console.log(vm.currDate);
-				console.log(vm.tempDate < vm.currDate);
-				console.log("*****");
 				if(vm.tempDate < vm.currDate){
 					vm.boothHistory.push(vm.bookedBooths[i]);
 				}
@@ -95,6 +86,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 
 	vm.logout = function(){
+		$window.sessionStorage.removeItem('time');
 		Auth.logout();
 	};
 
@@ -144,6 +136,9 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	vm.isSunday;
 	vm.date;
+	vm.day;
+
+
 	//date chosen by the datepicker, set to what they chose last, or todays date if nothing in session memory
 	if($window.sessionStorage.getItem('time'))
 		vm.date = new Date($window.sessionStorage.getItem('time'));
@@ -152,6 +147,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 
 	//availability of array, goes morning 1-12 then afternoon 1-12
 	vm.boothAV = [];
+	vm.boothUserIDs = [];
 
 	vm.changeDate = function(){
 		//dont allow them to go to a date that is older then today, or more then a year in advance
@@ -160,19 +156,23 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 		vm.yesterdaydate = new Date();
 		vm.minusday = vm.yesterdaydate.getDate() -1;
 		vm.yesterdaydate.setDate(vm.minusday);
-
-		vm.nextyear = new Date();
-		vm.extrayear = vm.nextyear.getFullYear() + 1;
-		vm.nextyear.setFullYear(vm.extrayear);
 		if(vm.date < vm.yesterdaydate){
-			vex.dialog.alert("Sorry, you cannot view the history of the schedule");
+			vex.dialog.alert("You cannot book booths in the past. You have no power here!");
 			vm.date = vm.todaydate;
+			$window.sessionStorage.setItem('time', vm.date);
+			return;
 		}
-		else if(vm.date > vm.nextyear){
-			vex.dialog.alert("Sorry, you cannot book booths more then a year in advance");
-			vm.nextyearminusday = vm.nextyear.getDate() - 1;
-			vm.nextyear.setDate(vm.nextyearminusday);
-			vm.date = vm.nextyear;
+
+		vm.nextmonth = new Date();
+		vm.extramonth = vm.nextmonth.getMonth() + 1;
+		vm.nextmonth.setMonth(vm.extramonth);
+
+		if(vm.date > vm.nextmonth){
+			vex.dialog.alert("Sorry, you cannot book booths more then a month in advance");
+			vm.nextmonthminusday = vm.nextmonth.getDate() - 1;
+			vm.nextmonth.setDate(vm.nextmonthminusday);
+			vm.date = vm.nextmonth;
+			return;
 		}
 		//find out if the day is a sunday or not
 		$window.sessionStorage.setItem('time', vm.date);
@@ -207,31 +207,27 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 					//TODO: have the username and link to profile page on each booked booth - maybe
 					vm.boothNum = day.data.booths[i].booth_id;
 					vm.boothTime = day.data.booths[i].timeSlot;
-					if(vm.boothTime == 16002000)
+					if(vm.boothTime == 16002000) {
 						vm.boothAV[vm.boothNum + 12] = 0;
-					else if(vm.boothTime == 10001400)
+						vm.boothUserIDs[vm.boothNum + 12] = day.data.booths[i].user_id;
+					}
+					else if(vm.boothTime == 10001400) {
 						vm.boothAV[vm.boothNum] = 0;
+						vm.boothUserIDs[vm.boothNum] = day.data.booths[i].user_id;
+					}
 				}
 			}
-		});
+		});	
+
+		vm.day = moment(vm.date).format("dddd, MMMM Do YYYY");
 	};
 
 	//call it initially so that the date is correct after loading
 	vm.changeDate();
-
-	//popup to show a booth is already booked
-	vm.boothAlreadyBooked = function() {
-		vex.dialog.alert({
-			message: 'This booth has already been booked',
-			afterClose: function() {
-				vm.changeDate();
-			}
-		});
-	};
+		
 
 	//function is called when user clicks on the booth card
 	vm.bookBooth = function(booth_id , timeSlot){
-		//TODO: **important (just info)** when a booth is booked, there is an object, if it is canceled the object will be deleted
 		var callAnswer = false;
 		vm.bannedDate = new Date($rootScope.userinfo.banned);
 		vm.currDate = new Date();
