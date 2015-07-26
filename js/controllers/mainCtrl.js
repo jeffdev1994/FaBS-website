@@ -35,7 +35,7 @@ angular.module('mainCtrl', ['userService','dataService','authService','ui.bootst
 			for(i=0; i<vm.arrlength;i++){
 				vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
 				vm.minusday = vm.tempDate.getDate() - 1;
-				vm.currDate.setDate(vm.minusday);
+				vm.tempDate.setDate(vm.minusday);
 				if(vm.tempDate < vm.currDate){
 					vm.boothHistory.push(vm.bookedBooths[i]);
 				}
