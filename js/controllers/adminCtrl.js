@@ -78,7 +78,8 @@ angular.module('adminCtrl', ['userService','dataService','authService','ui.boots
 	vm.arrlength = vm.bookedBooths.length;
 	for(i=0; i<vm.arrlength;i++){
 		vm.tempDate = new Date(vm.bookedBooths[i].dateSlot);
-
+		vm.minusday = vm.tempDate.getDate() + 1;
+		vm.tempDate.setDate(vm.minusday);
 		if(vm.tempDate < vm.currDate){
 			vm.boothHistory.push(vm.bookedBooths[i]);
 		}
@@ -87,7 +88,6 @@ angular.module('adminCtrl', ['userService','dataService','authService','ui.boots
 		}
 	}
 
-	console.log(vm.theuserinfo.username);
 	vm.getNeatTime = function(booth) {
 		var returnval = booth.dateSlot;
 		if (booth.timeSlot == '10001400') {
@@ -226,6 +226,7 @@ angular.module('adminCtrl', ['userService','dataService','authService','ui.boots
 
 
 	vm.theuserinfo = Data.getTheUser();
+	console.log(vm.theuserinfo._id);
 
 	vm.isSunday;
 	vm.date;
@@ -338,7 +339,7 @@ angular.module('adminCtrl', ['userService','dataService','authService','ui.boots
 			booth_id : booth_id, //this an timeSlot vals are from arguments
 			timeSlot : timeSlot,
 			dateSlot : vm.date.getFullYear() + "-" + (vm.date.getMonth() + 1)+ "-" +vm.date.getDate(),
-			user_id : $rootScope.userinfo._id
+			user_id : vm.theuserinfo._id
 		};
 
 		vex.dialog.confirm({
